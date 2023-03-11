@@ -1,11 +1,14 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from "./context/user"
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
 
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
+
+  const navigate = useNavigate()
 
   const {login} = useContext(UserContext)
 
@@ -22,7 +25,9 @@ const Login = () => {
       .then(res => res.json())
       .then((user) => {
         login(user)
+        navigate('/')
       })
+
   }
 
   return (

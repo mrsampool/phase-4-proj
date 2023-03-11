@@ -7,7 +7,7 @@ const UserContext = React.createContext()
 
 const UserProvider = ( {children } ) => {
 
-    const [user, setUser] = useState(null) //or is it {}?
+    const [user, setUser] = useState({}) //or is it {}?
     const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
 
 
@@ -22,14 +22,13 @@ const UserProvider = ( {children } ) => {
         })    
     }, [])
 
-    const login = () => {
-        //should this be {} or null?
+    const login = (user) => {
         setUser(user)
         setLoggedIn(true) //sets the flag
     }
 
     const logout = () => {
-        setUser(null)
+        setUser({})
         setLoggedIn(false) //sets the flag
     }
 

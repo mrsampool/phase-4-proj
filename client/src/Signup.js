@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from "./context/user"
+import { useNavigate } from 'react-router-dom'
 
 const Signup = () => {
 
@@ -7,6 +8,8 @@ const Signup = () => {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [errorsList, setErrorsList] = useState("")
+
+    const navigate = useNavigate()
 
     const { signup } = useContext(UserContext)
 
@@ -27,7 +30,7 @@ const Signup = () => {
         .then(user => {
             if (!user.errors) {
                 signup(user)
-                // navigate('/')
+                navigate('/')
             } else {
                 setUsername("")
                 setPassword("")

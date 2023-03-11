@@ -7,14 +7,13 @@ const Login = () => {
   const [password, setPassword] = useState("")
   const [error, setError] = useState("")
 
-
   const {login} = useContext(UserContext)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     fetch('/login', {
       method: 'POST',
-      header:  { 'Content-Type': 'application/json'},
+      headers:  { 'Content-Type': 'application/json'},
       body: JSON.stringify({
         username: username,
         password: password
@@ -24,7 +23,6 @@ const Login = () => {
       .then((user) => {
         login(user)
       })
-
   }
 
   return (
@@ -40,6 +38,8 @@ const Login = () => {
           onChange={(e) => setUsername(e.target.value)}
         /> 
         <br/><br/>
+        <label>Password: </label>
+        <br />
         <input 
           type="password"
           id="password"

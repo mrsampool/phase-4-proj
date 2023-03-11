@@ -20,13 +20,15 @@ const Navbar = () => {
 
   // return must only happen if someone is logged in
 
-  if (loggedIn) {
+  if (loggedIn && user) {
    
       return (
         
         <div>
           <h3>Hello {user.username}</h3>
           <button onClick={logoutUser}>Logout</button>
+          <br/><br/>
+          <hr/>
         </div>
 
       )

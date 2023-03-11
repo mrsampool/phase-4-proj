@@ -1,9 +1,40 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from './context/user'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
-  return (
-    <div>Navbar</div>
-  )
+
+  const {user, logout} = useContext(UserContext)
+
+  const logoutUser = () => {
+
+    fetch('/logout')
+    .then(() => {
+      logout()
+    })
+    
+  }
+
+  // return must only happen if someone is logged in
+
+  if (user) {
+   
+      return (
+        <div>
+          <h1>Hello {user.username}</h1>
+          <button onClick={logoutUser}>Logout</button>
+        </div>
+      )
+  } else {
+
+    return (
+      <div>
+        <NavLink to='/login'>
+          <button>Login</button>
+        </NavLink>
+      </div>
+    )
+  }
 }
 
 export default Navbar

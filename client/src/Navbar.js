@@ -32,6 +32,10 @@ const Navbar = () => {
         <NavLink to='/login'>
           <button>Login</button>
         </NavLink>
+        <NavLink to='/signup'>
+          <button>Signup</button>
+        </NavLink>
+        <hr/>
       </div>
     )
   }

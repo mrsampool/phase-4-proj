@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
     def create 
-        user = User.find_by(user_params)
+        user = User.find_by(:username)
         if user&.authenticate(params[:password])
             session[:user_id] = user.id
             render json: user
@@ -18,8 +18,8 @@ class SessionsController < ApplicationController
 
     private
 
-    def user_params
-        params.permit(:username)
-    end
+    # def user_params
+    #     params.permit(:username)
+    # end
 
 end

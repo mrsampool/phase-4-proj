@@ -3,9 +3,10 @@ import { UserContext } from "./context/user"
 
 const Login = () => {
 
-  const {username, setUsername} = useState("")
-  const {password, setPassword} = useState("")
-  const {error, setError} = useState("")
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
+
 
   const {login} = useContext(UserContext)
 
@@ -36,7 +37,7 @@ const Login = () => {
           type="text"
           id="username"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         /> 
         <br/><br/>
         <input 

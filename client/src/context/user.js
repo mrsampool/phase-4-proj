@@ -7,7 +7,7 @@ const UserContext = React.createContext()
 
 const UserProvider = ( {children } ) => {
 
-    const [user, setUser] = useState({}) //or is it {}?
+    const [user, setUser] = useState({}) //or is it null?
     const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
 
 

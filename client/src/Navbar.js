@@ -20,12 +20,12 @@ const Navbar = () => {
 
   // return must only happen if someone is logged in AND the user is not NULL (got a 'null' error before; this fixed it)
 
-  if (loggedIn && user) {
+  if (loggedIn) {
    
       return (
         <>
 
-          <h3>Hello {user.username}</h3>
+          <h3>Hello {user.username}!</h3>
           <button onClick={logoutUser}>Logout</button>
           <br/><br/>
           <hr/>

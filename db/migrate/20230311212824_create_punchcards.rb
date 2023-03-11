@@ -5,6 +5,8 @@ class CreatePunchcards < ActiveRecord::Migration[6.1]
       t.string :type
       t.integer :count
       t.string :qr_code
+      t.integer :business_id
+      t.integer :user_id
 
       t.timestamps
     end

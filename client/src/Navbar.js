@@ -8,10 +8,10 @@ const Navbar = () => {
 
   const logoutUser = () => {
 
-    fetch('/logout')
-    .then(() => {
-      logout()
+    fetch('/logout', {
+      method: 'DELETE',
     })
+    .then(() => { logout() })
     
   }
 

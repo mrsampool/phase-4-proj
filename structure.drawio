@@ -1,17 +1,17 @@
 <mxfile host="65bd71144e">
     <diagram id="EY0uoxFM9JYzSHPznBX-" name="Page-1">
-        <mxGraphModel dx="2197" dy="1726" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#363636" math="0" shadow="0">
+        <mxGraphModel dx="1308" dy="662" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#363636" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="PUNCHCARD&lt;br&gt;belongs_to business&lt;br&gt;belongs_to user&lt;br&gt;CRUD" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="360" y="110" width="140" height="90" as="geometry"/>
+                <mxCell id="2" value="PUNCHCARD&lt;br&gt;belongs_to business&lt;br&gt;belongs_to user&lt;br&gt;CRUD&lt;br&gt;&lt;br&gt;:name, :type, :count, :reward, ;qr_code" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="280" y="110" width="220" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="USER&lt;br&gt;has_many punchcards&lt;br&gt;has_many businesses through punchcard" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="500" y="110" width="140" height="90" as="geometry"/>
+                    <mxGeometry x="500" y="110" width="220" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="BUSINESS&lt;br&gt;has_many punchcards&lt;br&gt;has_many users through punchcards" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="210" y="110" width="150" height="90" as="geometry"/>
+                    <mxGeometry x="60" y="110" width="220" height="130" as="geometry"/>
                 </mxCell>
                 <mxCell id="7" value="HOME&lt;br&gt;login/signup" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="360" y="535" width="120" height="60" as="geometry"/>
@@ -184,7 +184,7 @@
                 <mxCell id="62" value="DUAL PORTAL STRUCTURE FOR TWO USER ACCOUNTS, &lt;br&gt;one for customers, one for businesses" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" parent="1" vertex="1">
                     <mxGeometry x="1108" y="480" width="360" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="63" value="&lt;h1&gt;Notes&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;Business can create read edit delete punchcard&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;Customers can view puncard index and add ones to their wallet&lt;/span&gt;&lt;span style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="63" value="&lt;h1&gt;Notes&lt;/h1&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;Business can create read edit delete punchcard&lt;/span&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;Customers can view puncard index and add ones to their wallet&lt;/span&gt;&lt;span style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="890" y="70" width="490" height="120" as="geometry"/>
                 </mxCell>
             </root>

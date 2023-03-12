@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2023_03_11_212824) do
 
   create_table "punchcards", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "kind"
     t.integer "count"
-    t.string "qr_code"
+    t.string "reward"
     t.integer "business_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false

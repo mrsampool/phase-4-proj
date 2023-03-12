@@ -1,20 +1,31 @@
 import React, { useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserContext } from './context/user'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 
 const Punchcards = () => {
-    const {} = useContext(UserContext)
+
+    const { punchcards, loggedIn } = useContext(UserContext)
+
     const [formFlag, setFormFlag ] = useState(false)
     const params = useParams()
 
-    // GET request to receive punchcards
+    if (loggedIn) {
+      const punchcardsList = punchcards.map( p => <li>{p.name}</li>)
+      return (
+        <div>
+            <h3>[My Punchcards]</h3>
+            <h3>{punchcardsList}</h3>
+        </div>
+      )
+    } else {
+      return (
+        <h3>Not Authorized -- Please signup or login</h3>
+      )
+    }
 
-  return (
-    <div>
-        <h3>Punchcards</h3>
-    </div>
-  )
+  
 }
 
 export default Punchcards

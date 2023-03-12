@@ -2,7 +2,7 @@ import React from 'react'
 
 const Punchcard = () => {
 
-    // show single punchcard? Need GET?
+    // show? single punchcard. Need GET here?
 
 
   return (

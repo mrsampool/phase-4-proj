@@ -17,7 +17,7 @@ class PunchcardsController < ApplicationController
         else 
           render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
         end
-      end
+    end
 
     def show
         punchcard = current_user.punchcards.find_by(id: params[:id])

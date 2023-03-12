@@ -5,6 +5,7 @@ import Home from './Home'
 import Navbar from './Navbar'
 import Signup from './Signup'
 import Login from './Login'
+import Punchcards from './Punchcards'
 import { UserProvider } from "./context/user"
 
 
@@ -19,6 +20,7 @@ function App(props) {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/punchcards" element={<Punchcards />} />
         </Routes>
       </UserProvider>
 

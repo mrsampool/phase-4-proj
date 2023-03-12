@@ -30,15 +30,15 @@ const PunchcardForm = ({punchcard}) => {
     <div>
         <form onSubmit={handleSubmit}>
 
-            <input type="" id="">
+            <input type="text" id="name">
 
             </input>
 
-            <input type="" id="">
+            <input type="text" id="type">
 
             </input>
 
-            <input type="" id="">
+            <input type="" id="count">
 
             </input>
 

@@ -9,6 +9,7 @@ const UserProvider = ( {children } ) => {
 
     const [user, setUser] = useState({}) //or is it null?
     const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
+    const [punchcards, setPunchcards] = useState([])
 
 
     useEffect(() => {
@@ -17,24 +18,41 @@ const UserProvider = ( {children } ) => {
         .then(data => {
             // gets userdata from backend, then sets it to global state
             setUser(data)
-            data.error ? setLoggedIn(false) : setLoggedIn(true) //logged in flag depending whether or not there is an error
+
+           //logged in flag depending whether or not there is an error
             // add data here for what user can do
+            if (data.error) {
+                setLoggedIn(false)
+            } else {
+                setLoggedIn(true)
+                // below code blows my mind -- a fetch in a fetch
+                fetchPunchcards()
+            }
         })    
     }, [])
 
+    const fetchPunchcards = () => {
+        fetch('/punchcards')
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            setPunchcards(data)
+        })
+    }
+
     const login = (user) => {
         setUser(user)
-        setLoggedIn(true) //sets the flag
+        setLoggedIn(true) 
     }
 
     const logout = () => {
         setUser({})
-        setLoggedIn(false) //sets the flag
+        setLoggedIn(false)
     }
 
     const signup = (user) => {
         setUser(user)
-        setLoggedIn(true) //sets the flag
+        setLoggedIn(true) 
     }
 
   return (

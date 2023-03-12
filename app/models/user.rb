@@ -3,7 +3,7 @@ class User < ApplicationRecord
     validates :username, :password, :password_confirmation, presence: true
 
     has_many :punchcards 
-    has_many :businesses, through: :punchcards
+
 
 end
  

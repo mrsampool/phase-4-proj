@@ -11,13 +11,17 @@ class PunchcardsController < ApplicationController
     end
 
     def create 
+        puts "session[:user_id]: #{session[:user_id]}"
+        puts "current_user: #{current_user.inspect}"
+
         punchcard = current_user.punchcards.create(punchcard_params)
         if punchcard.valid? 
           render json: punchcard 
         else 
           render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
         end
-    end
+      end
+      
 
     def show
         punchcard = current_user.punchcards.find_by(id: params[:id])
@@ -43,7 +47,7 @@ class PunchcardsController < ApplicationController
     end
 
     def punchcard_params
-        params.permit(:name, :type, :count, :qr_code)
+        params.permit(:name, :kind, :count, :reward)
     end
 
     def authorize

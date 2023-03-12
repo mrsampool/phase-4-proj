@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2023_03_11_212824) do
     t.string "kind"
     t.integer "count"
     t.string "reward"
-    t.integer "business_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -8,11 +8,13 @@ const Punchcards = () => {
 
     const { punchcards, loggedIn } = useContext(UserContext)
 
+    console.log(punchcards)
+
     const [formFlag, setFormFlag ] = useState(false)
     const params = useParams()
 
     if (loggedIn) {
-      const punchcardsList = punchcards.map( p => <li>{p.name}</li>)
+      const punchcardsList = punchcards.map( p => <ul>{p.name}</ul>)
       return (
         <div>
             <h3>[My Punchcards]</h3>

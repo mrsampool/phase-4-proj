@@ -1,31 +1,40 @@
 class PunchcardsController < ApplicationController
     before_action :authorize
 
+    # Below are the actions ONLY for the User that is LOGGED IN.
+    # VALIDATIONS ARE RUN WHEN ITS SAVED-- like create, save, and update
+
     def index 
-        punchcard = Punchcard.all
-        render json: punchcard
+        # user is in SESSION not params
+        punchcards = current_user.punchcards
+        render json: punchcards
     end
 
     def create 
-        punchcard = Punchcard.create(:punchcard_params)
-        render json: punchcard, status: :created
+        punchcard = current_user.punchcards.create(:punchcard_params)
+        if punchcard.valid? 
+            render json: punchcard 
+        else 
+            render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
     end
 
     def show
-        punchcard = Punchcard.find_by(id: params[:id])
+        punchcard = current_user.punchcards.find_by(id: params[:id])
+        if punchcard 
+            render json: punchcard
+        else 
+            render json: { error: "Not found."}, status: :unauthorized 
+        end
         render json: punchcard
     end
 
-    def destroy
-        punchcard = Punchcard.find_by(id: params[:id])
-        punchcard.destroy
-    end
+    # def destroy
+    #    
+    # end
 
-    def update
-        punchcard = Punchcard.find_by(id: params[:id])
-        punchcard.update(punchcard_params)
-        render json: punchcard, status: :created
-    end
+    # def update
+    #  
+    # end
 
     private 
 

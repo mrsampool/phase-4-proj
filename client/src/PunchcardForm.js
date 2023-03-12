@@ -1,12 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 
-const PunchcardForm = () => {
+const PunchcardForm = ({addPunchcardFlag}) => {
 
     const [name, setName] = useState("")
     const [kind, setKind] = useState("")
-    const [count, setCount] = useState(0)
-    // const [reward, setReward] = useState(0)
+    const [count, setCount] = useState(null)
+    const [reward, setReward] = useState("")
 
     const {addPunchcard} = useContext(UserContext)
 
@@ -18,8 +18,9 @@ const PunchcardForm = () => {
                 name: name,
                 kind: kind,
                 count: count,
-                // reward: punchcard.reward
+                reward: reward
         })
+        addPunchcardFlag()
     }
 
   return (
@@ -33,7 +34,7 @@ const PunchcardForm = () => {
                 value={name}
                 onChange={e => setName(e.target.value)}
             />
-
+            <br/><br/>
 
             <label>Kind:</label>
             <input 
@@ -42,6 +43,7 @@ const PunchcardForm = () => {
                 value={kind}
                 onChange={e => setKind(e.target.value)}
             />
+            <br/><br/>
 
             <label>Count:</label>
             <input 
@@ -50,14 +52,16 @@ const PunchcardForm = () => {
                 value={count}
                 onChange={e => setCount(e.target.value)}
             />
+            <br/><br/>
 
-            {/* <label>Reward:</label>
+            <label>Reward:</label>
             <input 
                 type="" 
                 id="count" 
                 value={reward}
                 onChange={e => setReward(e.target.value)}
-            /> */}
+            />
+            <br/><br/>
    
 
         <input type="submit" />

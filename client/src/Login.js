@@ -30,7 +30,7 @@ const Login = () => {
         } else { 
           setUsername("")
           setPassword("")
-          const errorLi = user.error.map(e => <li>{e}</li>)  
+          const errorLi = <li>{user.error}</li>
           setError(errorLi)
         }      
       })

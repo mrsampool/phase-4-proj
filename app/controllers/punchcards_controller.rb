@@ -10,6 +10,15 @@ class PunchcardsController < ApplicationController
         render json: punchcards
     end
 
+    def show
+        punchcard = current_user.punchcards.find_by(id: params[:id])
+        if punchcard 
+            render json: punchcard
+        else 
+            render json: { error: "Not found."}, status: :unauthorized 
+        end
+    end
+
     def create 
         punchcard = current_user.punchcards.create(punchcard_params)
         if punchcard.valid? 
@@ -20,14 +29,7 @@ class PunchcardsController < ApplicationController
       end
       
 
-    def show
-        punchcard = current_user.punchcards.find_by(id: params[:id])
-        if punchcard 
-            render json: punchcard
-        else 
-            render json: { error: "Not found."}, status: :unauthorized 
-        end
-    end
+ 
 
     def destroy
         session.destroy :user_id

@@ -11,6 +11,7 @@ const UserProvider = ( {children } ) => {
     const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
     const [punchcards, setPunchcards] = useState([])
 
+
     useEffect(() => {
         fetch('/me')
         .then(resp => resp.json())
@@ -29,11 +30,11 @@ const UserProvider = ( {children } ) => {
         })    
     }, [])
 
+    // below fetch not necessary?
     const fetchPunchcards = () => {
         fetch('/punchcards')
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
             setPunchcards(data)
         })
     }
@@ -51,6 +52,22 @@ const UserProvider = ( {children } ) => {
             setPunchcards([...punchcards, data])
         })
     }
+
+    // const editPunchcard = (punchcard) => {
+    //     fetch('/punchcards/:id', {
+    //         method: 'PATCH',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(punchcard)
+    //     })
+    //     .then(resp => resp.json())
+    // }
+
+    // const deletePunchcard = (id) => {
+    //     fetch(`/punchcards/${id}`, {
+    //         method: 'DELETE'
+    //     })
+    //     .then(resp => resp.json())
+    // }
 
     const login = (user) => {
         setUser(user)
@@ -71,7 +88,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{user, login, logout, signup, loggedIn, punchcards, addPunchcard }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard }}>
         {children}
     </UserContext.Provider>
 
@@ -81,11 +98,9 @@ const UserProvider = ( {children } ) => {
 export { UserContext, UserProvider }
 
 // function UserProvider({ children }) {
-
 //     return (
 //         <UserContext.Provider value={{}}>
 //             {children}
 //         </UserContext.Provider>
 //     )
-
 // }

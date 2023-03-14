@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from './context/user'
+import PunchcardEdit from './PunchcardEdit'
 
-const Punchcard = () => {
+// component for when you OPEN a PuncardItem card
 
-    // show? single punchcard. Need GET here?
+const Punchcard = ({punchcard}) => {
 
+  const [editFlag, setEditFlag ] = useState(false)
+
+const { deletePunchcard, fetchPunchcard } = useContext(UserContext)
+
+fetchPunchcard(punchcard.id)
 
   return (
     <div>
-        
+      Hi
+      {punchcard.reward}
+      
+        <button onClick={deletePunchcard}>delete</button>
+
+        {editFlag ? 
+          <PunchcardEdit editFlag={setEditFlag} /> 
+          :
+          <button onClick={() => setEditFlag(true)}>Edit Punchcard</button>}
 
     </div>
   )

@@ -56,7 +56,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
 
             <label>Reward:</label>
             <input 
-                type="" 
+                type="text" 
                 id="count" 
                 value={reward}
                 onChange={e => setReward(e.target.value)}

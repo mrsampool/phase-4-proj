@@ -18,8 +18,10 @@ class UsersController < ApplicationController
             render json: user
         else 
             render json: {error: "Not authorized, kiddo."}, status: :unauthorized
-        end
-# get current user and render in json
+    end
+
+    # get current user and render in json
+
     end
 
     private

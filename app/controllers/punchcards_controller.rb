@@ -11,9 +11,6 @@ class PunchcardsController < ApplicationController
     end
 
     def create 
-        puts "session[:user_id]: #{session[:user_id]}"
-        puts "current_user: #{current_user.inspect}"
-
         punchcard = current_user.punchcards.create(punchcard_params)
         if punchcard.valid? 
           render json: punchcard 
@@ -32,19 +29,28 @@ class PunchcardsController < ApplicationController
         end
     end
 
-    # def destroy
-    #    
-    # end
+    def destroy
+        session.destroy :user_id
+        head :no_conent       
+    end
 
-    # def update
-    #  
-    # end
+    def update
+        punchcard = current_user.punchcards.find_by(id: params[:id])
+        if punchcard
+            punchcard.update(puchcard_params)
+            render json: punchcard
+        else 
+            render json: { error: "Punchcard not found"}, status: :not_found
+        end
+    end
 
     private 
 
     def current_user
         user = User.find_by(id: session[:user_id])
     end
+
+    # STRONG PARAMS
 
     def punchcard_params
         params.permit(:name, :kind, :count, :reward)

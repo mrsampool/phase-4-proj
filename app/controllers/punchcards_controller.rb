@@ -29,12 +29,16 @@ class PunchcardsController < ApplicationController
       end
       
 
- 
-
-    def destroy
-        session.destroy :user_id
-        head :no_conent       
-    end
+      def destroy
+        punchcard = current_user.punchcards.find_by(id: params[:id])
+        if punchcard
+          punchcard.destroy
+          head :no_content
+        else 
+          render json: { error: "Punchcard not found!"}, status: :not_found
+        end
+      end
+      
 
     def update
         punchcard = current_user.punchcards.find_by(id: params[:id])

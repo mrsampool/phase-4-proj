@@ -8,7 +8,9 @@ const Home = () => {
   if (loggedIn && user) {
     return ( 
       <div>
-        <h3>{user.username}'s Home </h3>
+        <h3>All Punchcards </h3>
+
+
       </div>
     )
   } else { 

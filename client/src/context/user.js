@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
+import { useNavigate } from 'react-router-dom'
 
 const UserContext = React.createContext()
 
@@ -10,7 +11,7 @@ const UserProvider = ( {children } ) => {
     const [user, setUser] = useState({}) //or is it null?
     const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
     const [punchcards, setPunchcards] = useState([])
-
+    const navigate = useNavigate()
 
     useEffect(() => {
         fetch('/me')
@@ -62,12 +63,19 @@ const UserProvider = ( {children } ) => {
     //     .then(resp => resp.json())
     // }
 
-    // const deletePunchcard = (id) => {
-    //     fetch(`/punchcards/${id}`, {
-    //         method: 'DELETE'
-    //     })
-    //     .then(resp => resp.json())
-    // }
+    const deletePunchcard = (id) => {
+        fetch(`/punchcards/${id}`, {
+            method: 'DELETE'
+        })
+        .then(() => onPunchcardDelete(id))
+        .then(navigate('/punchcards'))
+    }
+    
+    const onPunchcardDelete = (id) => {
+        const updatedPunchcards = punchcards.filter((w) => w.id !== id)
+        setPunchcards({...punchcards, updatedPunchcards})
+
+      }
 
     const login = (user) => {
         setUser(user)
@@ -88,7 +96,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard }}>
         {children}
     </UserContext.Provider>
 

@@ -8,7 +8,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
     const [count, setCount] = useState(10)
     const [reward, setReward] = useState("")
 
-    const {addPunchcard} = useContext(UserContext)
+    const { addPunchcard } = useContext(UserContext)
 
     // POST REQUEST TO CREATE
     const handleSubmit = (e) => {

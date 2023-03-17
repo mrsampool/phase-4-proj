@@ -1,24 +1,28 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { UserContext } from './context/user'
 import { useParams } from 'react-router-dom'
 import PunchcardEdit from './PunchcardEdit'
-import PunchcardItem from './PunchcardItem'
 
 // component for when you OPEN a PuncardItem card
 
 const Punchcard = () => {
 
+  // const [punchcard, setPunchcard] = useState([])
   const [editFlag, setEditFlag ] = useState(false)
   const { punchcards, deletePunchcard } = useContext(UserContext)
   const { id } = useParams()
 
-//   const punchcardsList = punchcards.map((p) => 
- 
-// )
+
 
   return (
     <div>
-       <PunchcardItem key={id} punchcard={punchcards} />
+       {/* {punchcard.name}
+       <br />
+       {punchcard.kind}
+       <br />
+       {punchcard.count}
+       <br />
+       {punchcard.reward} */}
     
 
       <br />

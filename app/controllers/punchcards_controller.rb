@@ -1,5 +1,5 @@
 class PunchcardsController < ApplicationController
-    # before_action :authorize
+    before_action :authorize
 
     # Below are the actions ONLY for the User that is LOGGED IN.
     # VALIDATIONS ARE RUN WHEN ITS SAVED-- like create, save, and update
@@ -11,12 +11,12 @@ class PunchcardsController < ApplicationController
     end
 
     def show
-        punchcard = @current_user.punchcards.find_by(id: params[:id])
-        if punchcard 
-            render json: punchcard
-        else 
-            render json: { error: "Not found."}, status: :unauthorized 
-        end
+      punchcard = @current_user.punchcards.find_by(id: params[:id])
+      if punchcard 
+          render json: punchcard
+      else 
+          render json: { error: "Not found."}, status: :unauthorized 
+      end
     end
 
     def create 

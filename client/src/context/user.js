@@ -76,8 +76,6 @@ const UserProvider = ( {children } ) => {
        setPunchcards(updatedPunchcard);
      }
 
-    
-
     const deletePunchcard = (id) => {
         fetch(`/punchcards/${id}`, {
             method: 'DELETE',
@@ -91,7 +89,6 @@ const UserProvider = ( {children } ) => {
         setPunchcards(updatedPunchcards)
         navigate('/punchcards')
       }
-      console.log(punchcards)
 
     const login = (user) => {
         setUser(user)
@@ -103,6 +100,7 @@ const UserProvider = ( {children } ) => {
     const logout = () => {
         setUser(null)
         setLoggedIn(false)
+        setPunchcards([])
     }
 
     const signup = (user) => {

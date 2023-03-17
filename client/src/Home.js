@@ -3,14 +3,12 @@ import { UserContext } from './context/user'
 
 const Home = () => {
 
-  const { user, loggedIn } = useContext(UserContext)
+  const { loggedIn } = useContext(UserContext)
 
   if (loggedIn) {
     return ( 
       <div>
         <h3>All Punchcards </h3>
-
-
       </div>
     )
   } else { 

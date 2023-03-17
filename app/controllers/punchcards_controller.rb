@@ -43,7 +43,7 @@ class PunchcardsController < ApplicationController
     def update
         punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard
-            punchcard.update(puchcard_params)
+            punchcard.update(punchcard_params)
             render json: punchcard
         else 
             render json: { error: "Punchcard not found"}, status: :not_found

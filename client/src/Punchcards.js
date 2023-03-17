@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 import PunchcardForm from './PunchcardForm'
-import PunchcardItem from './PunchcardItem'
+import PunchcardPreview from './PunchcardPreview'
 
 const Punchcards = () => {
 
@@ -15,11 +15,12 @@ const Punchcards = () => {
     if (loggedIn) {
 
         const punchcardsList = punchcards.map((p) => 
-          <PunchcardItem 
+          <PunchcardPreview
             key={p.id} 
             punchcard={p} />
         )
 
+      
       return (
         <div>
             <h3>My Punchcards:</h3>

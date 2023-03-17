@@ -56,27 +56,42 @@ const UserProvider = ( {children } ) => {
         })
     }
 
-    // const editPunchcard = (punchcard) => {
-    //     fetch('/punchcards/:id', {
-    //         method: 'PATCH',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify(punchcard)
-    //     })
-    //     .then(resp => resp.json())
-    // }
+    const editPunchcard = (punchcard) => {
+        fetch(`/punchcards/${punchcard.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(punchcard)
+        })
+        .then(resp => resp.json())
+        .then((data) => handleEditedPunchcard(data))
+    }
+
+    const handleEditedPunchcard = (editedPunchcard) => {
+        const updatedPunchcard = punchcards.map((p) => {
+         if (p.id === editedPunchcard.id) {
+           return editedPunchcard;
+         }
+         return punchcards
+       })
+       setPunchcards(updatedPunchcard);
+     }
+
+    
 
     const deletePunchcard = (id) => {
         fetch(`/punchcards/${id}`, {
-            method: 'DELETE'
+            method: 'DELETE',
         })
-        .then(() => onPunchcardDelete(id))
-        .then(navigate('/punchcards'))
+        .then(() => {onPunchcardDelete(id)})
+        .catch(error => console.log(error))
     }
     
     const onPunchcardDelete = (id) => {
         const updatedPunchcards = punchcards.filter((w) => w.id !== id)
         setPunchcards(updatedPunchcards)
+        navigate('/punchcards')
       }
+      console.log(punchcards)
 
     const login = (user) => {
         setUser(user)
@@ -97,7 +112,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard }}>
         {children}
     </UserContext.Provider>
 

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from './context/user'
+import { useParams } from 'react-router-dom'
 
 const PunchcardEdit = ({editFlag}) => {
 
@@ -7,13 +8,15 @@ const PunchcardEdit = ({editFlag}) => {
 
   const [name, setName] = useState("")
   const [kind, setKind] = useState("")
-  const [count, setCount] = useState(null)
+  const [count, setCount] = useState(0)
   const [reward, setReward] = useState("")
+  const { id } = useParams()
 
 const handleSubmit = (e) => {
     e.preventDefault()
 
     editPunchcard({
+            id: id,
             name: name,
             kind: kind,
             count: count,

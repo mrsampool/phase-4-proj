@@ -21,8 +21,10 @@ const PunchcardItem = ({punchcard}) => {
       <br/>
       {punchcard.reward}
       <br/>
+      <Link to={`/punchcards/${punchcard.id}`}>
+          Open Punchcard
+      </Link>
       <br/><br/>
-      [QR CODE]
         
     </div>
   )

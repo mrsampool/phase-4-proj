@@ -1,17 +1,17 @@
 class PunchcardsController < ApplicationController
-    before_action :authorize
+    # before_action :authorize
 
     # Below are the actions ONLY for the User that is LOGGED IN.
     # VALIDATIONS ARE RUN WHEN ITS SAVED-- like create, save, and update
 
     def index 
         # user is in SESSION not params
-        punchcards = current_user.punchcards
+        punchcards = @current_user.punchcards
         render json: punchcards
     end
 
     def show
-        punchcard = current_user.punchcards.find_by(id: params[:id])
+        punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard 
             render json: punchcard
         else 
@@ -20,7 +20,7 @@ class PunchcardsController < ApplicationController
     end
 
     def create 
-        punchcard = current_user.punchcards.create(punchcard_params)
+        punchcard = @current_user.punchcards.create(punchcard_params)
         if punchcard.valid? 
           render json: punchcard 
         else 
@@ -30,7 +30,7 @@ class PunchcardsController < ApplicationController
       
 
       def destroy
-        punchcard = current_user.punchcards.find_by(id: params[:id])
+        punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard
           punchcard.destroy
           head :no_content
@@ -41,7 +41,7 @@ class PunchcardsController < ApplicationController
       
 
     def update
-        punchcard = current_user.punchcards.find_by(id: params[:id])
+        punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard
             punchcard.update(puchcard_params)
             render json: punchcard
@@ -52,9 +52,9 @@ class PunchcardsController < ApplicationController
 
     private 
 
-    def current_user
-        user = User.find_by(id: session[:user_id])
-    end
+    # def current_user
+    #     user = User.find_by(id: session[:user_id])
+    # end
 
     # STRONG PARAMS
 
@@ -62,8 +62,8 @@ class PunchcardsController < ApplicationController
         params.permit(:name, :kind, :count, :reward)
     end
 
-    def authorize
-        return render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
-      end
+    # def authorize
+    #     return render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
+    #   end
 
 end

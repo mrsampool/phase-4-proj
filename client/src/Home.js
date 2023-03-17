@@ -5,7 +5,7 @@ const Home = () => {
 
   const { user, loggedIn } = useContext(UserContext)
 
-  if (loggedIn && user) {
+  if (loggedIn) {
     return ( 
       <div>
         <h3>All Punchcards </h3>

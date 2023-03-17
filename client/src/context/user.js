@@ -8,10 +8,12 @@ const UserContext = React.createContext()
 
 const UserProvider = ( {children } ) => {
 
-    const [user, setUser] = useState({}) //or is it null?
+    const [user, setUser] = useState(null) //or is it null?
     const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
     const [punchcards, setPunchcards] = useState([])
     const navigate = useNavigate()
+
+    // console.log(user)
 
     useEffect(() => {
         fetch('/me')
@@ -20,8 +22,7 @@ const UserProvider = ( {children } ) => {
             // gets userdata from backend, then sets it to global state
             setUser(data)
            //logged in flag depending whether or not there is an error
-            // add data here for what user can do
-            if (data.error) {
+            if (data.errors) {
                 setLoggedIn(false)
             } else {
                 setLoggedIn(true)
@@ -30,6 +31,7 @@ const UserProvider = ( {children } ) => {
             }
         })    
     }, [])
+    
 
     // below fetch not necessary?
     const fetchPunchcards = () => {
@@ -84,7 +86,7 @@ const UserProvider = ( {children } ) => {
     }
 
     const logout = () => {
-        setUser({})
+        setUser(null)
         setLoggedIn(false)
     }
 

@@ -73,8 +73,7 @@ const UserProvider = ( {children } ) => {
     
     const onPunchcardDelete = (id) => {
         const updatedPunchcards = punchcards.filter((w) => w.id !== id)
-        setPunchcards({...punchcards, updatedPunchcards})
-
+        setPunchcards(updatedPunchcards)
       }
 
     const login = (user) => {

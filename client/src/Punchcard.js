@@ -11,6 +11,7 @@ const Punchcard = () => {
   const [editFlag, setEditFlag ] = useState(false)
   const [punchcard, setPunchcard] = useState([])
   const { punchcards, deletePunchcard } = useContext(UserContext)
+  
   const { id } = useParams()
 
   // useEffect(() => {

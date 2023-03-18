@@ -6,7 +6,6 @@ const PunchcardForm = ({addPunchcardFlag}) => {
     const [name, setName] = useState("")
     const [kind, setKind] = useState("")
     const [count, setCount] = useState(10)
-    // const [currentCount, setCurrentCount] = useState(0)
     const [reward, setReward] = useState("")
 
     const { addPunchcard } = useContext(UserContext)
@@ -19,8 +18,9 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                 name: name,
                 kind: kind,
                 count: count,
-                // current_count: currentCount,
-                reward: reward
+                reward: reward,
+                user_id: 1,
+                customer_id: 1
         })
         addPunchcardFlag()
     }

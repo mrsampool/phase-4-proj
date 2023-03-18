@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext} from 'react'
 import { UserContext } from './context/user'
 import { useParams } from 'react-router-dom'
 import PunchcardEdit from './PunchcardEdit'
@@ -9,11 +9,18 @@ const Punchcard = () => {
 
   // const [punchcard, setPunchcard] = useState([])
   const [editFlag, setEditFlag ] = useState(false)
+  const [punchcard, setPunchcard] = useState([])
   const { punchcards, deletePunchcard } = useContext(UserContext)
   const { id } = useParams()
 
-
-
+  // useEffect(() => {
+  //       fetch(`/${id}`)
+  //       .then(r => r.json())
+  //       .then(data => {
+  //           setPunchcard(data)
+  //       })
+  //   }, [])
+  
   return (
     <div>
        {/* {punchcard.name}
@@ -23,7 +30,6 @@ const Punchcard = () => {
        {punchcard.count}
        <br />
        {punchcard.reward} */}
-    
 
       <br />
       {editFlag ? 

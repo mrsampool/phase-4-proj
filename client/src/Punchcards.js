@@ -22,13 +22,18 @@ const Punchcards = () => {
       
       return (
         <div>
-            <h3>My Punchcards:</h3>
-            <h3>{punchcardsList}</h3>
-            <br/>
+          
             {formFlag ? 
             <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} /> 
             :
             <button onClick={() => setFormFlag(true)}>Add Punchcard</button>}
+
+            <h1>MY PUNCHCARDS</h1>
+
+            {punchcardsList}
+
+            <br/>
+            
 
         </div>
       )

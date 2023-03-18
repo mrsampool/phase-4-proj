@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-c1 = Customer.create(username: "Smooky Boggins")
+# CUSTOMERS
 
-c2 = Customer.create(username: "Pooky Boggins")
-
+c1 = Customer.create(username: "Smooky Buggins")
+c2 = Customer.create(username: "Pooky Beggins")
 c3 = Customer.create(username: "Gooky Boggins")
+

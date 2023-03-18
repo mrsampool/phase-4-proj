@@ -26,7 +26,7 @@ const UserProvider = ( {children } ) => {
                 setLoggedIn(false)
             } else {
                 setLoggedIn(true)
-                // below code blows my mind -- a fetch in a fetch
+                // a fetch in a fetch
                 fetchPunchcards()
             }
         })    
@@ -45,7 +45,6 @@ const UserProvider = ( {children } ) => {
     // all fetchs could be in global state? they do not have to live in the individual forms. for clean components, take fetches and put them all into global state. 
 
     const addPunchcard = (punchcard) => {
-            console.log(punchcard)
             fetch('/punchcards', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -81,13 +80,14 @@ const UserProvider = ( {children } ) => {
         fetch(`/punchcards/${id}`, {
             method: 'DELETE',
         })
-        .then(() => {onPunchcardDelete(id)})
+        .then(() => onPunchcardDelete(id))
         .catch(error => console.log(error))
     }
     
     const onPunchcardDelete = (id) => {
         const updatedPunchcards = punchcards.filter((w) => w.id !== id)
         setPunchcards(updatedPunchcards)
+        fetchPunchcards()
         navigate('/punchcards')
       }
 

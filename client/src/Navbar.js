@@ -25,13 +25,13 @@ const Navbar = () => {
       return (
         <>
 
-          <h3>{user.username}'s Punchcards</h3>
+          <h3>{user.username}</h3>
           <button onClick={logoutUser}>Logout</button>
           <br/><br/>
 
-          <NavLink to='/'>
+          {/* <NavLink to='/'>
             <button>All Punchcards</button>
-          </NavLink>
+          </NavLink> */}
 
           <NavLink to='/punchcards'>
             <button>My Punchcards</button>

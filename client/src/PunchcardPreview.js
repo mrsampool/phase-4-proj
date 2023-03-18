@@ -13,11 +13,9 @@ const PunchcardItem = ({punchcard}) => {
   return (
     <div>
 
-      {punchcard.name}
-      <br/>
-      {punchcard.kind}
-      <br/>
-      {punchcard.count}
+      <p>Business Name: {punchcard.name}</p>
+      <p>{punchcard.kind}</p>
+      <p>{punchcard.count}</p>
       <br/>
       {punchcard.reward}
       <br/>

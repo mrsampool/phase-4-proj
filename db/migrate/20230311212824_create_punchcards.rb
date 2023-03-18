@@ -4,8 +4,10 @@ class CreatePunchcards < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :kind
       t.integer :count
+      t.integer :current_count
       t.string :reward
       t.integer :user_id
+      t.integer :customer_id
 
       t.timestamps
     end

@@ -19,13 +19,16 @@ ActiveRecord::Schema.define(version: 2023_03_11_212824) do
     t.string "name"
     t.string "kind"
     t.integer "count"
+    t.integer "current_count"
     t.string "reward"
     t.integer "user_id"
+    t.integer "customer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "address"
     t.string "username"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false

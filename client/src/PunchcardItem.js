@@ -13,7 +13,7 @@ const PunchcardItem = ({punchcard}) => {
   return (
     <div>
 
-      {punchcard.name}
+      <p>Business Name: {punchcard.name}</p>
       <br/>
       {punchcard.kind}
       <br/>

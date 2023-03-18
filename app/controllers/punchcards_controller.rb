@@ -19,15 +19,22 @@ class PunchcardsController < ApplicationController
       end
     end
 
-    def create 
-        punchcard = @current_user.punchcards.create(punchcard_params)
-        if punchcard.valid? 
-          render json: punchcard 
-        else 
-          render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
+
+    # def create 
+    #     punchcard = @current_user.punchcards.create!(punchcard_params)
+    #     if punchcard.valid? 
+    #       render json: punchcard 
+    #     else 
+    #       render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
+    #     end
+    #   end
+
+      def create 
+        punchcard = @current_user.punchcards.create!(punchcard_params)
+        render json: punchcard 
         end
       end
-      
+
 
       def destroy
         punchcard = @current_user.punchcards.find_by(id: params[:id])
@@ -59,7 +66,7 @@ class PunchcardsController < ApplicationController
     # STRONG PARAMS
 
     def punchcard_params
-        params.permit(:name, :kind, :count, :reward)
+        params.permit(:name, :kind, :count, :current_count, :reward)
     end
 
     # def authorize

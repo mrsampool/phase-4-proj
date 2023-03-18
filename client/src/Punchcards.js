@@ -14,12 +14,11 @@ const Punchcards = () => {
 
     if (loggedIn) {
 
-        const punchcardsList = punchcards.map((p) => 
-          <PunchcardPreview
-            key={p.id} 
-            punchcard={p} />
-        )
-
+      const punchcardsList = punchcards.map((p) => 
+        <PunchcardPreview
+          key={p.id} 
+          punchcard={p} />
+      )
       
       return (
         <div>

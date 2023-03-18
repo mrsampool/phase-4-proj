@@ -20,20 +20,19 @@ class PunchcardsController < ApplicationController
     end
 
 
-    # def create 
-    #     punchcard = @current_user.punchcards.create!(punchcard_params)
-    #     if punchcard.valid? 
-    #       render json: punchcard 
-    #     else 
-    #       render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
-    #     end
-    #   end
-
-      def create 
-        punchcard = @current_user.punchcards.create!(punchcard_params)
-        render json: punchcard 
-        end
+    def create 
+      punchcard = @current_user.punchcards.create(punchcard_params)
+      if punchcard.valid? 
+        render json: punchcard, status: :created 
+      else 
+        render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
       end
+    end
+
+      # def create 
+      #   punchcard = @current_user.punchcards.create!(punchcard_params)
+      #   render json: punchcard 
+      # end
 
 
       def destroy
@@ -66,8 +65,8 @@ class PunchcardsController < ApplicationController
     # STRONG PARAMS
 
     def punchcard_params
-        params.permit(:name, :kind, :count, :current_count, :reward)
-    end
+      params.permit(:name, :kind, :count, :reward)
+  end
 
     # def authorize
     #     return render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id

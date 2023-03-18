@@ -45,7 +45,8 @@ const UserProvider = ( {children } ) => {
     // all fetchs could be in global state? they do not have to live in the individual forms. for clean components, take fetches and put them all into global state. 
 
     const addPunchcard = (punchcard) => {
-        fetch('/punchcards', {
+            console.log(punchcard)
+            fetch('/punchcards', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(punchcard)

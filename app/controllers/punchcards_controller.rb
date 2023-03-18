@@ -34,7 +34,6 @@ class PunchcardsController < ApplicationController
       #   render json: punchcard 
       # end
 
-
       def destroy
         punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard

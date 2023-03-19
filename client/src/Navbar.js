@@ -37,8 +37,6 @@ const Navbar = () => {
             <button>My Punchcards</button>
           </NavLink>
 
-        
-
           <hr/>
 
         </>

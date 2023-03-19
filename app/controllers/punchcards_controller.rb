@@ -12,27 +12,14 @@ class PunchcardsController < ApplicationController
 
     def show
       punchcard = @current_user.punchcards.find_by(id: params[:id])
-      if punchcard 
-          render json: punchcard
-      else 
-          render json: { error: "Not found."}, status: :unauthorized 
-      end
+      render json: punchcard
     end
 
 
     def create 
-      punchcard = @current_user.punchcards.create(punchcard_params)
-      if punchcard.valid? 
-        render json: punchcard, status: :created 
-      else 
-        render json: {errors: punchcard.errors.full_messages}, status: :unprocessable_entity
-      end
+      punchcard = @current_user.punchcards.create!(punchcard_params)
+      render json: punchcard, status: :created 
     end
-
-      # def create 
-      #   punchcard = @current_user.punchcards.create!(punchcard_params)
-      #   render json: punchcard 
-      # end
 
       def destroy
         punchcard = @current_user.punchcards.find_by(id: params[:id])
@@ -57,18 +44,10 @@ class PunchcardsController < ApplicationController
 
     private 
 
-    # def current_user
-    #     user = User.find_by(id: session[:user_id])
-    # end
-
     # STRONG PARAMS
 
     def punchcard_params
       params.permit(:name, :kind, :count, :reward, :customer_id, :user_id)
     end
-
-    # def authorize
-    #     return render json: {error: "Not authorized"}, status: :unauthorized unless session.include? :user_id
-    #   end
 
 end

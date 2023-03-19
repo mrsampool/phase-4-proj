@@ -9,28 +9,25 @@ const Punchcard = () => {
 
   // const [punchcard, setPunchcard] = useState([])
   const [editFlag, setEditFlag ] = useState(false)
-  const [punchcard, setPunchcard] = useState([])
   const { punchcards, deletePunchcard } = useContext(UserContext)
   
   const { id } = useParams()
 
-  // useEffect(() => {
-  //       fetch(`/${id}`)
-  //       .then(r => r.json())
-  //       .then(data => {
-  //           setPunchcard(data)
-  //       })
-  //   }, [])
+  const punchcard = punchcards.find(p => p.id === parseInt(id))
+
+  if (!punchcard) {
+    return <div>Punchcard not found.</div>
+  }
   
   return (
     <div>
-       {/* {punchcard.name}
+       {punchcard.name}
        <br />
        {punchcard.kind}
        <br />
        {punchcard.count}
        <br />
-       {punchcard.reward} */}
+       {punchcard.reward}
 
       <br />
       {editFlag ? 

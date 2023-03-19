@@ -32,7 +32,6 @@ const UserProvider = ( {children } ) => {
         })    
     }, [])
     
-
     // below fetch not necessary?
     const fetchPunchcards = () => {
         fetch('/punchcards')

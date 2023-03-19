@@ -66,7 +66,6 @@ const PunchcardForm = ({addPunchcardFlag}) => {
             />
             <br/><br/>
    
-
         <input type="submit" />
         </form>
         <hr/>

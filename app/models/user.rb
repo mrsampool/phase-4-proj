@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_many :punchcards 
-    # has_many :customers, through: :punchcards
+    has_many :punchcards, dependent: :destroy
+    has_many :customers, through: :punchcards
 
     has_secure_password    
     

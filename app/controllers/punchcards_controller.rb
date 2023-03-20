@@ -47,7 +47,7 @@ class PunchcardsController < ApplicationController
     # STRONG PARAMS
 
     def punchcard_params
-      params.permit(:name, :kind, :count, :reward, :customer_id, :user_id)
+      params.permit(:name, :kind, :count, :reward, :user_id, :customer_id)
     end
 
 end

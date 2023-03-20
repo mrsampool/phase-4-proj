@@ -2,6 +2,7 @@ import React, { useState, useContext} from 'react'
 import { UserContext } from './context/user'
 import { useParams } from 'react-router-dom'
 import PunchcardEdit from './PunchcardEdit'
+// import RewardCount from './RewardCount'
 
 // component for when you OPEN a PuncardItem card
 
@@ -29,6 +30,7 @@ const Punchcard = () => {
        {punchcard.count}
        <br />
        {punchcard.reward}
+       {/* <RewardCount /> */}
 
       <br />
       {editFlag ? 

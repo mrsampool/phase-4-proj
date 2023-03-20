@@ -18,9 +18,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                 name: name,
                 kind: kind,
                 count: count,
-                reward: reward
-                // user_id: 1,
-                // customer_id: 1
+                reward: reward,
+                customer_id: 1
         })
         addPunchcardFlag()
     }

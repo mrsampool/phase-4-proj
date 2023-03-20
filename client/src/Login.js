@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from "./context/user"
 import { useNavigate } from 'react-router-dom'
+import '@picocss/pico/css/pico.min.css'
 
 const Login = () => {
 

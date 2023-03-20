@@ -19,7 +19,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                 kind: kind,
                 count: count,
                 reward: reward,
-                customer_id: 1
+                customer_id: null
         })
         addPunchcardFlag()
     }

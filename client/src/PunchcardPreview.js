@@ -13,20 +13,22 @@ const PunchcardPreview = ({punchcard}) => {
   // <Punchcard key={punchcard.id} punchcard={punchcard} />
 
   return (
-    <div>
-      <hr/>
-      <em>punchcard preview:</em>
-      <p>business name: {punchcard.name}</p>
-      <p>type of place: {punchcard.kind}</p>
-      <p>{punchcard.count} more punches needed until reward</p>
-      <p>reward: {punchcard.reward}</p>
+    <>
+    <article>
+      <header>
+      <em>{punchcard.name}</em>
+      </header>
+      <body>
+      <p>{punchcard.count} more punches needed until</p>
+      </body>
+      <p>{punchcard.reward}!</p>
+      <footer>
       <Link to={`/punchcards/${punchcard.id}`}>
           OPEN
       </Link>
-      <br/><br/>
-
-        
-    </div>
+      </footer>
+    </article>
+    </>
   )
 }
 

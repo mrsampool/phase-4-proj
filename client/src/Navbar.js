@@ -24,20 +24,32 @@ const Navbar = () => {
    
       return (
         <>
+          <nav class="container-fluid">
+            
+       
 
-          <h3>{user.username}</h3>
-          <button onClick={logoutUser}>Logout</button>
+          <ul>
+          <li>
+            <button class="outline" onClick={logoutUser}>Logout</button>
+          </li>  
           <br/><br/>
 
           {/* <NavLink to='/'>
             <button>All Punchcards</button>
           </NavLink> */}
-
+          <li>
           <NavLink to='/punchcards'>
             <button>My Punchcards</button>
           </NavLink>
+          </li>
 
+          </ul>
           <hr/>
+          </nav>
+
+          <ul>
+              <h3>{user.username}</h3>
+          </ul>
 
         </>
       )
@@ -46,9 +58,9 @@ const Navbar = () => {
 
     return (
       <div>
-
+        <nav class="container-fluid">
         <NavLink to='/login'>
-          <button>Login</button>
+          <button class="contrast outline">Login</button>
         </NavLink>
 
         <NavLink to='/signup'>
@@ -56,7 +68,7 @@ const Navbar = () => {
         </NavLink>
 
         <hr/>
-
+        </nav>
       </div>
     )
   }

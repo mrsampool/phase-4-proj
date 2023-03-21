@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
+import '@picocss/pico/css/pico.min.css'
 
 const UserContext = React.createContext()
 

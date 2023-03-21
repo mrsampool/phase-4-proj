@@ -27,6 +27,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
   return (
     <div>
         <h3><em>Create a New Punchcard</em></h3>
+        <main class="container">
+        <article>
         <form onSubmit={handleSubmit}>
 
             <label>Name:</label>
@@ -67,6 +69,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
    
         <input type="submit" />
         </form>
+        </article>
+        </main>
         <hr/>
     </div>
   )

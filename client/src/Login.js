@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { UserContext } from "./context/user"
 import { useNavigate } from 'react-router-dom'
 import '@picocss/pico/css/pico.min.css'
+import './App.css'
 
 const Login = () => {
 
@@ -38,35 +39,43 @@ const Login = () => {
   }
 
   return (
-    <>
+    <div>
+   
+    <main class="container" >
+   
     <br/>
-      <form onSubmit={handleSubmit}>
-        <label>Username: </label>
-        <br />
-        <input 
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        /> 
-        <br/><br/>
-        <label>Password: </label>
-        <br />
-        <input 
-          type="password"
-          id="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        /> 
-        <br/><br/>
-        <input type="submit" />
-      </form>
+      <article>
+        
+        <form onSubmit={handleSubmit}>
+          <label>Username: </label>
+          <br />
+          <input 
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          /> 
+          <br/><br/>
+          <label>Password: </label>
+          <br />
+          <input 
+            type="password"
+            id="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          /> 
+          <br/><br/>
+          <input type="submit" />
+        </form>
 
-      <ul>
-        {error}
-      </ul>
-
-    </>
+        <ul>
+          {error}
+        </ul>
+        </article>
+       
+    </main>
+   
+    </div>
   )
 }
 

@@ -44,8 +44,10 @@ const Signup = () => {
 
 
   return (
-    <div>
-        < br/>
+    <>
+     <main class="container">
+        <article>
+       
         <form onSubmit={handleSubmit}>
             <label>Username: </label>
             <input 
@@ -76,7 +78,9 @@ const Signup = () => {
         <ul>
             {errorsList}
         </ul>
-    </div>
+        </article>
+        </main>
+    </>
   )
 }
 

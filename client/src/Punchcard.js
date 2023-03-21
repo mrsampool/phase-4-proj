@@ -23,25 +23,28 @@ const Punchcard = () => {
   
   return (
     <div>
-       {punchcard.name}
-       <br />
-       {punchcard.kind}
-       <br />
-       {punchcard.count}
-       <br />
-       {punchcard.reward}
-       {/* <RewardCount /> */}
+      <main class="container">
+        <article>
 
-      <br />
+     
+      <header>
+      <h2><em>{punchcard.name}</em></h2>
+      </header>
+      <body>
+      <h1>{punchcard.count}</h1> 
+      <h3>more punches needed until</h3>
+      </body>
+      <h1>{punchcard.reward}!</h1>
+      
       {editFlag ? 
           <PunchcardEdit editFlag={setEditFlag} /> 
           :
           <button onClick={() => setEditFlag(true)}>Edit Punchcard</button>
       }
-        <br />
 
        <button onClick={() => deletePunchcard(id)}>Delete</button>
-
+       </article>
+       </main>
     </div>
   )
 }

@@ -15,27 +15,31 @@ const Punchcards = () => {
     if (loggedIn) {
 
       const punchcardsList = punchcards.map((p) => 
-        <PunchcardPreview
-          key={p.id} 
-          punchcard={p} />
+         
+            <PunchcardPreview
+              key={p.id} 
+              punchcard={p} />
+        
+        
       )
       
       return (
-        <div>
-          
+        <>
+        <main class="container">
+        
+            <h1>MY PUNCHCARDS</h1>
+            <div class="grid">
+            {punchcardsList}
+            </div>
+            <br/>
+            
             {formFlag ? 
             <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} /> 
             :
             <button onClick={() => setFormFlag(true)}>Add Punchcard</button>}
 
-            <h1>MY PUNCHCARDS</h1>
-
-            {punchcardsList}
-
-            <br/>
-            
-
-        </div>
+        </main>
+        </>
       )
     } else {
       return (

@@ -9,10 +9,8 @@ const PunchcardEdit = ({editFlag}) => {
     const [count, setCount] = useState("")
     const [reward, setReward] = useState("")
 
-    const {punchcards, editPunchcard} = useContext(UserContext)
+    const {editPunchcard} = useContext(UserContext)
     const { id } = useParams()
-
-    const punchcard = punchcards.find(p => p.id === parseInt(id))
 
     const handleSubmit = (e) => {
         e.preventDefault()

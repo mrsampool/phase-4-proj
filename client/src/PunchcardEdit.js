@@ -38,7 +38,6 @@ const PunchcardEdit = ({editFlag}) => {
                 type="text" 
                 id="name"
                 value={name}
-                placeholder={punchcard.name}
                 onChange={e => setName(e.target.value)}
             />
             <br/><br/>
@@ -48,7 +47,6 @@ const PunchcardEdit = ({editFlag}) => {
                 type="text" 
                 id="kind"  
                 value={kind}
-                placeholder={punchcard.kind}
                 onChange={e => setKind(e.target.value)}
             />
             <br/><br/>
@@ -58,7 +56,6 @@ const PunchcardEdit = ({editFlag}) => {
                 type="integer" 
                 id="count" 
                 value={count}
-                placeholder={punchcard.count}
                 onChange={e => setCount(e.target.value)}
             />
             <br/><br/>
@@ -68,7 +65,6 @@ const PunchcardEdit = ({editFlag}) => {
                 type="" 
                 id="count" 
                 value={reward}
-                placeholder={punchcard.reward}
                 onChange={e => setReward(e.target.value)}
             />
             <br/><br/>

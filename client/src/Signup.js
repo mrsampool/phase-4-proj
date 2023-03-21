@@ -30,7 +30,7 @@ const Signup = () => {
         .then(user => {
             if (!user.errors) {
                 signup(user)
-                navigate('/')
+                navigate('/punchcards')
             } else {
                 setUsername("")
                 setPassword("")

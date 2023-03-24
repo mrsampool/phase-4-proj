@@ -4,24 +4,15 @@ import { UserContext } from './context/user'
 
 const CustomerTable = () => {
 
-  const [name, setName] = useState("")
 
-  const {user} = useContext(UserContext)
+  const {user, customers} = useContext(UserContext)
 
-  // const customerRow = user.customers.map(c => 
-  //   <CustomerRow 
-  //       key={c.id}
-  //       customer={c}/>)
+ 
 
-  if(!name){
-    return(
-      <div>
-      <hr />
-      <h1>CLIENTELE</h1>
-      <p>No customers, yet!</p>
-      </div>
-    )
-    } else {
+  const customerEntry = customers.map(c => 
+    <CustomerRow customer={c.username}/>)
+
+        console.log(customerEntry)
 
   return (
     <div>
@@ -32,14 +23,17 @@ const CustomerTable = () => {
         <table role="grid">
           <thead>
             <tr>
+              <th scope="col">#</th>
               <th scope="col">Name</th>
               <th scope="col">Open</th>
             </tr>
           </thead>
           <tbody>
 
-            {/* {customerRow} */}
-     
+           
+            {customerEntry}
+          
+
           </tbody>
           {/* <tfoot>
             <tr>
@@ -55,7 +49,6 @@ const CustomerTable = () => {
       </main>
     </div>
   )
-}
 }
 
 export default CustomerTable

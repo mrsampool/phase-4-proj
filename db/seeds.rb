@@ -8,7 +8,20 @@
 
 # CUSTOMERS
 
-c1 = Customer.create(username: "Smooky Buggins")
-c2 = Customer.create(username: "Pooky Beggins")
-c3 = Customer.create(username: "Gooky Boggins")
+
+
+
+# USE FAKER 
+
+Customer.destroy_all
+Punchcard.destroy_all
+
+username = ["Vladimir", "Beckett", "Estragon", "Silvia", "Taft", "Milton" ]
+
+100.times do
+    customer = Customer.create(
+        username: username.sample
+        )
+end
+
 

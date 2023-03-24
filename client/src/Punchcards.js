@@ -20,24 +20,28 @@ const Punchcards = () => {
               key={p.id} 
               punchcard={p} />
         
-        
       )
       
       return (
         <>
         <main class="container">
-        
-            <h1>MY PUNCHCARDS</h1>
+            <hr />
+            <br /><br />
+
+         {formFlag ? 
+            <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} /> 
+            :
+            <button onClick={() => setFormFlag(true)}>Create New</button>}
+            <br /><br />
+            <hr />
+            <br /><br />
+            <h1>Active Punchcards</h1>
             <div class="grid">
             {punchcardsList}
             </div>
             <br/>
             
-            {formFlag ? 
-            <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} /> 
-            :
-            <button onClick={() => setFormFlag(true)}>Add Punchcard</button>}
-
+            
         </main>
         </>
       )

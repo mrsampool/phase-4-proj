@@ -26,25 +26,27 @@ const Navbar = () => {
         <>
           <nav class="container-fluid">
             
-       
-
           <ul>
           <li>
             <button class="outline" onClick={logoutUser}>Logout</button>
           </li>  
           <br/><br/>
 
-          {/* <NavLink to='/'>
-            <button>All Punchcards</button>
-          </NavLink> */}
+          <li>
+          <NavLink to='/customers'>
+            <button>Clientele</button>
+          </NavLink>
+          </li>
+
           <li>
           <NavLink to='/punchcards'>
-            <button>My Punchcards</button>
+            <button>New</button>
           </NavLink>
           </li>
 
           </ul>
           <hr/>
+
           </nav>
 
           <ul>

@@ -22,27 +22,26 @@ const UserProvider = ( {children } ) => {
         .then(data => {
             // gets userdata from backend, then sets it to global state
             setUser(data)
+            setPunchcards(data.punchcards)
            //logged in flag depending whether or not there is an error
             if (data.errors) {
                 setLoggedIn(false)
             } else {
                 setLoggedIn(true)
                 // a fetch in a fetch
-                fetchPunchcards()
+                // fetchPunchcards()
             }
         })    
     }, [])
     
     // below fetch not necessary?
-    const fetchPunchcards = () => {
-        fetch('/punchcards')
-        .then(resp => resp.json())
-        .then(data => {
-            setPunchcards(data)
-        })
-    }
-
-    // all fetchs could be in global state? they do not have to live in the individual forms. for clean components, take fetches and put them all into global state. 
+    // const fetchPunchcards = () => {
+    //     fetch('/punchcards')
+    //     .then(resp => resp.json())
+    //     .then(data => {
+    //         setPunchcards(data)
+    //     })
+    // }
 
     const addPunchcard = (punchcard) => {
             fetch('/punchcards', {
@@ -87,14 +86,15 @@ const UserProvider = ( {children } ) => {
     const onPunchcardDelete = (id) => {
         const updatedPunchcards = punchcards.filter((w) => w.id !== id)
         setPunchcards(updatedPunchcards)
-        fetchPunchcards()
+        // fetchPunchcards()
         navigate('/punchcards')
       }
 
+
+
     const login = (user) => {
         setUser(user)
-        // a better way to fetch would be to send nested json from backend
-        fetchPunchcards()
+        // fetchPunchcards()
         setLoggedIn(true) 
     }
 
@@ -120,10 +120,3 @@ const UserProvider = ( {children } ) => {
 
 export { UserContext, UserProvider }
 
-// function UserProvider({ children }) {
-//     return (
-//         <UserContext.Provider value={{}}>
-//             {children}
-//         </UserContext.Provider>
-//     )
-// }

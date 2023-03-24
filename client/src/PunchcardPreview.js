@@ -18,9 +18,9 @@ const PunchcardPreview = ({punchcard}) => {
       <header>
       <em>{punchcard.name}</em>
       </header>
-      <body>
+
       <p>{punchcard.count} more punches needed until</p>
-      </body>
+
       <p>{punchcard.reward}!</p>
       <footer>
       <Link to={`/punchcards/${punchcard.id}`}>

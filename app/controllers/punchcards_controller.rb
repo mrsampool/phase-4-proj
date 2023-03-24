@@ -15,7 +15,6 @@ class PunchcardsController < ApplicationController
       render json: punchcard
     end
 
-
     def create 
       punchcard = @current_user.punchcards.create!(punchcard_params)
       render json: punchcard, status: :created 
@@ -31,7 +30,6 @@ class PunchcardsController < ApplicationController
         end
       end
       
-
     def update
         punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard

@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 import PunchcardForm from './PunchcardForm'
+import CustomerForm from './CustomerForm'
 import PunchcardPreview from './PunchcardPreview'
 
 const Punchcards = () => {
 
-    const { punchcards, loggedIn } = useContext(UserContext)
+    const { punchcards, loggedIn, customers } = useContext(UserContext)
     const [formFlag, setFormFlag ] = useState(false)
 
     const addPunchcardFlag = () => {
@@ -28,10 +29,19 @@ const Punchcards = () => {
             <hr />
             <br /><br />
 
-         {formFlag ? 
+          <CustomerForm 
+            key={customers.id} 
+            // addCustomerFlag={addCustomerFlag} 
+            /> 
+          <PunchcardForm 
+            key={punchcards.id} 
+            // addPunchcardFlag={addPunchcardFlag} 
+            /> 
+         {/* {formFlag ? 
             <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} /> 
             :
-            <button onClick={() => setFormFlag(true)}>Create New</button>}
+            <button onClick={() => setFormFlag(true)}>Create New</button>} */}
+
             <br /><br />
             <hr />
             <br /><br />

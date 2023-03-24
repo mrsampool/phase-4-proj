@@ -50,11 +50,11 @@ const UserProvider = ( {children } ) => {
     // }
 
     const addPunchcard = (punchcard) => {
-
+            console.log(punchcard)
             fetch('/punchcards', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({punchcard, customer_id: newId})
+            body: JSON.stringify(punchcard)
         })
         .then(resp => resp.json())
         .then(data => {
@@ -133,7 +133,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, addCustomer, newId }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId }}>
         {children}
     </UserContext.Provider>
 

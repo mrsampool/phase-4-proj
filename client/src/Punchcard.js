@@ -9,13 +9,37 @@ import PunchcardEdit from './PunchcardEdit'
 const Punchcard = () => {
 
   // const [punchcard, setPunchcard] = useState([])
+  const [punchCount, setPunchCount] = useState("")
   const [editFlag, setEditFlag ] = useState(false)
-  
   const { punchcards, deletePunchcard } = useContext(UserContext)
   
   const { id } = useParams()
 
   const punchcard = punchcards.find(p => p.id === parseInt(id))
+
+
+  const editPunchCount = () => {
+    fetch(`/punchcards/${punchcard.id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(
+
+        )
+    })
+    .then(resp => resp.json())
+    .then((data) => handleEditedPunchCount(data))
+}
+
+const handleEditedPunchCount = (editedPunchCount) => {
+    const updatedPunchCount = punchcards.map((p) => {
+     if (p.id === editedPunchCount.id) {
+       return editedPunchCount;
+     }
+     return punchcards
+   })
+   setPunchCount(updatedPunchCount);
+ }
+
 
   if (!punchcard) {
     return <div>Punchcard not found.</div>
@@ -25,16 +49,19 @@ const Punchcard = () => {
     <div>
       <main class="container">
         <article>
-
-     
-      <header>
+        <header>
       <h2><em>{punchcard.name}</em></h2>
       </header>
-      <body>
-      <h1>{punchcard.count}</h1> 
-      <h3>more punches needed until</h3>
-      </body>
-      <h1>{punchcard.reward}!</h1>
+
+      <h1>{punchcard.reward}</h1>
+
+
+      <h1>{punchcard.count} more punches to go!</h1> 
+
+    <button onClick={editPunchCount}>PUNCH IT!</button>
+
+    <hr /> 
+    <br /><br /><br />
       
       {editFlag ? 
           <PunchcardEdit editFlag={setEditFlag} /> 

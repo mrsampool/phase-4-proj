@@ -4,22 +4,32 @@ import { UserContext } from './context/user'
 const PunchcardForm = ({addPunchcardFlag}) => {
 
     const [name, setName] = useState("")
-    const [kind, setKind] = useState("")
+
+    // const [kind, setKind] = useState("")
     const [count, setCount] = useState(10)
     const [reward, setReward] = useState("")
 
-    const { addPunchcard } = useContext(UserContext)
+    const { addPunchcard, addCustomer} = useContext(UserContext)
 
     // POST REQUEST TO CREATE
-    const handleSubmit = (e) => {
+
+    const handleCustomerSubmit = (e) => {
+        e.preventDefault()
+
+        addCustomer({
+                name: name
+        })
+     }
+
+
+    const handlePunchcardSubmit = (e) => {
         e.preventDefault()
 
         addPunchcard({
-                name: name,
-                kind: kind,
+                // name: name,
+                // kind: kind,
                 count: count,
-                reward: reward,
-                customer_id: null
+                reward: reward
         })
         addPunchcardFlag()
     }
@@ -28,26 +38,32 @@ const PunchcardForm = ({addPunchcardFlag}) => {
     <div>
         <h3><em>Create a New Punchcard</em></h3>
         <main class="container">
-        <article>
-        <form onSubmit={handleSubmit}>
 
-            <label>Name:</label>
-            <input 
-                type="text" 
-                id="name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-            />
+        <form onSubmit={handleCustomerSubmit}>
+            <article>
+                <label>Client Name:</label>
+                <input 
+                    type="text" 
+                    id="name"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                />
+            </article>
+            <input type="submit" value="Next" />
+        </form>
+
+        <form onSubmit={handlePunchcardSubmit}>
+            
             <br/><br/>
-
-            <label>Kind:</label>
+            <article>
+            {/* <label>Kind:</label>
             <input 
                 type="text" 
                 id="kind"  
                 value={kind}
                 onChange={e => setKind(e.target.value)}
             />
-            <br/><br/>
+            <br/><br/> */}
 
             <label>Punches required:</label>
             <input 
@@ -66,10 +82,10 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                 onChange={e => setReward(e.target.value)}
             />
             <br/><br/>
-   
+            </article>
         <input type="submit" />
         </form>
-        </article>
+  
         </main>
         <hr/>
     </div>

@@ -12,7 +12,12 @@ const UserProvider = ( {children } ) => {
     const [user, setUser] = useState(null) //or is it null?
     const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
     const [punchcards, setPunchcards] = useState([])
+    const [customers, setCustomers] = useState([])
+    const [newId, setNewId] = useState(null)
+
     const navigate = useNavigate()
+
+    console.log(customers)
 
     // console.log(user)
 
@@ -23,6 +28,7 @@ const UserProvider = ( {children } ) => {
             // gets userdata from backend, then sets it to global state
             setUser(data)
             setPunchcards(data.punchcards)
+            setCustomers(data.customers)
            //logged in flag depending whether or not there is an error
             if (data.errors) {
                 setLoggedIn(false)
@@ -44,10 +50,11 @@ const UserProvider = ( {children } ) => {
     // }
 
     const addPunchcard = (punchcard) => {
+
             fetch('/punchcards', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(punchcard)
+            body: JSON.stringify({punchcard, customer_id: newId})
         })
         .then(resp => resp.json())
         .then(data => {
@@ -55,7 +62,22 @@ const UserProvider = ( {children } ) => {
         })
     }
 
+
+    const addCustomer = (customer) => {
+        fetch('/customers', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(customer)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        setCustomers([...customers, data])
+        setNewId(data.id)
+    })
+}
+
     const editPunchcard = (punchcard) => {
+        console.log(punchcard)
         fetch(`/punchcards/${punchcard.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
@@ -111,7 +133,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, addCustomer, newId }}>
         {children}
     </UserContext.Provider>
 

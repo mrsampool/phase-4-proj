@@ -3,17 +3,18 @@ class CustomersController < ApplicationController
     before_action :authorize
 
     def index
-      customer = @current_user.customers.all 
-      render json: customer
+      customers = Customer.all 
+      render json: customers
     end
   
     def show
-      customer = @current_user.customers.find_by(id: params[:id])
+      customer = Customer.find_by(id: params[:id])
       render json: customer
     end
 
     def create 
-      customer = @current_user.customers.create(customer_params)
+      customer = Customer.create(customer_params)
+      render json: customer
     end
 
     private 

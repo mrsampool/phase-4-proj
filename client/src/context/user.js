@@ -19,6 +19,7 @@ const UserProvider = ( {children } ) => {
 
     // console.log(customers)
     // console.log(user)
+    // console.log(punchcards)
 
     useEffect(() => {
         fetch('/me')
@@ -75,7 +76,6 @@ const UserProvider = ( {children } ) => {
 }
 
     const editPunchcard = (punchcard) => {
-        console.log(punchcard)
         fetch(`/punchcards/${punchcard.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
@@ -95,24 +95,16 @@ const UserProvider = ( {children } ) => {
        setPunchcards(updatedPunchcard);
      }
 
-    const deletePunchcard = (id) => {
-        console.log(id)
+     const deletePunchcard = (id) => {
         fetch(`/punchcards/${id}`, {
-            method: 'DELETE',
+          method: 'DELETE',
         })
-        .then(() => onPunchcardDelete(id))
-        .catch(error => console.log(error))
-    }
-    
-    const onPunchcardDelete = (id) => {
-        const updatedPunchcards = punchcards.filter((w) => w.id !== id)
-        console.log(updatedPunchcards)
-        setPunchcards(updatedPunchcards)
-        // fetchPunchcards()
-        navigate('/punchcards')
+        .then(data => {
+            const updatedPunchcards = punchcards.filter(p => p.id !== parseInt(id))
+          setPunchcards(updatedPunchcards)
+          navigate('/punchcards')
+        })
       }
-
-
 
     const login = (user) => {
         setUser(user)

@@ -4,7 +4,7 @@ import { UserContext } from './context/user'
 
 const CustomerTable = () => {
 
-  const {customers, punchcards} = useContext(UserContext)
+  const {customers} = useContext(UserContext)
 
   const customerEntry = customers.map(c => 
     <CustomerRow 

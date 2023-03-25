@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 import { useParams } from 'react-router-dom'
 import PunchcardEdit from './PunchcardEdit'
@@ -11,7 +11,10 @@ const Punchcard = () => {
   // const [punchcard, setPunchcard] = useState([])
   const [punchCount, setPunchCount] = useState("")
   const [editFlag, setEditFlag ] = useState(false)
+  
   const { punchcards, deletePunchcard } = useContext(UserContext)
+
+  
   
   const { id } = useParams()
 

@@ -17,8 +17,7 @@ const UserProvider = ( {children } ) => {
 
     const navigate = useNavigate()
 
-    console.log(customers)
-
+    // console.log(customers)
     // console.log(user)
 
     useEffect(() => {
@@ -50,7 +49,6 @@ const UserProvider = ( {children } ) => {
     // }
 
     const addPunchcard = (punchcard) => {
-            console.log(punchcard)
             fetch('/punchcards', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -59,9 +57,9 @@ const UserProvider = ( {children } ) => {
         .then(resp => resp.json())
         .then(data => {
             setPunchcards([...punchcards, data])
+            navigate(`/punchcards/${data.id}`)
         })
     }
-
 
     const addCustomer = (customer) => {
         fetch('/customers', {
@@ -98,6 +96,7 @@ const UserProvider = ( {children } ) => {
      }
 
     const deletePunchcard = (id) => {
+        console.log(id)
         fetch(`/punchcards/${id}`, {
             method: 'DELETE',
         })
@@ -107,6 +106,7 @@ const UserProvider = ( {children } ) => {
     
     const onPunchcardDelete = (id) => {
         const updatedPunchcards = punchcards.filter((w) => w.id !== id)
+        console.log(updatedPunchcards)
         setPunchcards(updatedPunchcards)
         // fetchPunchcards()
         navigate('/punchcards')

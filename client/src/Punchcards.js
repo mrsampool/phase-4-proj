@@ -9,6 +9,7 @@ const Punchcards = () => {
     const { punchcards, loggedIn, customers } = useContext(UserContext)
     const [formFlag, setFormFlag ] = useState(true)
     // const [customerFlag, setCustomerFlag ] = useState(true)
+    
 
     const addPunchcardFlag = () => {
       setFormFlag(true)

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
+import { useNavigate } from 'react-router-dom'
 
 const PunchcardForm = ({addPunchcardFlag}) => {
 
@@ -7,6 +8,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
     const [kind, setKind] = useState("")
     const [count, setCount] = useState(10)
     const [reward, setReward] = useState("")
+
+    const navigate = useNavigate()
 
     const { addPunchcard, newId } = useContext(UserContext)
 

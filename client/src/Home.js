@@ -8,11 +8,11 @@ const Home = () => {
   if (loggedIn) {
     return ( 
       <div>
-        <h3>All Punchcards </h3>
+        <h3>Punchcards </h3>
       </div>
     )
   } else { 
-     return (<h3>Please login or Signup</h3>)
+     return (<h3>Please login or Signup!</h3>)
   }
 }
 

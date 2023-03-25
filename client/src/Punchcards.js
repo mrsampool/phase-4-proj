@@ -7,9 +7,14 @@ import PunchcardPreview from './PunchcardPreview'
 const Punchcards = () => {
 
     const { punchcards, loggedIn, customers } = useContext(UserContext)
-    const [formFlag, setFormFlag ] = useState(false)
+    const [formFlag, setFormFlag ] = useState(true)
+    // const [customerFlag, setCustomerFlag ] = useState(true)
 
     const addPunchcardFlag = () => {
+      setFormFlag(true)
+    }
+
+    const addCustomerFlag = () => {
       setFormFlag(false)
     }
 
@@ -29,18 +34,27 @@ const Punchcards = () => {
             <hr />
             <br /><br />
 
-          <CustomerForm 
+          {/* <CustomerForm 
             key={customers.id} 
             // addCustomerFlag={addCustomerFlag} 
             /> 
           <PunchcardForm 
             key={punchcards.id} 
             // addPunchcardFlag={addPunchcardFlag} 
-            /> 
-         {/* {formFlag ? 
+            />  */}
+
+        {formFlag ? 
+            <CustomerForm key={customers.id} addCustomerFlag={addCustomerFlag} /> 
+            :
+            <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} />
+        }   
+
+
+         {/* {punchcardFlag ? 
             <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} /> 
             :
-            <button onClick={() => setFormFlag(true)}>Create New</button>} */}
+            <button onClick={() => setPunchcardFlag(true)}>Create New</button>
+            } */}
 
             <br /><br />
             <hr />

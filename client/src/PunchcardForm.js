@@ -10,9 +10,6 @@ const PunchcardForm = ({addPunchcardFlag}) => {
 
     const { addPunchcard, newId } = useContext(UserContext)
 
-    // POST REQUEST TO CREATE
-
-
     const handlePunchcardSubmit = (e) => {
         e.preventDefault()
 
@@ -23,56 +20,53 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                 reward: reward,
                 customer_id: newId
         })
-        // addPunchcardFlag()
+        addPunchcardFlag()
     }
 
   return (
     <div>
-        <h3><em>Create a New Punchcard</em></h3>
         <main class="container">
+            <form onSubmit={handlePunchcardSubmit}>
+                <article>
+                    <p><em>Step 2 of 2</em></p>
+                    <p><strong>Create a punchcard!</strong></p>
+                    <label>Business Name:</label>
+                        <input 
+                            type="text" 
+                            id="name"
+                            value={name}
+                            onChange={e => setName(e.target.value)}
+                        />
 
-        <form onSubmit={handlePunchcardSubmit}>
-            
-            <br/><br/>
-            <article>
+                    <label>Kind:</label>
+                    <input 
+                        type="text" 
+                        id="kind"  
+                        value={kind}
+                        onChange={e => setKind(e.target.value)}
+                    />
+                    <br/><br/>
 
-            <label>Business Name:</label>
-                <input 
-                    type="text" 
-                    id="name"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
+                    <label>Punches required:</label>
+                    <input 
+                        type="integer" 
+                        id="count" 
+                        value={count}
+                        onChange={e => setCount(e.target.value)}
+                    />
+                    <br/><br/>
 
-            <label>Kind:</label>
-            <input 
-                type="text" 
-                id="kind"  
-                value={kind}
-                onChange={e => setKind(e.target.value)}
-            />
-            <br/><br/>
+                    <label>Reward:</label>
+                    <input 
+                        type="text" 
+                        id="count" 
+                        value={reward}
+                        onChange={e => setReward(e.target.value)}
+                    />
 
-            <label>Punches required:</label>
-            <input 
-                type="integer" 
-                id="count" 
-                value={count}
-                onChange={e => setCount(e.target.value)}
-            />
-            <br/><br/>
-
-            <label>Reward:</label>
-            <input 
-                type="text" 
-                id="count" 
-                value={reward}
-                onChange={e => setReward(e.target.value)}
-            />
-            <br/><br/>
-            </article>
-        <input type="submit" />
-        </form>
+                </article>
+                    <input type="submit" />
+            </form>
   
         </main>
         <hr/>

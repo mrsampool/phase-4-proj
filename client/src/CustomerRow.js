@@ -1,18 +1,25 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
+import {Link} from 'react-router-dom'
 
-const CustomerRow = ({customer}) => {
+const CustomerRow = ({customer, id}) => {
 
     // const [customer, setCustomer] = useState("")
 
-    // const {user, punchcards} = useContext(UserContext)
+    const {punchcards} = useContext(UserContext)
+    const punchcard = punchcards.find(p => p.customer_id === id)
 
-    
+    console.log(punchcard)
+
   return (
     <tr>
-        <th scope="row">1</th>
+        <th scope="row">{id}</th>
         <td>{customer}</td>
-        <td>Open Punchcard</td>
+        <td>
+        <Link to={`/punchcards/${punchcard.id}`}>
+          OPEN
+        </Link>
+        </td>
     </tr>
   )
 }

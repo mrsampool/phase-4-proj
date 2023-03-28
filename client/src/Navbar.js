@@ -40,7 +40,7 @@ const Navbar = () => {
 
           <li>
           <NavLink to='/punchcards'>
-            <button>Punchcards</button>
+            <button>New</button>
           </NavLink>
           </li>
 
@@ -48,7 +48,7 @@ const Navbar = () => {
           <hr/>
 
           <ul>
-              <h3>{user.username}</h3>
+              <h2>{user.username}</h2>
           </ul>
 
           </nav>

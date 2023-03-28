@@ -28,7 +28,7 @@ const CustomerTable = () => {
       
     <main class="container" >
   
-      <input className="search" type="text" value={searchClient} onChange={handleSearchChange} placeholder={"search"} />
+      <input className="search" type="text" value={searchClient} onChange={handleSearchChange} placeholder={"SEARCH"} />
       <hr/>
       <article className="card">
         <table role="grid">

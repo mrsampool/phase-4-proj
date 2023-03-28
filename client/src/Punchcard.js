@@ -29,26 +29,30 @@ const Punchcard = () => {
   return (
     <>
       <main class="container">
-        <article>
-          <header>
-            <h1>{customer.username}</h1>
-          </header>
+        <article className="card">
+            <header >
+              <h1>{customer.username}</h1>
+            </header>
+           
             <h3>{punchcard.reward}</h3>
             <h2>{punchcard.count} more!</h2> 
-            <button onClick={handlePunch}>PUNCH IT!</button>
-            <hr /> 
+           
+            <footer>
+            <button className="punch-button" onClick={handlePunch}>PUNCH IT!</button>
+            </footer>
 
         </article>
 
-        <article>
+        <article className="card">
             {editFlag ? 
                 <PunchcardEdit editFlag={setEditFlag} /> 
                 :
-                <button onClick={() => setEditFlag(true)}>Edit Punchcard</button>
+                <button className="button1" onClick={() => setEditFlag(true)}>Edit Punchcard</button>
             }
-
-            <button onClick={() => deletePunchcard(id)}>Delete</button>
+          <br />
+            <button  className="button1" onClick={() => deletePunchcard(id)}>Delete</button>
         </article>
+        
       </main>
     </>
   )

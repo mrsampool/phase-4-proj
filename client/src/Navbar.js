@@ -25,34 +25,36 @@ const Navbar = () => {
       return (
         <>
           <nav class="container-fluid">
+
+            <ul>
+                <li><h3><strong>{user.username}</strong></h3></li>
+            </ul>
             
-          <ul>
-          <li>
-            <button class="outline" onClick={logoutUser}>Logout</button>
-          </li>  
-          <br/><br/>
+            <ul>
 
-          <li>
-          <NavLink to='/customers'>
-            <button>Clientele</button>
-          </NavLink>
-          </li>
+              <li>
+              <NavLink to='/customers'>
+                <button className="button2">Clientele</button>
+              </NavLink>
+              </li>
 
-          <li>
-          <NavLink to='/punchcards'>
-            <button>New</button>
-          </NavLink>
-          </li>
+              <li>
+              <NavLink to='/punchcards'>
+                <button className="button2">New</button>
+              </NavLink>
+              </li>
 
-          </ul>
-          <hr/>
+              
+              <li>
+                <button class="outline" onClick={logoutUser}>Logout</button>
+              </li>  
+            <br/><br/>
 
-          <ul>
-              <h2>{user.username}</h2>
-          </ul>
+            </ul>
+                
 
           </nav>
-
+          <hr/>   
           
 
         </>
@@ -61,19 +63,26 @@ const Navbar = () => {
   } else {
 
     return (
-      <div>
-        <nav class="container-fluid">
-        <NavLink to='/login'>
-          <button class="contrast outline">Login</button>
-        </NavLink>
-
-        <NavLink to='/signup'>
-          <button>Signup</button>
-        </NavLink>
-
-        <hr/>
-        </nav>
-      </div>
+      <>
+        
+          <main class="container">
+              <nav class="container-fluid">
+              <ul> 
+                  <li>
+                    <NavLink to='/login'>
+                      <button class="contrast outline">Login</button>
+                    </NavLink>
+                    </li>
+                    <li>
+                    <NavLink to='/signup'>
+                      <button className="button2">Signup</button>
+                    </NavLink>
+                  </li>
+              </ul> 
+              </nav>     
+            </main>
+            
+      </>
     )
   }
 }

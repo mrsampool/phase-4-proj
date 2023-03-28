@@ -23,6 +23,7 @@ const Punchcards = () => {
       
       return (
         <>
+        <h1 className="title">CREATE</h1>
         <main class="container">
         <br />
         <button className="button1" onClick={handleNewClick}>NEW PUNCHCARD</button>

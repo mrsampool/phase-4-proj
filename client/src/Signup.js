@@ -46,7 +46,7 @@ const Signup = () => {
   return (
     <>
      <main class="container">
-        <article>
+        <article className="card">
        
         <form onSubmit={handleSubmit}>
             <label>Username: </label>
@@ -73,7 +73,7 @@ const Signup = () => {
         onChange={(e) => setPasswordConfirmation(e.target.value)}
         /> <br />< br/>
 
-        <input type="submit" />
+        <button className="button1" type="submit">Submit</button>
         </form>
         <ul>
             {errorsList}

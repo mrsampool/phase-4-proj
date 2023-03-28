@@ -27,7 +27,7 @@ function App(props) {
           <Route exact path="/customers" element={<CustomerTable />} />
         </Routes>
       </UserProvider>
-
+     
     </div>
   );
 }

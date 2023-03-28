@@ -44,7 +44,7 @@ const Login = () => {
     <main class="container" >
    
     <br/>
-      <article>
+      <article className="card">
         
         <form onSubmit={handleSubmit}>
           <label>Username: </label>
@@ -65,7 +65,8 @@ const Login = () => {
             onChange={e => setPassword(e.target.value)}
           /> 
           <br/><br/>
-          <input type="submit" />
+          <button className="button1" type="submit">Submit</button>
+   
         </form>
 
         <ul>

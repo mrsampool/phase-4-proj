@@ -67,7 +67,8 @@ const PunchcardEdit = ({editFlag}) => {
             />
             <br/><br/>
    
-        <input type="submit" />
+        <button className="button1" type="submit">Submit</button>
+       
         </form>
     </div>
   )

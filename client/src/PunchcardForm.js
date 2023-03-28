@@ -34,22 +34,6 @@ const PunchcardForm = ({addPunchcardFlag}) => {
             <form onSubmit={handlePunchcardSubmit}>
                 <article className="card">
                     <p><em>Step 2 of 2</em></p>
-                    {/* <label>Business Name:</label>
-                        <input 
-                            type="text" 
-                            id="name"
-                            value={name}
-                            onChange={e => setName(e.target.value)}
-                        />
-
-                    <label>Kind:</label>
-                    <input 
-                        type="text" 
-                        id="kind"  
-                        value={kind}
-                        onChange={e => setKind(e.target.value)}
-                    />
-                    <br/><br/> */}
 
                     <label>Punches required:</label>
                     <input 

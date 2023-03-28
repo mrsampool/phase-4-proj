@@ -85,6 +85,16 @@ const UserProvider = ( {children } ) => {
         .then((data) => handleEditedPunchcard(data))
     }
 
+    const editPunchCount = (punchcard) => {
+        fetch(`/punchcards/${punchcard.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(punchcard)
+        })
+        .then(resp => resp.json())
+        .then((data) => handleEditedPunchcard(data))
+    }
+
     const handleEditedPunchcard = (editedPunchcard) => {
         const updatedPunchcard = punchcards.map((p) => {
          if (p.id === editedPunchcard.id) {
@@ -102,13 +112,13 @@ const UserProvider = ( {children } ) => {
         .then(data => {
             const updatedPunchcards = punchcards.filter(p => p.id !== parseInt(id))
           setPunchcards(updatedPunchcards)
-          navigate('/punchcards')
+          navigate('/customers')
         })
       }
 
+ 
     const login = (user) => {
         setUser(user)
-        // fetchPunchcards()
         setLoggedIn(true) 
     }
 
@@ -125,7 +135,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount }}>
         {children}
     </UserContext.Provider>
 

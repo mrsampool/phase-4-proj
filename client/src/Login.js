@@ -28,7 +28,7 @@ const Login = () => {
       .then((user) => {
         if (!user.error) {
           login(user)
-          navigate('/punchcards')
+          navigate('/')
         } else { 
           setUsername("")
           setPassword("")

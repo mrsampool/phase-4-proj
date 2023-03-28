@@ -8,7 +8,7 @@ const Home = () => {
   if (loggedIn) {
     return ( 
       <div>
-        <h3>Punchcards </h3>
+        <h3>Welcome </h3>
       </div>
     )
   } else { 

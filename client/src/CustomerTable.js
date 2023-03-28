@@ -6,11 +6,11 @@ const CustomerTable = () => {
 
   const [searchClient, setSearchClient] = useState("")
 
-  console.log(searchClient)
-
   const {customers} = useContext(UserContext)
 
-  const customerEntry = customers.map(c => 
+  const filterBySearch = customers.filter(c => c.username.toLowerCase().includes(searchClient.toLowerCase()))
+
+  const customerEntry = filterBySearch.map(c => 
     <CustomerRow 
       key={c.id}
       id={c.id}

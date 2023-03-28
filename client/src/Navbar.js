@@ -40,18 +40,20 @@ const Navbar = () => {
 
           <li>
           <NavLink to='/punchcards'>
-            <button>New</button>
+            <button>Punchcards</button>
           </NavLink>
           </li>
 
           </ul>
           <hr/>
 
-          </nav>
-
           <ul>
               <h3>{user.username}</h3>
           </ul>
+
+          </nav>
+
+          
 
         </>
       )

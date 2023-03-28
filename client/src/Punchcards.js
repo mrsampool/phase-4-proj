@@ -1,23 +1,17 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
-import PunchcardForm from './PunchcardForm'
-import CustomerForm from './CustomerForm'
 import PunchcardPreview from './PunchcardPreview'
+import CreateNew from './CreateNew'
 
 const Punchcards = () => {
 
-    const { punchcards, loggedIn, customers } = useContext(UserContext)
-    const [formFlag, setFormFlag ] = useState(true)
-    // const [customerFlag, setCustomerFlag ] = useState(true)    
+    const { punchcards, loggedIn} = useContext(UserContext)
+    const [toggleNew, setToggleNew] = useState(false)
 
-    const addPunchcardFlag = () => {
-      setFormFlag(true)
+    const handleNewClick = () => {
+      setToggleNew(!toggleNew)
     }
-
-    const addCustomerFlag = () => {
-      setFormFlag(false)
-    }
-
+  
     if (loggedIn) {
 
       const punchcardsList = punchcards.map((p) => 
@@ -25,44 +19,28 @@ const Punchcards = () => {
             <PunchcardPreview
               key={p.id} 
               punchcard={p} />
-        
       )
       
       return (
         <>
         <main class="container">
             <hr />
-            <br /><br />
 
-          {/* <CustomerForm 
-            key={customers.id} 
-            // addCustomerFlag={addCustomerFlag} 
-            /> 
-          <PunchcardForm 
-            key={punchcards.id} 
-            // addPunchcardFlag={addPunchcardFlag} 
-            />  */}
+        <button onClick={handleNewClick}>NEW PUNCHCARD</button>
 
-        {formFlag ? 
+        {toggleNew ? <CreateNew /> : null}
+
+        {/* {formFlag ? 
             <CustomerForm key={customers.id} addCustomerFlag={addCustomerFlag} /> 
             :
             <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} />
-        }   
-
-
-         {/* {punchcardFlag ? 
-            <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} /> 
-            :
-            <button onClick={() => setPunchcardFlag(true)}>Create New</button>
-            } */}
-
-            <br /><br />
+        }    */}
             <hr />
-            <br /><br />
-            <h1>Active Punchcards</h1>
+            <br />
+            {/* <h2>Active Punchcards</h2>
             <div class="grid">
             {punchcardsList}
-            </div>
+            </div> */}
             <br/>
             
             

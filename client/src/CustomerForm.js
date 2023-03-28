@@ -30,8 +30,9 @@ const CustomerForm = ({addCustomerFlag}) => {
                     placeholder={"Enter client name"}
                     onChange={e => setUsername(e.target.value)}
                 />
+                <input type="submit" value="Next" />
             </article>
-            <input type="submit" value="Next" />
+            
         </form>
  
         

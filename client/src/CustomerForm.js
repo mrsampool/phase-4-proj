@@ -3,7 +3,7 @@ import { UserContext } from './context/user'
 
 const CustomerForm = ({addCustomerFlag}) => {
 
-  const [ username, setUsername] = useState("")
+  const [ username, setUsername, errors] = useState("")
 
   const { addCustomer} = useContext(UserContext)
 
@@ -31,7 +31,7 @@ const CustomerForm = ({addCustomerFlag}) => {
                     onChange={e => setUsername(e.target.value)}
                 />
                 <button className="button1" type="submit">Next</button>
-   
+            {errors}
             </article>
             
         </form>

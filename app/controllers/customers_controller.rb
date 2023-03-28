@@ -13,7 +13,7 @@ class CustomersController < ApplicationController
     end
 
     def create 
-      customer = Customer.create(customer_params)
+      customer = Customer.create!(customer_params)
       render json: customer
     end
 

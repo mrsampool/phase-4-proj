@@ -11,14 +11,13 @@ const PunchcardForm = ({addPunchcardFlag}) => {
 
     const navigate = useNavigate()
 
-    const { addPunchcard, newId } = useContext(UserContext)
+    const { addPunchcard, newId, errors } = useContext(UserContext)
 
     const handlePunchcardSubmit = (e) => {
+
         e.preventDefault()
 
         addPunchcard({
-                // name: name,
-                // kind: kind,
                 count: count,
                 reward: reward,
                 customer_id: newId
@@ -51,7 +50,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                         value={reward}
                         onChange={e => setReward(e.target.value)}
                     />
-                    <br/><br/>
+                    
+                    <br/>{errors}<br/>
                     <button className="button1" type="submit">Submit</button>
 
                 </article>
@@ -59,6 +59,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
             </form>
   
         </main>
+        
         <hr/>
     </div>
   )

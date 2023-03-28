@@ -1,11 +1,7 @@
 class PunchcardsController < ApplicationController
     before_action :authorize
 
-    # Below are the actions ONLY for the User that is LOGGED IN.
-    # VALIDATIONS ARE RUN WHEN ITS SAVED-- like create, save, and update
-
     def index 
-        # user is in SESSION not params
         punchcards = @current_user.punchcards
         render json: punchcards
     end

@@ -3,5 +3,6 @@ class Punchcard < ApplicationRecord
     belongs_to :customer, optional: true
 
     validates :reward, presence: true
-    validates :count, length: {maximum: 20}
+    validates :count, presence: true
+    validates :count, length: {maximum: 30}
 end

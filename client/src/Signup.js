@@ -30,11 +30,9 @@ const Signup = () => {
         .then(user => {
             if (!user.errors) {
                 signup(user)
-                navigate('/punchcards')
+                navigate('/')
             } else {
                 setUsername("")
-                setPassword("")
-                setPasswordConfirmation("")
                 const errorLis = user.errors.map(e => <li>{e}</li>)
                 setErrorsList(errorLis)
             }

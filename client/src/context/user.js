@@ -14,6 +14,7 @@ const UserProvider = ( {children } ) => {
     const [punchcards, setPunchcards] = useState([])
     const [customers, setCustomers] = useState([])
     const [newId, setNewId] = useState(null)
+    const [errors, setErrors] = useState([])
 
     const navigate = useNavigate()
 
@@ -40,27 +41,24 @@ const UserProvider = ( {children } ) => {
         })    
     }, [])
     
-    // below fetch not necessary?
-    // const fetchPunchcards = () => {
-    //     fetch('/punchcards')
-    //     .then(resp => resp.json())
-    //     .then(data => {
-    //         setPunchcards(data)
-    //     })
-    // }
-
-    const addPunchcard = (punchcard) => {
-            fetch('/punchcards', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(punchcard)
-        })
-        .then(resp => resp.json())
-        .then(data => {
+        const addPunchcard = (punchcard) => {
+        fetch('/punchcards', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(punchcard)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        if(!data.errors) {
             setPunchcards([...punchcards, data])
             navigate(`/punchcards/${data.id}`)
-        })
-    }
+        } else {
+            const errorLis = data.errors.map( e => <li>{e}</li>)
+            setErrors(errorLis)
+        }
+        } 
+    )}
+
 
     const addCustomer = (customer) => {
         fetch('/customers', {
@@ -70,10 +68,17 @@ const UserProvider = ( {children } ) => {
     })
     .then(resp => resp.json())
     .then(data => {
-        setCustomers([...customers, data])
-        setNewId(data.id)
+        if(!data.errors) {
+            setCustomers([...customers, data])
+            setNewId(data.id)
+        } else {
+            const errorLis = data.errors.map(e => <li>{e}</li>)
+            setErrors(errorLis)
+        }
     })
 }
+    
+  
 
     const editPunchcard = (punchcard) => {
         fetch(`/punchcards/${punchcard.id}`, {
@@ -135,7 +140,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount, errors }}>
         {children}
     </UserContext.Provider>
 

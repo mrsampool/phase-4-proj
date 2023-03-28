@@ -17,8 +17,8 @@ const PunchcardEdit = ({editFlag}) => {
 
         editPunchcard({
                 id: id,
-                name: name,
-                kind: kind,
+                // name: name,
+                // kind: kind,
                 count: count,
                 reward: reward
         })
@@ -31,7 +31,7 @@ const PunchcardEdit = ({editFlag}) => {
         <p>Edit your card:</p>
         <form onSubmit={handleSubmit}>
 
-            <label>Name:</label>
+            {/* <label>Name:</label>
             <input 
                 type="text" 
                 id="name"
@@ -47,7 +47,7 @@ const PunchcardEdit = ({editFlag}) => {
                 value={kind}
                 onChange={e => setKind(e.target.value)}
             />
-            <br/><br/>
+            <br/><br/> */}
 
             <label>Count:</label>
             <input 

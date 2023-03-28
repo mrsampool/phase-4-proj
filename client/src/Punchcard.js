@@ -7,10 +7,11 @@ const Punchcard = () => {
 
   const [editFlag, setEditFlag ] = useState(false)
   
-  const { punchcards, deletePunchcard, editPunchCount } = useContext(UserContext)
+  const { punchcards, deletePunchcard, editPunchCount, customers } = useContext(UserContext)
   const { id } = useParams()
 
   const punchcard = punchcards.find(p => p.id === parseInt(id))
+  const customer = customers.find(c => c.id === punchcard.customer_id)
 
   if (!punchcard) {
     return <div>Punchcard not found.</div>
@@ -24,23 +25,22 @@ const Punchcard = () => {
             count: punchcard.count - 1,
     })
   }
-  
+
   return (
     <>
       <main class="container">
         <article>
           <header>
-            <h2><em>{punchcard.name}</em></h2>
+            <h1>{customer.username}</h1>
           </header>
-
-            <h1>{punchcard.reward}</h1>
-            <h1>{punchcard.count} more to go!</h1> 
-
+            <h3>{punchcard.reward}</h3>
+            <h2>{punchcard.count} more!</h2> 
             <button onClick={handlePunch}>PUNCH IT!</button>
-
             <hr /> 
-            <br /><br /><br />
-            
+
+        </article>
+
+        <article>
             {editFlag ? 
                 <PunchcardEdit editFlag={setEditFlag} /> 
                 :

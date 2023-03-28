@@ -23,12 +23,14 @@ const CustomerTable = () => {
 
   return (
     <div>
-      <h1>CLIENTELE</h1>
+      
+      <h1 className="title">CLIENTELE</h1>
+      
     <main class="container" >
   
-      <input type="text" value={searchClient} onChange={handleSearchChange} placeholder={"search"} />
-
-      <article>
+      <input className="search" type="text" value={searchClient} onChange={handleSearchChange} placeholder={"search"} />
+      <hr/>
+      <article className="card">
         <table role="grid">
           <thead>
             <tr>

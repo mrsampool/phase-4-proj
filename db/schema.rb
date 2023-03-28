@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_18_065548) do
+ActiveRecord::Schema.define(version: 2023_03_28_091121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 2023_03_18_065548) do
   end
 
   create_table "punchcards", force: :cascade do |t|
-    t.string "name"
-    t.string "kind"
     t.integer "count"
     t.string "reward"
     t.integer "user_id"

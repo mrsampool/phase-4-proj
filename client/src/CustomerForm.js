@@ -20,7 +20,7 @@ const CustomerForm = ({addCustomerFlag}) => {
     <div>
         
          <form onSubmit={handleCustomerSubmit}>
-            <article>
+            <article className="card">
                 <p><em>Step 1 of 2</em></p>
                 <label>Client Name:</label>
                 <input 
@@ -30,7 +30,8 @@ const CustomerForm = ({addCustomerFlag}) => {
                     placeholder={"Enter client name"}
                     onChange={e => setUsername(e.target.value)}
                 />
-                <input type="submit" value="Next" />
+                <button className="button1" type="submit">Next</button>
+   
             </article>
             
         </form>

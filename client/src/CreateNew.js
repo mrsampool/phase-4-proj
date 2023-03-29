@@ -10,32 +10,27 @@ const CreateNew = () => {
 
   const { punchcards, customers } = useContext(UserContext)
 
+ 
+  const handleFormSwitch = (errors) => {
+   
+    if (errors.length < 1) {
+      setCustomerFlag(true)
+    } else {
+      setCustomerFlag(false)
+      setPunchFlag(true)
+    }
 
-  const handleFormSwitch = () => {
-    console.log("hi")
-    setCustomerFlag(false)
-    // setPunchFlag(true)
   }
 
   return (
     <div>
 
-  <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
-  <PunchcardForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
                
-        {/* {customerFlag ? 
+        {customerFlag ? 
             <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
             :
-            null
+            <PunchcardForm key={punchcards.id} handleFormSwitch={handleFormSwitch}  />
         }  
-
-        {punchFlag ? 
-            <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
-            :
-            null
-        }   */}
-        
-
 
     </div>
   )

@@ -19,9 +19,9 @@ const UserProvider = ( {children } ) => {
     const navigate = useNavigate()
 
     // console.log(customers)
-    // console.log(user)
+    // console.log(user.customers)
     // console.log(punchcards)
-
+ 
     useEffect(() => {
         fetch('/me')
         .then(resp => resp.json())
@@ -74,8 +74,6 @@ const UserProvider = ( {children } ) => {
         }
     })
 }
-    
-  
 
     const editPunchcard = (punchcard) => {
         fetch(`/punchcards/${punchcard.id}`, {
@@ -113,11 +111,13 @@ const UserProvider = ( {children } ) => {
         })
         .then(data => {
             const updatedPunchcards = punchcards.filter(p => p.customer_id !== parseInt(id))
-            // const updatedCustomers = customers.filter(p => p.id !== parseInt(id))
-            // console.log(updatedCustomers)
             setPunchcards(updatedPunchcards)
-            // setCustomers(updatedCustomers)
           navigate('/customers')
+        })
+        .then(data => {
+            const updatedCustomers = customers.filter(p => p.id !== parseInt(id))
+            console.log(updatedCustomers)
+            setCustomers(updatedCustomers)
         })
       }
 

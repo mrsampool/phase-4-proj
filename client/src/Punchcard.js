@@ -7,8 +7,9 @@ const Punchcard = () => {
 
   const [editFlag, setEditFlag ] = useState(false)
   
-  const { punchcards, deletePunchcard, editPunchCount, customers } = useContext(UserContext)
+  const { punchcards, deletePunchcard, editPunchCount, customers, user } = useContext(UserContext)
   const { id } = useParams()
+
 
   const punchcard = punchcards.find(p => p.id === parseInt(id))
   const customer = customers.find(c => c.id === punchcard.customer_id)

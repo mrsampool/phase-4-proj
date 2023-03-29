@@ -8,7 +8,6 @@ const CustomerForm = ({handleFormSwitch}) => {
 
   const { addCustomer, errors } = useContext(UserContext)
 
-
   const handleCustomerSubmit = (e) => {
     e.preventDefault()
 
@@ -16,8 +15,10 @@ const CustomerForm = ({handleFormSwitch}) => {
         username: username
     })
 
- }
+    handleFormSwitch(errors)
 
+ }
+ 
   return (
     <>
         
@@ -32,8 +33,10 @@ const CustomerForm = ({handleFormSwitch}) => {
                     placeholder={"Enter client name"}
                     onChange={e => setUsername(e.target.value)}
                 />
-                {errors}<br/>
 
+                {errors}
+                
+                <br/>
                 <button className="button1" type="submit">Next</button>
             
             </article>

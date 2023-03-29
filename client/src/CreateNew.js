@@ -8,35 +8,37 @@ const CreateNew = () => {
   const [customerFlag, setCustomerFlag ] = useState(true)
   const [punchFlag, setPunchFlag ] = useState(false)
 
-  const { punchcards, customers } = useContext(UserContext)
+  const { punchcards, customers, errors } = useContext(UserContext)
 
+  console.log("outside the funk", errors)
 
   const handleFormSwitch = () => {
-    console.log("hi")
-    setCustomerFlag(false)
-    // setPunchFlag(true)
+   
+    if (errors) {
+      console.log("inside the funk", errors)
+      setCustomerFlag(false)
+    } else {
+      console.log("there must be errors", errors)
+    }
+
   }
 
   return (
     <div>
 
-  <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
-  <PunchcardForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
                
-        {/* {customerFlag ? 
+        {customerFlag ? 
             <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
             :
-            null
+            <PunchcardForm key={punchcards.id} handleFormSwitch={handleFormSwitch}  />
         }  
 
-        {punchFlag ? 
-            <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
+        {/* {punchFlag ? 
+            <PunchcardForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
             :
             null
         }   */}
         
-
-
     </div>
   )
 }

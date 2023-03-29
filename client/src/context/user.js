@@ -19,9 +19,9 @@ const UserProvider = ( {children } ) => {
     const navigate = useNavigate()
 
     // console.log(customers)
-    // console.log(user)
+    // console.log(user.customers)
     // console.log(punchcards)
-
+ 
     useEffect(() => {
         fetch('/me')
         .then(resp => resp.json())

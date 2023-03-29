@@ -102,27 +102,28 @@ const UserProvider = ( {children } ) => {
 
     const handleEditedPunchcard = (editedPunchcard) => {
         const updatedPunchcard = punchcards.map((p) => {
-         if (p.id === editedPunchcard.id) {
-           return editedPunchcard;
-         }
-         return punchcards
-       })
-       setPunchcards(updatedPunchcard);
-     }
+          if (p.id === editedPunchcard.id) {
+            return editedPunchcard
+          }
+          return p 
+        })
+        setPunchcards(updatedPunchcard);
+      }
 
-     const deletePunchcard = (id) => {
+      const deletePunchcard = (id) => {
         fetch(`/punchcards/${id}`, {
           method: 'DELETE',
         })
-        .then(data => {
-            const updatedPunchcards = punchcards.filter(p => p.customer_id !== parseInt(id))
-            setPunchcards(updatedPunchcards)
+        .then(() => {
+          const updatedPunchcards = punchcards.filter(p => p.id !== parseInt(id))
+          setPunchcards(updatedPunchcards)
+          const updatedCustomers = customers.filter(c => c.id !== parseInt(id))
+          setCustomers(updatedCustomers)
           navigate('/customers')
         })
-        .then(data => {
-            const updatedCustomers = customers.filter(p => p.id !== parseInt(id))
-            console.log(updatedCustomers)
-            setCustomers(updatedCustomers)
+        .catch((error) => {
+          console.error(error)
+          // Display an error message to the user
         })
       }
 

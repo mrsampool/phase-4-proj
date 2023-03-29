@@ -4,10 +4,9 @@ import {Link} from 'react-router-dom'
 
 const CustomerRow = ({customer, id}) => {
 
-    // const [customer, setCustomer] = useState("")
+  const {punchcards} = useContext(UserContext)
 
-    const {punchcards} = useContext(UserContext)
-    const punchcard = punchcards.find(p => p.customer_id === id)
+  const punchcard = punchcards.find(p => p.customer_id === id)
 
   return (
     <tr>
@@ -15,11 +14,9 @@ const CustomerRow = ({customer, id}) => {
         <td>{customer}</td>
         <td>
        
-        {punchcard && (
-          <Link to={`/punchcards/${punchcard.id}`}>
-            OPEN
-          </Link>
-        )}
+        <Link to={`/punchcards/${punchcard.id}`}>
+          OPEN
+        </Link>
         
         </td>
     </tr>

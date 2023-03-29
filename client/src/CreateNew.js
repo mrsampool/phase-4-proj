@@ -8,7 +8,7 @@ const CreateNew = () => {
   const [customerFlag, setCustomerFlag ] = useState(true)
   const [punchFlag, setPunchFlag ] = useState(false)
 
-  const { punchcards, customers } = useContext(UserContext)
+  const { punchcards, customers, errors } = useContext(UserContext)
 
  
   const handleFormSwitch = (errors) => {
@@ -27,10 +27,20 @@ const CreateNew = () => {
 
                
         {customerFlag ? 
+        {customerFlag ? 
             <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
             :
             <PunchcardForm key={punchcards.id} handleFormSwitch={handleFormSwitch}  />
+            <PunchcardForm key={punchcards.id} handleFormSwitch={handleFormSwitch}  />
         }  
+
+        {punchFlag ? 
+            <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
+            :
+            null
+        }   
+        
+
 
     </div>
   )

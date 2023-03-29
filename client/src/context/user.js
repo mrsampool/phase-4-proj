@@ -111,12 +111,10 @@ const UserProvider = ( {children } ) => {
       }
 
       const deletePunchcard = (id) => {
-        fetch(`/punchcards/${id}`, {
+        fetch(`/customers/${id}`, {
           method: 'DELETE',
         })
         .then(() => {
-          const updatedPunchcards = punchcards.filter(p => p.id !== parseInt(id))
-          setPunchcards(updatedPunchcards)
           const updatedCustomers = customers.filter(c => c.id !== parseInt(id))
           setCustomers(updatedCustomers)
           navigate('/customers')

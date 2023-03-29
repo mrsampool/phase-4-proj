@@ -51,7 +51,7 @@ const Punchcard = () => {
                 <button className="button1" onClick={() => setEditFlag(true)}>Edit Punchcard</button>
             }
           <br />
-            <button  className="button1" onClick={() => deletePunchcard(id)}>Delete</button>
+            <button  className="button1" onClick={() => deletePunchcard(customer.id)}>Delete</button>
         </article>
         
       </main>

@@ -32,10 +32,10 @@ class PunchcardsController < ApplicationController
       #   end
       # end
 
-      def destroy
-        @punchcard.destroy
-        head :no_content
-      end
+      # def destroy
+      #   @punchcard.delete
+      #   head :no_content
+      # end
       
     def update
         punchcard = @current_user.punchcards.find_by(id: params[:id])

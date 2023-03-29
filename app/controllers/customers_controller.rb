@@ -8,10 +8,10 @@ class CustomersController < ApplicationController
       render json: customers
     end
   
-    def show
-      customer = Customer.find_by(id: params[:id])
-      render json: customer
-    end
+    # def show
+    #   customer = Customer.find_by(id: params[:id])
+    #   render json: customer
+    # end
 
     def show
       render json: @customer
@@ -20,6 +20,11 @@ class CustomersController < ApplicationController
     def create 
       customer = Customer.create!(customer_params)
       render json: customer
+    end
+
+    def destroy
+      @customer.delete
+      head :no_content
     end
 
     private 

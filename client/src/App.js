@@ -10,7 +10,6 @@ import Punchcard from './Punchcard'
 import CustomerTable from './CustomerTable'
 import { UserProvider } from "./context/user"
 
-
 function App(props) {
 
   return (

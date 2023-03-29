@@ -55,4 +55,9 @@ class PunchcardsController < ApplicationController
       params.permit(:id, :count, :reward, :user_id, :customer_id)
     end
 
+    def set_punchcard
+      @punchcard = @current_user.punchcards.find_by(id: params[:id])
+      render json: { error: "Punchcard not found" }, status: :not_found unless @punchcard
+    end
+
 end

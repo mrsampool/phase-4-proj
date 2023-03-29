@@ -1,23 +1,25 @@
 import React, { useState, useContext } from 'react'
+import PunchcardForm from './PunchcardForm'
 import { UserContext } from './context/user'
 
-const CustomerForm = ({addCustomerFlag}) => {
+const CustomerForm = ({handleFormSwitch}) => {
 
-  const [ username, setUsername, errors] = useState("")
+  const [ username, setUsername ] = useState("")
 
-  const { addCustomer} = useContext(UserContext)
+  const { addCustomer, errors } = useContext(UserContext)
+
 
   const handleCustomerSubmit = (e) => {
     e.preventDefault()
 
     addCustomer({
-            username: username
+        username: username
     })
-    addCustomerFlag()
+
  }
 
   return (
-    <div>
+    <>
         
          <form onSubmit={handleCustomerSubmit}>
             <article className="card">
@@ -30,14 +32,15 @@ const CustomerForm = ({addCustomerFlag}) => {
                     placeholder={"Enter client name"}
                     onChange={e => setUsername(e.target.value)}
                 />
+                {errors}<br/>
+
                 <button className="button1" type="submit">Next</button>
-            {errors}
+            
             </article>
             
-        </form>
- 
-        
-    </div>
+          </form>
+         
+    </>
   )
 }
 

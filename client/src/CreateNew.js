@@ -5,27 +5,36 @@ import { UserContext } from './context/user'
 
 const CreateNew = () => {
 
-  const [formFlag, setFormFlag ] = useState(true)
+  const [customerFlag, setCustomerFlag ] = useState(true)
+  const [punchFlag, setPunchFlag ] = useState(false)
 
   const { punchcards, customers } = useContext(UserContext)
 
-  const addPunchcardFlag = () => {
-    setFormFlag(true)
-  }
 
-  const addCustomerFlag = () => {
-    setFormFlag(false)
+  const handleFormSwitch = () => {
+    console.log("hi")
+    setCustomerFlag(false)
+    // setPunchFlag(true)
   }
 
   return (
     <div>
-        
-        {/* what would be good Ids for the below keys? */}
-        {formFlag ? 
-            <CustomerForm key={customers.id} addCustomerFlag={addCustomerFlag} /> 
+
+  <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
+  <PunchcardForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
+               
+        {/* {customerFlag ? 
+            <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
             :
-            <PunchcardForm key={punchcards.id} addPunchcardFlag={addPunchcardFlag} />
+            null
         }  
+
+        {punchFlag ? 
+            <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
+            :
+            null
+        }   */}
+        
 
 
     </div>

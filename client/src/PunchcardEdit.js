@@ -1,24 +1,28 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from './context/user'
 import { useParams } from 'react-router-dom'
 
 const PunchcardEdit = ({editFlag}) => {
 
-    const [name, setName] = useState("")
-    const [kind, setKind] = useState("")
     const [count, setCount] = useState("")
     const [reward, setReward] = useState("")
 
-    const {editPunchcard} = useContext(UserContext)
+    const {punchcards, editPunchcard} = useContext(UserContext)
     const { id } = useParams()
+
+    useEffect(() => {
+        const storedPunchcard = punchcards.find(p => p.id === parseInt(id))
+        if (storedPunchcard) {
+            setCount(storedPunchcard.count)
+            setReward(storedPunchcard.reward)
+        }
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
         editPunchcard({
                 id: id,
-                // name: name,
-                // kind: kind,
                 count: count,
                 reward: reward
         })
@@ -30,24 +34,6 @@ const PunchcardEdit = ({editFlag}) => {
         <hr />
         <p>Edit your card:</p>
         <form onSubmit={handleSubmit}>
-
-            {/* <label>Name:</label>
-            <input 
-                type="text" 
-                id="name"
-                value={name}
-                onChange={e => setName(e.target.value)}
-            />
-            <br/><br/>
-
-            <label>Kind:</label>
-            <input 
-                type="text" 
-                id="kind"  
-                value={kind}
-                onChange={e => setKind(e.target.value)}
-            />
-            <br/><br/> */}
 
             <label>Count:</label>
             <input 

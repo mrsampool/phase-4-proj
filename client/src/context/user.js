@@ -26,17 +26,13 @@ const UserProvider = ( {children } ) => {
         fetch('/me')
         .then(resp => resp.json())
         .then(data => {
-            // gets userdata from backend, then sets it to global state
             setUser(data)
             setPunchcards(data.punchcards)
             setCustomers(data.customers)
-           //logged in flag depending whether or not there is an error
             if (data.errors) {
                 setLoggedIn(false)
             } else {
                 setLoggedIn(true)
-                // a fetch in a fetch
-                // fetchPunchcards()
             }
         })    
     }, [])
@@ -71,6 +67,7 @@ const UserProvider = ( {children } ) => {
         if(!data.errors) {
             setCustomers([...customers, data])
             setNewId(data.id)
+            setErrors([])
         } else {
             const errorLis = data.errors.map(e => <li>{e}</li>)
             setErrors(errorLis)
@@ -115,8 +112,11 @@ const UserProvider = ( {children } ) => {
           method: 'DELETE',
         })
         .then(data => {
-            const updatedPunchcards = punchcards.filter(p => p.id !== parseInt(id))
-          setPunchcards(updatedPunchcards)
+            const updatedPunchcards = punchcards.filter(p => p.customer_id !== parseInt(id))
+            // const updatedCustomers = customers.filter(p => p.id !== parseInt(id))
+            // console.log(updatedCustomers)
+            setPunchcards(updatedPunchcards)
+            // setCustomers(updatedCustomers)
           navigate('/customers')
         })
       }

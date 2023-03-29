@@ -27,5 +27,10 @@ class CustomersController < ApplicationController
     def customer_params
       params.require(:customer).permit(:username)
     end
+
+    def set_customer
+      @customer = @current_user.customers.find_by(id: params[:id])
+      render json: { error: "Customer not found" }, status: :not_found unless @customer
+    end
     
 end

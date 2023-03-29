@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom'
 
 const PunchcardForm = ({addPunchcardFlag}) => {
 
-    // const [name, setName] = useState("")
-    // const [kind, setKind] = useState("")
     const [count, setCount] = useState(10)
     const [reward, setReward] = useState("")
 
@@ -22,7 +20,6 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                 reward: reward,
                 customer_id: newId
         })
-        addPunchcardFlag()
     }
  
   return (
@@ -51,7 +48,9 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                         onChange={e => setReward(e.target.value)}
                     />
                     
-                    <br/>{errors}<br/>
+                    {errors.map((error, index) => (
+                    <li key={index}>{error}</li>
+                    ))}
                     <button className="button1" type="submit">Submit</button>
 
                 </article>

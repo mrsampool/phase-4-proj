@@ -14,6 +14,7 @@ const UserProvider = ( {children } ) => {
     const [punchcards, setPunchcards] = useState([])
     const [customers, setCustomers] = useState([])
     const [newId, setNewId] = useState(null)
+    const [formFlag, setFormFlag] = useState(true)
     const [errors, setErrors] = useState([])
 
     const navigate = useNavigate()
@@ -47,6 +48,7 @@ const UserProvider = ( {children } ) => {
     .then(data => {
         if(!data.errors) {
             setPunchcards([...punchcards, data])
+            setFormFlag(true)
             navigate(`/punchcards/${data.id}`)
         } else {
             const errorLis = data.errors.map( e => <li>{e}</li>)
@@ -68,12 +70,15 @@ const UserProvider = ( {children } ) => {
             setCustomers([...customers, data])
             setNewId(data.id)
             setErrors([])
+            setFormFlag(false)
         } else {
             const errorLis = data.errors.map(e => <li>{e}</li>)
             setErrors(errorLis)
         }
-    })
-}
+        })
+    }
+
+ 
 
     const editPunchcard = (punchcard) => {
         fetch(`/punchcards/${punchcard.id}`, {
@@ -140,7 +145,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount, errors }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount, errors, formFlag }}>
         {children}
     </UserContext.Provider>
 

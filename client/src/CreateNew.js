@@ -5,33 +5,19 @@ import { UserContext } from './context/user'
 
 const CreateNew = () => {
 
-  const [customerFlag, setCustomerFlag ] = useState(true)
-  const [punchFlag, setPunchFlag ] = useState(false)
 
-  const { punchcards, customers } = useContext(UserContext)
+  const { customers, punchcards, formFlag } = useContext(UserContext)
 
- 
-  const handleFormSwitch = (errors) => {
-   
-    if (errors.length < 1) {
-      setCustomerFlag(true)
-    } else {
-      setCustomerFlag(false)
-      setPunchFlag(true)
-    }
-
-  }
 
   return (
     <div>
 
-               
-        {customerFlag ? 
-            <CustomerForm key={customers.id} handleFormSwitch={handleFormSwitch}  /> 
+            {formFlag ? 
+            <CustomerForm key={customers.id} /> 
             :
-            <PunchcardForm key={punchcards.id} handleFormSwitch={handleFormSwitch}  />
-        }  
-
+            <PunchcardForm key={punchcards.id}/> 
+            }
+      
     </div>
   )
 }

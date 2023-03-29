@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 
-const CustomerForm = ({handleFormSwitch}) => {
+const CustomerForm = () => {
 
   const [ username, setUsername ] = useState("")
 
@@ -13,9 +13,6 @@ const CustomerForm = ({handleFormSwitch}) => {
     addCustomer({
         username: username
     })
-
-    handleFormSwitch(errors)
-
  }
  
   return (

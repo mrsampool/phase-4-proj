@@ -36,7 +36,7 @@ const UserProvider = ( {children } ) => {
                 setLoggedIn(true)
             }
         })    
-    }, [])
+    }, [loggedIn])
     
         const addPunchcard = (punchcard) => {
         fetch('/punchcards', {
@@ -77,8 +77,6 @@ const UserProvider = ( {children } ) => {
         }
         })
     }
-
- 
 
     const editPunchcard = (punchcard) => {
         fetch(`/punchcards/${punchcard.id}`, {
@@ -129,6 +127,7 @@ const UserProvider = ( {children } ) => {
     const login = (user) => {
         setUser(user)
         setLoggedIn(true) 
+        console.log("loggied in")
     }
 
     const logout = () => {

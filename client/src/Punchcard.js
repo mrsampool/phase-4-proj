@@ -9,7 +9,7 @@ const Punchcard = () => {
   const [editFlag, setEditFlag ] = useState(false)
   const [editNameFlag, setEditNameFlag] = useState(false)
   
-  const { punchcards, deletePunchcard, editPunchCount, customers, user } = useContext(UserContext)
+  const { punchcards, deletePunchcard, editPunchCount, customers} = useContext(UserContext)
   const { id } = useParams()
 
 
@@ -52,7 +52,7 @@ const Punchcard = () => {
         <br/><br/>
 
           {editNameFlag ? 
-                <CustomerNameEdit key={customer.id} id={customer.id} editNameFlag={editNameFlag} /> 
+                <CustomerNameEdit key={customer.id} id={customer.id} setNameFlag={setEditNameFlag} /> 
                 :
                 <button className="button1" onClick={() => setEditNameFlag(true)}>Edit Name</button>
             } 

@@ -1,19 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { UserContext } from './context/user'
-import { useParams } from 'react-router-dom'
 
-const CustomerNameEdit = ({id, editNameFlag}) => {
+const CustomerNameEdit = ({id, setNameFlag}) => {
 
     const [name, setName] = useState("")
-    console.log(id)
 
     const {customers, editCustomerName} = useContext(UserContext)
 
-
     useEffect(() => {
-        const storedCustomer = customers.find(p => p.id === parseInt(id))
+        const storedCustomer = customers.find(p => p.id === id)
         if (storedCustomer) {
-            setName(storedCustomer.name)
+            setName(storedCustomer.username)
         }
     }, [])
 
@@ -24,7 +21,7 @@ const CustomerNameEdit = ({id, editNameFlag}) => {
                 id: id,
                 username: name
         })
-        editNameFlag()
+        setNameFlag()
     }
 
   return (
@@ -33,11 +30,11 @@ const CustomerNameEdit = ({id, editNameFlag}) => {
         <p>Edit client name:</p>
         <form onSubmit={handleSubmit}>
 
-            <label>Name:</label>
             <input 
                 type="integer" 
                 id="count" 
                 value={name}
+                // placeholder="Name"
                 onChange={e => setName(e.target.value)}
             />
             <br/><br/>

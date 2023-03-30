@@ -4,13 +4,10 @@ import '@picocss/pico/css/pico.min.css'
 
 const UserContext = React.createContext()
 
-// reason GLOBAL STATE is awesome, everytime any page is refreshed, this is rereshed, so it's a v good place to GET user /me 
-// do not have to pass this stuff through props. IT'S AVAILABLE EVERYWHERE!
-
 const UserProvider = ( {children } ) => {
 
-    const [user, setUser] = useState(null) //or is it null?
-    const [loggedIn, setLoggedIn] = useState(false) // add loggedIn flag
+    const [user, setUser] = useState(null) 
+    const [loggedIn, setLoggedIn] = useState(false) 
     const [punchcards, setPunchcards] = useState([])
     const [customers, setCustomers] = useState([])
     const [newId, setNewId] = useState(null)
@@ -46,6 +43,7 @@ const UserProvider = ( {children } ) => {
             setPunchcards([...punchcards, data])
             setFormFlag(true)
             navigate(`/punchcards/${data.id}`)
+            setErrors([])
         } else {
             const errorLis = data.errors.map( e => <li>{e}</li>)
             setErrors(errorLis)
@@ -93,8 +91,6 @@ const UserProvider = ( {children } ) => {
         setCustomers(updatedCustomer);
       }
 
-
-
     const deletePunchcard = (id) => {
         fetch(`/customers/${id}`, {
           method: 'DELETE',
@@ -108,10 +104,6 @@ const UserProvider = ( {children } ) => {
           console.error(error)
         })
       }
-
-
-
-
 
     const editPunchcard = (punchcard) => {
         fetch(`/punchcards/${punchcard.id}`, {
@@ -171,4 +163,3 @@ const UserProvider = ( {children } ) => {
 }
 
 export { UserContext, UserProvider }
-

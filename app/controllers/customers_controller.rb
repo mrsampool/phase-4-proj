@@ -1,19 +1,15 @@
 class CustomersController < ApplicationController
 
     before_action :authorize
-    before_action :set_customer, only: [:show, :destroy]
+    before_action :set_customer
 
     def index
-      customers = Customer.all 
+        customers = Customer.all 
       render json: customers
     end
-  
-    # def show
-    #   customer = Customer.find_by(id: params[:id])
-    #   render json: customer
-    # end
 
     def show
+      byebug
       render json: @customer
     end
 
@@ -30,7 +26,7 @@ class CustomersController < ApplicationController
       else 
           render json: { error: "Customer not found"}, status: :not_found
       end
-  end
+    end
 
     def destroy
       @customer.delete

@@ -13,12 +13,32 @@ html {
   margin: 0;
 }
 
+.logo {
+  height: auto;
+  width: auto;
+
+  padding-top: 100px;
+  padding-right: 50px;
+  padding-left: 50px;
+}
+
 .card {
   border-radius: 25px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: whitesmoke; 
-  opacity: 0.93;
+  opacity: 0.90;
 }
+
+.card2 {
+  background-color: #03576D;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  opacity: 0.80;
+}
+
+.card2 * {
+  color: whitesmoke;
+  }
 
 .title {
   font-family: 'Carme', sans-serif;

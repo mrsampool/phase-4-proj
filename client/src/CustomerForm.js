@@ -13,6 +13,7 @@ const CustomerForm = () => {
     addCustomer({
         username: username
     })
+    
  }
  
   return (

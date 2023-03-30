@@ -18,10 +18,6 @@ const UserProvider = ( {children } ) => {
     const [errors, setErrors] = useState([])
 
     const navigate = useNavigate()
-
-    // console.log(customers)
-    // console.log(user.customers)
-    // console.log(punchcards)
  
     useEffect(() => {
         fetch('/me')
@@ -57,7 +53,6 @@ const UserProvider = ( {children } ) => {
         } 
     )}
 
-
     const addCustomer = (customer) => {
         fetch('/customers', {
         method: 'POST',
@@ -77,6 +72,46 @@ const UserProvider = ( {children } ) => {
         }
         })
     }
+
+    const editCustomerName = (customer) => {
+        fetch(`/customers/${customer.id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(customer)
+        })
+        .then(resp => resp.json())
+        .then((data) => handleEditedCustomer(data))
+    }
+
+    const handleEditedCustomer = (editedCustomer) => {
+        const updatedCustomer = customers.map((p) => {
+          if (p.id === editedCustomer.id) {
+            return editedCustomer
+          }
+          return p 
+        })
+        setCustomers(updatedCustomer);
+      }
+
+
+
+    const deletePunchcard = (id) => {
+        fetch(`/customers/${id}`, {
+          method: 'DELETE',
+        })
+        .then(() => {
+          const updatedCustomers = customers.filter(c => c.id !== parseInt(id))
+          setCustomers(updatedCustomers)
+          navigate('/customers')
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+      }
+
+
+
+
 
     const editPunchcard = (punchcard) => {
         fetch(`/punchcards/${punchcard.id}`, {
@@ -108,21 +143,6 @@ const UserProvider = ( {children } ) => {
         setPunchcards(updatedPunchcard);
       }
 
-      const deletePunchcard = (id) => {
-        fetch(`/customers/${id}`, {
-          method: 'DELETE',
-        })
-        .then(() => {
-          const updatedCustomers = customers.filter(c => c.id !== parseInt(id))
-          setCustomers(updatedCustomers)
-          navigate('/customers')
-        })
-        .catch((error) => {
-          console.error(error)
-          // Display an error message to the user
-        })
-      }
-
  
     const login = (user) => {
         setUser(user)
@@ -143,7 +163,7 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount, errors, formFlag }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount, errors, formFlag, editCustomerName }}>
         {children}
     </UserContext.Provider>
 

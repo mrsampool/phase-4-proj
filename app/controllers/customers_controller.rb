@@ -22,6 +22,16 @@ class CustomersController < ApplicationController
       render json: customer
     end
 
+    def update
+      customer = @current_user.customers.find_by(id: params[:id])
+      if customer
+          customer.update(customer_params)
+          render json: customer
+      else 
+          render json: { error: "Customer not found"}, status: :not_found
+      end
+  end
+
     def destroy
       @customer.delete
       head :no_content

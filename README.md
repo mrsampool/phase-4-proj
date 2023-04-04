@@ -33,3 +33,7 @@ Simply.
             3. A 'punchcard' is automatically set up for them. 
             
             4. So all you have to do, is search their name or email, and then PUNCH! it!
+
+
+![Getting Started](./images/img.jpg)
+

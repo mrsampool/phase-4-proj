@@ -12,7 +12,7 @@ To start the client-side frontend, run:
 
 ~~~
 npm install
-npm start
+npm start --prefix client
 ~~~
 
 To start the server, run:

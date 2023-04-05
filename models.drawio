@@ -1,0 +1,22 @@
+<mxfile host="65bd71144e">
+    <diagram id="EY0uoxFM9JYzSHPznBX-" name="Page-1">
+        <mxGraphModel dx="1321" dy="620" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#FFFFFF" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="PUNCHCARD&lt;br&gt;belongs_to business&lt;br&gt;belongs_to user&lt;br&gt;&lt;br&gt;:name, :count, :reward," style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="315" y="160" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="USER (Business)&lt;br&gt;has_many punchcards&lt;br&gt;has_many customers through punchcard&lt;br&gt;&lt;br&gt;:username, :password_digest&lt;br&gt;&lt;br&gt;FULL CRUD" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="95" y="160" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="CUSTOMER&lt;br&gt;has_many punchcards&lt;br&gt;has_many users through punchcards&lt;br&gt;&lt;br&gt;:username" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="535" y="160" width="220" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="&lt;font color=&quot;#000000&quot; style=&quot;font-size: 24px;&quot;&gt;Models&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+                    <mxGeometry x="395" y="120" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

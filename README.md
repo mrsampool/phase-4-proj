@@ -11,7 +11,7 @@ https://github.com/mikahado/phase-4-proj
 To start the client-side frontend, run:  
 
 ~~~
-npm install
+npm install --prefix client
 npm start --prefix client
 ~~~
 
@@ -25,7 +25,7 @@ rails server
 ## How to Use
 
 Simply. 
-     
+
             1. A client or customer walks in, and at checkout, you offer a reward for returning.
 
             2. You open Shindy, enter their name and email. 
@@ -33,7 +33,8 @@ Simply.
             3. A 'punchcard' is automatically set up for them. 
             
             4. So all you have to do, is search their name or email, and then PUNCH! it!
+     
 
+## Technical Information
 
-![Getting Started](./images/img.jpg)
-
+![Model](./models.png)

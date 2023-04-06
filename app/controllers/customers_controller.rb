@@ -4,7 +4,7 @@ class CustomersController < ApplicationController
     before_action :set_customer, only: [:show, :update, :destroy]
 
     def index
-        customers = Customer.all 
+      customers = Customer.all 
       render json: customers
     end
 
@@ -24,13 +24,16 @@ class CustomersController < ApplicationController
           customer.update(customer_params)
           render json: customer
       else 
-          render json: { error: "Customer not found"}, status: :not_found
+          render json: { error: "Customer not found."}, status: :not_found
       end
     end
 
     def destroy
-      @customer.delete
-      head :no_content
+      if @customer
+        @customer.delete
+        head :no_content
+      else 
+        render json: { error: "Not authorized."}, status: :unauthorized
     end
 
     private 

@@ -9,7 +9,6 @@ class CustomersController < ApplicationController
     end
 
     def show
-      byebug
       render json: @customer
     end
 
@@ -34,6 +33,7 @@ class CustomersController < ApplicationController
         head :no_content
       else 
         render json: { error: "Not authorized."}, status: :unauthorized
+      end
     end
 
     private 

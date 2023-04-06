@@ -139,7 +139,6 @@ const UserProvider = ( {children } ) => {
     const login = (user) => {
         setUser(user)
         setLoggedIn(true) 
-        console.log("loggied in")
     }
 
     const logout = () => {

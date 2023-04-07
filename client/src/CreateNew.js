@@ -5,19 +5,15 @@ import { UserContext } from './context/user'
 
 const CreateNew = () => {
 
-
   const { customers, punchcards, formFlag } = useContext(UserContext)
-
 
   return (
     <div>
-
             {formFlag ? 
             <CustomerForm key={customers.id} /> 
             :
             <PunchcardForm key={punchcards.id}/> 
             }
-      
     </div>
   )
 }

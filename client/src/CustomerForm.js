@@ -9,7 +9,7 @@ const CustomerForm = () => {
 
   const handleCustomerSubmit = (e) => {
     e.preventDefault()
-
+    
     addCustomer({
         username: username
     })

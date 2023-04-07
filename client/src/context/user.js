@@ -6,7 +6,10 @@ const UserContext = React.createContext()
 
 const UserProvider = ( {children } ) => {
 
-    const [user, setUser] = useState(null) 
+    const [user, setUser] = useState({
+      punchcards: [],
+      customers: []
+    }) 
     const [loggedIn, setLoggedIn] = useState(false) 
     const [punchcards, setPunchcards] = useState([])
     const [customers, setCustomers] = useState([])

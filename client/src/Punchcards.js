@@ -13,13 +13,6 @@ const Punchcards = () => {
     }
   
     if (loggedIn) {
-
-      // const punchcardsList = punchcards.map((p) => 
-         
-      //       <PunchcardPreview
-      //         key={p.id} 
-      //         punchcard={p} />
-      // )
       
       return (
         <>
@@ -29,12 +22,7 @@ const Punchcards = () => {
         <button className="button1" onClick={handleNewClick}>NEW PUNCHCARD</button>
 
         {toggleNew ? <CreateNew /> : null}
-          <br />
-              {/* <h2>Active Punchcards</h2>
-              <div class="grid">
-              {punchcardsList}
-              </div> */}
-            <br/>
+
                      
         </main>
         </>

@@ -10,14 +10,15 @@ const Punchcard = () => {
   const [editNameFlag, setEditNameFlag] = useState(false)
   
   const { punchcards, deletePunchcard, editPunchCount, customers} = useContext(UserContext)
+
   const { id } = useParams()
 
   const punchcard = punchcards.find(p => p.id === parseInt(id))
   const customer = customers.find(c => c.id === punchcard.customer_id)
 
-  if (!punchcard) {
-    return <div>Punchcard not found.</div>
-  }
+  // if (!punchcard) {
+  //   return <div>Punchcard not found.</div>
+  // }
 
   const handlePunch = (e) => {
     e.preventDefault()
@@ -28,6 +29,7 @@ const Punchcard = () => {
     })
   }
 
+if (customer) {
   return (
     <>
       <main class="container">
@@ -71,6 +73,11 @@ const Punchcard = () => {
       </main>
     </>
   )
+  } else {
+  
+    return (<div>Punchcard not found.</div>)
+  
+}
 }
 
 export default Punchcard

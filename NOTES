@@ -7,4 +7,7 @@ Find a way to give users access to all customers when thinking about adding a pu
 
 Eliminate punchcards as state. You should have everything you need through the user and the customers, just make sure you send the associated objects back through the serializer.
 
-Make sure somewhere you show either: all the customers that a user has (not in a punchcard index) or all the users a customer is connected to. I THINK I'M ALREADY DOING THIS
+Make sure somewhere you show either: all the customers that a user has (not in a punchcard index) or all the users a customer is connected to. 
+
+
+Tues at 6pm Ben's office hours

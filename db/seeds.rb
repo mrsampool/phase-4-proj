@@ -23,7 +23,7 @@ count = [10,15,20]
 
 id_counter = 1
 
-100.times do
+20.times do
     customer = Customer.create(
         id: id_counter,
         username: username.sample
@@ -34,6 +34,21 @@ id_counter = 1
         count: count.sample,
         reward: reward.sample,
         user_id: 1,
+        customer_id: customer.id,
+    )
+end
+
+20.times do
+    customer = Customer.create(
+        id: id_counter,
+        username: username.sample
+        )
+    id_counter += 1
+
+    punchcard = Punchcard.create(
+        count: count.sample,
+        reward: reward.sample,
+        user_id: 2,
         customer_id: customer.id,
     )
 end

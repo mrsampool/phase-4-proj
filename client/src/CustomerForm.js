@@ -4,6 +4,7 @@ import { UserContext } from './context/user'
 const CustomerForm = () => {
 
   const [ username, setUsername ] = useState("")
+  const [ email, setEmail ] = useState("")
 
   const { addCustomer, errors } = useContext(UserContext)
 
@@ -21,8 +22,7 @@ const CustomerForm = () => {
         
          <form onSubmit={handleCustomerSubmit}>
             <article className="card">
-                <p><em>Step 1 of 2</em></p>
-                <label>Client Name:</label>
+              <label>Add a New Client</label>
                 <input 
                     type="text" 
                     id="username"
@@ -30,15 +30,22 @@ const CustomerForm = () => {
                     placeholder={"Enter client name"}
                     onChange={e => setUsername(e.target.value)}
                 />
+                <input 
+                    type="text" 
+                    id="email"
+                    value={email}
+                    placeholder={"Enter client's email"}
+                    onChange={e => setUsername(e.target.value)}
+                />
 
                 {errors}
                 
                 <br/>
-                <button className="button1" type="submit">Next</button>
+                <button className="button1" type="submit">Submit</button>
             
-            </article>
-            
+            </article>    
           </form>
+        
          
     </>
   )

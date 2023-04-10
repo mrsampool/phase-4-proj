@@ -14,7 +14,7 @@ const CustomerRow = ({customer, id}) => {
         <td>{customer}</td>
         <td>
        
-        {punchcard && <Link to={`/punchcards/${punchcard.id}`}>OPEN</Link>}
+        {punchcard && <Link to={`/customers/${id}`}>OPEN</Link>}
         
         </td>
     </tr>

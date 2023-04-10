@@ -6,16 +6,11 @@ const CustomerFindRow = ({customer, id}) => {
 
   const { user } = useContext(UserContext)
 
-  const punchcard = user.punchcards.find(p => p.customer_id === id)
-
   return (
     <tr>
-        <th scope="row">{id}</th>
         <td>{customer}</td>
         <td>
-       
-        {punchcard && <Link to={`/punchcards/${punchcard.id}`}>OPEN</Link>}
-        
+        {<Link to={`/customers/${id}`}>OPEN</Link>}
         </td>
     </tr>
   )

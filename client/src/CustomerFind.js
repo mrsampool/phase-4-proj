@@ -1,14 +1,14 @@
 import React, { useState, useContext } from 'react'
-import CustomerFindRow from './CustomerRow'
+import CustomerFindRow from './CustomerFindRow'
 import { UserContext } from './context/user'
 
 const CustomerFind = () => {
 
   const [searchClient, setSearchClient] = useState("")
 
-  const {user} = useContext(UserContext)
+  const {allCustomers } = useContext(UserContext)
 
-  const filterBySearch = user.customers.filter(c => c.username.toLowerCase().includes(searchClient.toLowerCase()))
+  const filterBySearch = allCustomers.filter(c => c.username.toLowerCase().includes(searchClient.toLowerCase()))
 
   const customerEntry = filterBySearch.map(c => 
     <CustomerFindRow 
@@ -34,9 +34,8 @@ const CustomerFind = () => {
         <table role="grid">
           <thead>
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Name</th>
-              <th scope="col"></th>
+              <th scope="col">Profile</th>
             </tr>
           </thead>
           <tbody>

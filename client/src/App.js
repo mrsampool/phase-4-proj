@@ -8,6 +8,7 @@ import Login from './Login'
 import Punchcards from './Punchcards'
 import Punchcard from './Punchcard'
 import CustomerTable from './CustomerTable'
+import CustomerProfile from './CustomerProfile'
 import { UserProvider } from "./context/user"
 
 function App(props) {
@@ -23,7 +24,8 @@ function App(props) {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/punchcards" element={<Punchcards />} />
           <Route exact path="/punchcards/:id" element={<Punchcard />} />
-          <Route exact path="/customers" element={<CustomerTable />} />
+          <Route exact path="/customers" element={<CustomerTable />}/>
+          <Route exact path="/customers/:id" element={<CustomerProfile />}/>
         </Routes>
       </UserProvider>
      

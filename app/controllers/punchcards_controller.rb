@@ -5,7 +5,7 @@ class PunchcardsController < ApplicationController
 
 
     def index 
-        punchcards = @current_user.punchcards
+        punchcards = Punchcard.all
         render json: punchcards
     end
 

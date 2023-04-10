@@ -10,6 +10,7 @@ const UserProvider = ( {children } ) => {
       customers: []
     }) 
     const [loggedIn, setLoggedIn] = useState(false) 
+    const [ allCustomers, setAllCustomers ] = useState([])
     // const [punchcards, setPunchcards] = useState([])
     // const [customers, setCustomers] = useState([])
     const [newId, setNewId] = useState(null)
@@ -17,6 +18,7 @@ const UserProvider = ( {children } ) => {
     const [errors, setErrors] = useState([])
 
     const navigate = useNavigate()
+
  
     useEffect(() => {
         fetch('/me')
@@ -32,7 +34,16 @@ const UserProvider = ( {children } ) => {
             }
         })    
     }, [loggedIn])
-    
+
+    const findAllCustomers = () => {
+      fetch('/customers')
+      .then(resp => resp.json())
+      .then(data => setAllCustomers(data))
+    }
+
+    console.log(allCustomers)
+
+      
     const addPunchcard = (punchcard) => {
         fetch('/punchcards', {
         method: 'POST',
@@ -173,7 +184,7 @@ const UserProvider = ( {children } ) => {
 
     <UserContext.Provider value={{ user, login, logout, signup, loggedIn, addPunchcard,
     // punchcards, deletePunchcard, editPunchcard,editPunchCount
-     addCustomer, newId, errors, formFlag, editCustomerName }}>
+     addCustomer, newId, errors, formFlag, editCustomerName, findAllCustomers, allCustomers }}>
         {children}
     </UserContext.Provider>
 

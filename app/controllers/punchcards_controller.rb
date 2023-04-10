@@ -1,6 +1,8 @@
 class PunchcardsController < ApplicationController
-    before_action :authorize
+    
     before_action :set_punchcard, only: [:index, :show, :update]
+    skip_before_action :authorize, only: :count
+
 
     def index 
         punchcards = @current_user.punchcards
@@ -26,12 +28,25 @@ class PunchcardsController < ApplicationController
         end
     end
 
+    # coding challenge:
+
+    def count 
+        punchcards = Punchcard.where('count > ?', params[:number])
+        customers = punchcards.map { |punchcard| punchcard.customer }.uniq
+
+        if customers.present? 
+          render json: customers
+        else 
+          render json: { error: "Punchcard not found"}, status: :not_found
+        end
+    end
+
     private 
 
     # STRONG PARAMS
 
     def punchcard_params
-      params.permit(:id, :count, :reward, :user_id, :customer_id)
+      params.permit(:count, :reward, :customer_id)
     end
 
     def set_punchcard

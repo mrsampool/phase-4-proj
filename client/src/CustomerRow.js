@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom'
 
 const CustomerRow = ({customer, id}) => {
 
-  const { punchcards } = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
-  const punchcard = punchcards.find(p => p.customer_id === id)
+  const punchcard = user.punchcards.find(p => p.customer_id === id)
 
   return (
     <tr>

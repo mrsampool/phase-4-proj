@@ -10,8 +10,8 @@ const UserProvider = ( {children } ) => {
       customers: []
     }) 
     const [loggedIn, setLoggedIn] = useState(false) 
-    const [punchcards, setPunchcards] = useState([])
-    const [customers, setCustomers] = useState([])
+    // const [punchcards, setPunchcards] = useState([])
+    // const [customers, setCustomers] = useState([])
     const [newId, setNewId] = useState(null)
     const [formFlag, setFormFlag] = useState(true)
     const [errors, setErrors] = useState([])
@@ -23,8 +23,8 @@ const UserProvider = ( {children } ) => {
         .then(resp => resp.json())
         .then(data => {
             setUser(data)
-            setPunchcards(data.punchcards)
-            setCustomers(data.customers)
+            // setPunchcards(data.punchcards)
+            // setCustomers(data.customers)
             if (data.errors) {
                 setLoggedIn(false)
             } else {
@@ -41,8 +41,19 @@ const UserProvider = ( {children } ) => {
     })
     .then(resp => resp.json())
     .then(data => {
-        if(!data.errors) {
-            setPunchcards([...punchcards, data])
+      if (!data.errors) {
+        setUser(prevState => ({
+          ...prevState,
+          customers: prevState.customers.map(c => {
+            if (c.id === data.customer_id) {
+              return {
+                ...c,
+                punchcards: [...c.punchcards, data]
+              }
+            }
+            return c
+          })
+        }))
             setFormFlag(true)
             navigate(`/punchcards/${data.id}`)
             setErrors([])
@@ -62,7 +73,10 @@ const UserProvider = ( {children } ) => {
     .then(resp => resp.json())
     .then(data => {
         if(!data.errors) {
-            setCustomers([...customers, data])
+          setUser(prevState => ({
+            ...prevState,
+            customers: [...prevState.customers, data]
+          }))
             setNewId(data.id)
             setErrors([])
             setFormFlag(false)
@@ -84,58 +98,57 @@ const UserProvider = ( {children } ) => {
     }
 
     const handleEditedCustomer = (editedCustomer) => {
-        const updatedCustomer = customers.map((p) => {
-          if (p.id === editedCustomer.id) {
-            return editedCustomer
-          }
-          return p 
-        })
-        setCustomers(updatedCustomer);
-      }
+      const updatedCustomers = user.customers.map((p) =>
+        p.id === editedCustomer.id ? editedCustomer : p
+      );
+      setUser((prevUser) => ({ ...prevUser, customers: updatedCustomers }));
+    };
 
-    const deletePunchcard = (id) => {
-        fetch(`/customers/${id}`, {
-          method: 'DELETE',
-        })
-        .then(() => {
-          const updatedCustomers = customers.filter(c => c.id !== parseInt(id))
-          setCustomers(updatedCustomers)
-          navigate('/customers')
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-      }
+    // const deletePunchcard = (id) => {
+    //   fetch(`/customers/${id}`, {
+    //     method: "DELETE",
+    //   })
+    //     .then(() => {
+    //       setUser((prevUser) => ({
+    //         ...prevUser,
+    //         customers: prevUser.customers.filter((c) => c.id !== parseInt(id)),
+    //       }));
+    //       navigate("/customers");
+    //     })
+    //     .catch((error) => {
+    //       console.error(error);
+    //     });
+    // };
 
-    const editPunchcard = (punchcard) => {
-        fetch(`/punchcards/${punchcard.id}`, {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(punchcard)
-        })
-        .then(resp => resp.json())
-        .then((data) => handleEditedPunchcard(data))
-    }
+    // const editPunchcard = (punchcard) => {
+    //     fetch(`/punchcards/${punchcard.id}`, {
+    //         method: 'PATCH',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(punchcard)
+    //     })
+    //     .then(resp => resp.json())
+    //     .then((data) => handleEditedPunchcard(data))
+    // }
 
-    const editPunchCount = (punchcard) => {
-        fetch(`/punchcards/${punchcard.id}`, {
-            method: 'PATCH',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(punchcard)
-        })
-        .then(resp => resp.json())
-        .then((data) => handleEditedPunchcard(data))
-    }
+    // const editPunchCount = (punchcard) => {
+    //     fetch(`/punchcards/${punchcard.id}`, {
+    //         method: 'PATCH',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(punchcard)
+    //     })
+    //     .then(resp => resp.json())
+    //     .then((data) => handleEditedPunchcard(data))
+    // }
 
-    const handleEditedPunchcard = (editedPunchcard) => {
-        const updatedPunchcard = punchcards.map((p) => {
-          if (p.id === editedPunchcard.id) {
-            return editedPunchcard
-          }
-          return p 
-        })
-        setPunchcards(updatedPunchcard);
-      }
+    // const handleEditedPunchcard = (editedPunchcard) => {
+    //     const updatedPunchcard = punchcards.map((p) => {
+    //       if (p.id === editedPunchcard.id) {
+    //         return editedPunchcard
+    //       }
+    //       return p 
+    //     })
+    //     // setPunchcards(updatedPunchcard);
+    //   }
 
  
     const login = (user) => {
@@ -144,9 +157,11 @@ const UserProvider = ( {children } ) => {
     }
 
     const logout = () => {
-        setUser(null)
+        setUser({
+          customers: []
+        })
         setLoggedIn(false)
-        setPunchcards([])
+        
     }
 
     const signup = (user) => {
@@ -156,7 +171,9 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, punchcards, addPunchcard, deletePunchcard, editPunchcard, customers, addCustomer, newId, editPunchCount, errors, formFlag, editCustomerName }}>
+    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, addPunchcard,
+    // punchcards, deletePunchcard, editPunchcard,editPunchCount
+     addCustomer, newId, errors, formFlag, editCustomerName }}>
         {children}
     </UserContext.Provider>
 

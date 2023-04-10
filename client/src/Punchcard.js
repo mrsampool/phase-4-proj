@@ -9,12 +9,12 @@ const Punchcard = () => {
   const [editFlag, setEditFlag ] = useState(false)
   const [editNameFlag, setEditNameFlag] = useState(false)
   
-  const { punchcards, deletePunchcard, editPunchCount, customers} = useContext(UserContext)
+  const { user, deletePunchcard, editPunchCount, customers} = useContext(UserContext)
 
   const { id } = useParams()
 
-  const punchcard = punchcards.find(p => p.id === parseInt(id))
-  const customer = customers.find(c => c.id === punchcard.customer_id)
+  const punchcard = user.punchcards.find(p => p.id === parseInt(id))
+   const customer = user.customers.find(c => c.id === punchcard.customer_id)
 
   // if (!punchcard) {
   //   return <div>Punchcard not found.</div>

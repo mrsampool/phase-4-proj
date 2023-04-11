@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 
-const PunchcardPreview = ({punchcard}) => {
+const PunchcardPreview = ({punchcard, customer}) => {
 
   return (
     <>
@@ -10,12 +10,12 @@ const PunchcardPreview = ({punchcard}) => {
       <header>
       <em>{punchcard.name}</em>
       </header>
-
+  
       <p>{punchcard.count} more to go</p>
 
       <p>{punchcard.reward}!</p>
       <footer>
-      <Link to={`/punchcards/${punchcard.id}`}>
+      <Link to={`/customers/${punchcard.customer_id}/punchcards/${punchcard.id}`}>
           OPEN
       </Link>
       </footer>

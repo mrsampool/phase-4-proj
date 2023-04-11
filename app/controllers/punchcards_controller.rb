@@ -4,9 +4,15 @@ class PunchcardsController < ApplicationController
     skip_before_action :authorize, only: :count
 
 
-    def index 
-        punchcards = Punchcard.all
-        render json: punchcards
+    # def index 
+    #     punchcards = Punchcard.all
+    #     render json: punchcards
+    # end
+
+    def index
+        customer = Customer.find(params[:customer_id])
+        punchcard = customer.punchcard
+        render json: punchcard, include: :customer
     end
 
     def show

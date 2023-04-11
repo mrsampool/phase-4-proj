@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
   resources :punchcards
-  resources :customers
+  
+  resources :customers do 
+    resources :punchcards, only: [:show, :index]
+  end
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

@@ -8,6 +8,7 @@ const CustomerTable = () => {
 
   const {user} = useContext(UserContext)
 
+
   const filterBySearch = user.customers.filter(c => c.username.toLowerCase().includes(searchClient.toLowerCase()))
 
   const customerEntry = filterBySearch.map(c => 
@@ -24,7 +25,7 @@ const CustomerTable = () => {
   return (
     <div>
       
-      <h1 className="title">CLIENTELE</h1>
+      <h1 className="title">MY CLIENTELE</h1>
       
     <main class="container" >
   
@@ -34,9 +35,8 @@ const CustomerTable = () => {
         <table role="grid">
           <thead>
             <tr>
-              <th scope="col">ID</th>
               <th scope="col">Name</th>
-              <th scope="col"></th>
+              <th scope="col">Profile</th>
             </tr>
           </thead>
           <tbody>

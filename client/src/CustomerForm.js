@@ -8,6 +8,8 @@ const CustomerForm = () => {
 
   const { addCustomer, errors } = useContext(UserContext)
 
+  
+
   const handleCustomerSubmit = (e) => {
     e.preventDefault()
     

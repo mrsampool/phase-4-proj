@@ -1,5 +1,6 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext} from 'react'
 import { UserContext } from './context/user'
+import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 const PunchcardForm = ({addPunchcardFlag}) => {
@@ -9,6 +10,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
 
     const { addPunchcard, newId, errors } = useContext(UserContext)
 
+    const { id } = useParams()
+
     const handlePunchcardSubmit = (e) => {
 
         e.preventDefault()
@@ -16,7 +19,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
         addPunchcard({
                 count: count,
                 reward: reward,
-                customer_id: newId
+                customer_id: id
         })
     }
  
@@ -27,7 +30,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
         <main class="container">
             <form onSubmit={handlePunchcardSubmit}>
                 <article className="card">
-                    <p><em>Step 2 of 2</em></p>
+                    <p><em>Add a New Punchcard!</em></p>
 
                     <label>Punches required:</label>
                     <input 

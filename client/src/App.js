@@ -23,9 +23,11 @@ function App(props) {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/punchcards" element={<Punchcards />} />
-          <Route exact path="/punchcards/:id" element={<Punchcard />} />
+          <Route exact path="/customers/:customer_id/punchcards/:id" element={<Punchcard />} />
           <Route exact path="/customers" element={<CustomerTable />}/>
           <Route exact path="/customers/:id" element={<CustomerProfile />}/>
+          {/* <Route exact path="/customers/:customer_id/punchcards/:id" element={<CustomerProfile />}/> */}
+          
         </Routes>
       </UserProvider>
      

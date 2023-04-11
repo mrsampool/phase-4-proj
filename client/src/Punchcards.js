@@ -7,7 +7,7 @@ import CreateNew from './CreateNew'
 
 const Punchcards = () => {
 
-    const { loggedIn, findAllCustomers} = useContext(UserContext)
+    const { loggedIn, getAllCustomers} = useContext(UserContext)
     const [toggleNew, setToggleNew] = useState(false)
     const [toggleFind, setToggleFind] = useState(false)
 
@@ -17,7 +17,7 @@ const Punchcards = () => {
 
     const handleFindClick = () => {
       setToggleFind(true)
-      findAllCustomers()
+      getAllCustomers()
     }
   
     if (loggedIn) {

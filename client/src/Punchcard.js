@@ -6,15 +6,25 @@ import CustomerNameEdit from './CustomerNameEdit'
 
 const Punchcard = () => {
 
+  
+
   const [editFlag, setEditFlag ] = useState(false)
   const [editNameFlag, setEditNameFlag] = useState(false)
   
-  const { user, deletePunchcard, editPunchCount, customers} = useContext(UserContext)
+  const { user, deletePunchcard, editPunchCount} = useContext(UserContext)
 
-  const { id } = useParams()
+  const { customer_id, id } = useParams()
 
-  const punchcard = user.punchcards.find(p => p.id === parseInt(id))
-   const customer = user.customers.find(c => c.id === punchcard.customer_id)
+   const punchcard = user.punchcards && user.punchcards.length > 0
+  ? user.punchcards.find(p => p.id === parseInt(id))
+  : null
+
+  // const punchcard = user?.punchcards?.find(p => p.id === parseInt(id))
+
+  const customer = user.customers && user.customers.length > 0 ? user.customers.find(c => c.id === parseInt(customer_id)) : null
+
+  console.log('user', punchcard)
+  console.log('allcust', customer)
 
   // if (!punchcard) {
   //   return <div>Punchcard not found.</div>
@@ -29,7 +39,7 @@ const Punchcard = () => {
     })
   }
 
-if (customer) {
+if (punchcard) {
   return (
     <>
       <main class="container">
@@ -67,7 +77,7 @@ if (customer) {
             }
 
           <br />
-            <button  className="button1" onClick={() => deletePunchcard(customer.id)}>Delete</button>
+            {/* <button  className="button1" onClick={() => deletePunchcard(customer.id)}>Delete</button> */}
         </article>
         
       </main>

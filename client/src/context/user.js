@@ -48,11 +48,13 @@ const UserProvider = ( {children } ) => {
     .then(resp => resp.json())
     .then(data => {
         if (!data.errors) {
-          console.log(data)
+         
             // setUser({
             //   ...user,
-            //   punchcard: data.punchcards
+            //   punchcards: [...user.punchcards, data]
             // })
+
+        
             setFormFlag(false)
             navigate(`/customers/${data.customer_id}`)
             setErrors([])

@@ -48,11 +48,10 @@ end
     punchcard = Punchcard.create(
         count: count.sample,
         reward: reward.sample,
-        user_id: 2,
+        user_id: 25,
         customer_id: customer.id,
     )
 end
-
 
 
 puts "been dun seeded"

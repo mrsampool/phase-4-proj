@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 
 const CustomerRow = ({customer, id}) => {
 
+  
+
   return (
     <tr>
         <th scope="row">{customer}</th>

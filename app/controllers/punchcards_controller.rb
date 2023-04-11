@@ -24,6 +24,8 @@ class PunchcardsController < ApplicationController
       render json: punchcard, status: :created 
     end
 
+    # climbs = @current_user.climbs.uniq { |climb| climb.id }
+
     def update
         punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard

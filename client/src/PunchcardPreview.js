@@ -1,8 +1,18 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { UserContext } from './context/user'
 
+const PunchcardPreview = ({punchcard}) => {
 
-const PunchcardPreview = ({punchcard, customer}) => {
+  const { editPunchCount } = useContext(UserContext)
+
+  const handlePunch = (e) => {
+    e.preventDefault()
+
+    editPunchCount({
+            id: punchcard.id,
+            count: punchcard.count - 1,
+    })
+  }
 
   return (
     <>
@@ -11,13 +21,15 @@ const PunchcardPreview = ({punchcard, customer}) => {
       <em>{punchcard.name}</em>
       </header>
   
-      <p>{punchcard.count} more to go</p>
+      <h3>{punchcard.count} more to go</h3>
 
       <p>{punchcard.reward}!</p>
       <footer>
-      <Link to={`/customers/${punchcard.customer_id}/punchcards/${punchcard.id}`}>
-          OPEN
-      </Link>
+     
+             <button className="punch-button" 
+              onClick={handlePunch}>
+                PUNCH IT!</button>
+
       </footer>
     </article>
     </>

@@ -12,23 +12,21 @@ const CustomerProfile = () => {
     const [editFlag, setEditFlag ] = useState(false)
     const [editNameFlag, setEditNameFlag] = useState(false)
   
-    const { deleteCustomer, editPunchCount, allCustomers, addPunchcard, user} = useContext(UserContext)
+    const { deleteCustomer, allCustomers, addPunchcard, user, loggedIn} = useContext(UserContext)
 
     const { id } = useParams()
 
 // const punchcards = user.punchcards.map(p => console.log(p.id))
 
-
-const customer = allCustomers.find(c => c.id === parseInt(id))
+const customer = allCustomers?.find(c => c.id === parseInt(id)) || []
 
 const punchcards = customer?.punchcards || []
 
-
 const displayPunchcards = punchcards.map(p => 
-    <PunchcardPreview 
+    <PunchcardPreview
+        key={p.id} 
         id={p.id}
         punchcard={p}
-        customer={customer}
     />)
 
   // if (!punchcard) {
@@ -41,7 +39,7 @@ const handleNewClick = () => {
    
 }
 
-if (customer) {
+if (loggedIn) {
   return (
     <>
       <main class="container">
@@ -81,11 +79,11 @@ if (customer) {
             
             <br />
 
-          {editFlag ? 
+          {/* {editFlag ? 
                 <PunchcardEdit editFlag={setEditFlag} /> 
                 :
                 <button className="button1" onClick={() => setEditFlag(true)}>Edit Punchcard</button>
-            }
+            } */}
 
           <br />
             <button  className="button1" onClick={() => deleteCustomer(customer.id)}>Delete</button>

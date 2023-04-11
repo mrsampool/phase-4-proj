@@ -1,6 +1,6 @@
 class PunchcardSerializer < ActiveModel::Serializer
   attributes :id, :count, :reward, :user_id, :customer_id
   
-  belongs_to :user
-  belongs_to :customer
+  # has_one :user
+  # has_one :customer
 end

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react'
-import CustomerFindRow from './CustomerFindRow'
+import AllCustomersRow from './AllCustomersRow'
 import { UserContext } from './context/user'
 
-const CustomerFind = () => {
+const AllCustomersTable = () => {
 
   const [searchClient, setSearchClient] = useState("")
 
@@ -11,9 +11,9 @@ const CustomerFind = () => {
   const filterBySearch = allCustomers.filter(c => c.username.toLowerCase().includes(searchClient.toLowerCase()))
 
   const customerEntry = filterBySearch.map(c => 
-    <CustomerFindRow 
-      key={c.id}
+    <AllCustomersRow 
       id={c.id}
+      key={c.id}
       customer={c.username}
       />)
 
@@ -50,4 +50,4 @@ const CustomerFind = () => {
   )
 }
 
-export default CustomerFind
+export default AllCustomersTable

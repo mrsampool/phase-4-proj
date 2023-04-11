@@ -2,10 +2,10 @@ import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 import PunchcardPreview from './PunchcardPreview'
 import CustomerForm from './CustomerForm'
-import CustomerFind from './CustomerFind'
-import CreateNew from './CreateNew'
+import AllCustomersTable from './AllCustomersTable'
 
-const Punchcards = () => {
+
+const AddCustomer = () => {
 
     const { loggedIn, getAllCustomers} = useContext(UserContext)
     const [toggleNew, setToggleNew] = useState(false)
@@ -17,7 +17,6 @@ const Punchcards = () => {
 
     const handleFindClick = () => {
       setToggleFind(true)
-      getAllCustomers()
     }
   
     if (loggedIn) {
@@ -31,9 +30,13 @@ const Punchcards = () => {
 
         {toggleNew ? <CustomerForm /> : null}
 
+        <br />
+
         <button className="button1" onClick={handleFindClick}>FIND EXISTING CLIENT</button>
 
-        {toggleFind ? <CustomerFind /> : null}
+        <br /><br />
+
+        {toggleFind ? <AllCustomersTable /> : null}
                      
         </main>
         </>
@@ -45,4 +48,4 @@ const Punchcards = () => {
     }
 }
 
-export default Punchcards
+export default AddCustomer

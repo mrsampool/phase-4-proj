@@ -38,6 +38,7 @@ class PunchcardsController < ApplicationController
 
     def count 
         punchcards = Punchcard.where('count > ?', params[:number])
+        
         customers = punchcards.map { |punchcard| punchcard.customer }.uniq
 
         if customers.present? 

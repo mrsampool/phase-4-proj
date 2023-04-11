@@ -11,13 +11,13 @@ const UserProvider = ( {children } ) => {
     }) 
     const [loggedIn, setLoggedIn] = useState(false) 
     const [ allCustomers, setAllCustomers ] = useState([])
-    const [newId, setNewId] = useState(null)
     const [formFlag, setFormFlag] = useState(true)
     const [errors, setErrors] = useState([])
 
-    const navigate = useNavigate()
+    const [requestCount, setRequestCount] = useState(true);
 
- 
+    const navigate = useNavigate()
+  
     useEffect(() => {
         fetch('/me')
         .then(resp => resp.json())
@@ -26,25 +26,19 @@ const UserProvider = ( {children } ) => {
             if (data.errors) {
                 setLoggedIn(false)
             } else {
-                setLoggedIn(true)
-                getUserClimbs()
+              getAllCustomers()
+              setLoggedIn(true)
             }
         })    
-    }, [loggedIn])
+    }, [requestCount])
 
-   const getUserClimbs = () => {
+   const getAllCustomers = () => {
       fetch('/customers')
       .then(resp => resp.json())
       .then(data => setAllCustomers(data))
    }
-      
 
-   console.log(user)
- 
-  
-
-
-      
+      // ADD PUNCHCARD
    const addPunchcard = (punchcard) => {
     fetch('/punchcards', {
         method: 'POST',
@@ -54,26 +48,23 @@ const UserProvider = ( {children } ) => {
     .then(resp => resp.json())
     .then(data => {
         if (!data.errors) {
-            setAllCustomers(prevCustomers => [...prevCustomers, data.punchcard])
-            // setUser(prevUser => {
-            //     const updatedCustomers = prevUser.customers.map(c => {
-            //         if (c.id === data.customer.id) {
-            //             return data.customer;
-            //         }
-            //         return c;
-            //     });
-            //     return { ...prevUser, customers: updatedCustomers };
-            // });
-            setFormFlag(true)
+          console.log(data)
+            // setUser({
+            //   ...user,
+            //   punchcard: data.punchcards
+            // })
+            setFormFlag(false)
             navigate(`/customers/${data.customer_id}`)
             setErrors([])
         } else {
             const errorLis = data.errors.map( e => <li>{e}</li>)
             setErrors(errorLis)
         }
+        setRequestCount(!requestCount)
     }) 
 }
 
+// ADD CUSTOMER
 
     const addCustomer = (customer) => {
         fetch('/customers', {
@@ -83,12 +74,10 @@ const UserProvider = ( {children } ) => {
     })
     .then(resp => resp.json())
     .then(data => {
-        if(!data.errors) {
-          setUser(prevState => ({
-            ...prevState,
-            customers: [...prevState.customers, data]
-          }))
-            setNewId(data.id)
+        if (!data.errors) {  
+            setAllCustomers([
+              ...allCustomers, data
+            ])
             navigate(`/customers/${data.id}`)
             setErrors([])
             setFormFlag(false)
@@ -100,47 +89,41 @@ const UserProvider = ( {children } ) => {
     }
 
     const editCustomerName = (customer) => {
+      
         fetch(`/customers/${customer.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(customer)
         })
         .then(resp => resp.json())
-        .then((data) => handleEditedCustomer(data))
+        .then((data) => console.log(data))
     }
 
     const handleEditedCustomer = (editedCustomer) => {
-      const updatedCustomers = user.customers.map((p) =>
+      const updatedCustomers = allCustomers.map((p) =>
         p.id === editedCustomer.id ? editedCustomer : p
-      );
-      setUser((prevUser) => ({ ...prevUser, customers: updatedCustomers }));
-    };
+      )
+      console.log(updatedCustomers)
+      setAllCustomers([...allCustomers, updatedCustomers])
+      // setRequestCount(!requestCount)
+    }
+
 
     const deleteCustomer = (id) => {
       fetch(`/customers/${id}`, {
         method: "DELETE",
       })
         .then(() => {
-          setUser((prevUser) => ({
-            ...prevUser,
-            customers: prevUser.customers.filter((c) => c.id !== parseInt(id)),
-          }));
+          setUser({
+            ...user,
+            customers: user.customers.filter((c) => c.id !== parseInt(id)),
+          });
           navigate("/customers");
         })
         .catch((error) => {
           console.error(error);
-        });
-    };
-
-    // const editPunchcard = (punchcard) => {
-    //     fetch(`/punchcards/${punchcard.id}`, {
-    //         method: 'PATCH',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify(punchcard)
-    //     })
-    //     .then(resp => resp.json())
-    //     .then((data) => handleEditedPunchcard(data))
-    // }
+        })
+    }
 
     const editPunchCount = (punchcard) => {
         fetch(`/punchcards/${punchcard.id}`, {
@@ -153,13 +136,15 @@ const UserProvider = ( {children } ) => {
     }
 
     const handleEditedPunchcard = (editedPunchcard) => {
-        const updatedPunchcard = user.punchcards.map((p) => {
-          if (p.id === editedPunchcard.id) {
-            return editedPunchcard
-          }
-          return p 
-        })
-        setUser(editedPunchcard);
+
+         const updatedPunchcards = user.punchcards.map((p) => {
+         if (p.id === editedPunchcard.id) {
+           return editedPunchcard;
+         }
+         return p
+       })
+       setUser({ ...user, punchcards: updatedPunchcards })
+       setRequestCount(!requestCount)
       }
 
  
@@ -185,10 +170,20 @@ const UserProvider = ( {children } ) => {
 
   return (
 
-    <UserContext.Provider value={{ user, login, logout, signup, loggedIn, addPunchcard, editPunchCount, deleteCustomer,
-    // punchcards, editPunchcard,editPunchCount
-     addCustomer, newId, errors, formFlag, editCustomerName,
-      allCustomers 
+    <UserContext.Provider value={{ 
+      user, 
+      allCustomers, 
+      login, 
+      logout, 
+      signup, 
+      loggedIn, 
+      addPunchcard, 
+      editPunchCount, 
+      deleteCustomer,
+      addCustomer,
+      errors, 
+      formFlag, 
+      editCustomerName
       }}>
         {children}
     </UserContext.Provider>

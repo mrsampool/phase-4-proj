@@ -8,7 +8,6 @@ const CustomerForm = () => {
 
   const { addCustomer, errors } = useContext(UserContext)
 
-  
 
   const handleCustomerSubmit = (e) => {
     e.preventDefault()
@@ -29,16 +28,16 @@ const CustomerForm = () => {
                     type="text" 
                     id="username"
                     value={username}
-                    placeholder={"Enter client name"}
+                    placeholder={"Enter name"}
                     onChange={e => setUsername(e.target.value)}
                 />
-                <input 
+                {/* <input 
                     type="text" 
                     id="email"
                     value={email}
-                    placeholder={"Enter client's email"}
+                    placeholder={"Enter email"}
                     onChange={e => setUsername(e.target.value)}
-                />
+                /> */}
 
                 {errors}
                 

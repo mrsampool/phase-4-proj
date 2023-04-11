@@ -3,11 +3,9 @@ Create a custom route that finds all the punchcards that have a count more than 
 
 
 
-Find a way to give users access to all customers when thinking about adding a punchcard, including the option to make a new customer. IN 'NEW' TAB, DISPLAY ALL CUSTOMERS AND SHOW TWO BUTTONS CREATE A NEW CUSTOMER AND ADD A NEW PUNCHCARD.
+Find a way to give users access to all customers when thinking about adding a punchcard, including the option to make a new customer.
 
 Eliminate punchcards as state. You should have everything you need through the user and the customers, just make sure you send the associated objects back through the serializer.
 
 Make sure somewhere you show either: all the customers that a user has (not in a punchcard index) or all the users a customer is connected to. 
 
-
-Tues at 6pm Ben's office hours

@@ -8,7 +8,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
     const [count, setCount] = useState(10)
     const [reward, setReward] = useState("")
 
-    const { addPunchcard, newId, errors } = useContext(UserContext)
+    const { addPunchcard, errors } = useContext(UserContext)
 
     const { id } = useParams()
 

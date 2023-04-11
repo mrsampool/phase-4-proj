@@ -5,10 +5,10 @@ const CustomerNameEdit = ({id, setNameFlag}) => {
 
     const [name, setName] = useState("")
 
-    const {customers, editCustomerName} = useContext(UserContext)
+    const {allCustomers, editCustomerName} = useContext(UserContext)
 
     useEffect(() => {
-        const storedCustomer = customers.find(p => p.id === id)
+        const storedCustomer = allCustomers.find(p => p.id === id)
         if (storedCustomer) {
             setName(storedCustomer.username)
         }

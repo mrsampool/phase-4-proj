@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import { UserContext } from './context/user'
 import {Link} from 'react-router-dom'
 
-const CustomerFindRow = ({customer, id}) => {
+const AllCustomersRow = ({customer, id}) => {
 
-  const { user } = useContext(UserContext)
+//   const {} = useContext(UserContext)
 
   return (
     <tr>
@@ -16,4 +16,4 @@ const CustomerFindRow = ({customer, id}) => {
   )
 }
 
-export default CustomerFindRow
+export default AllCustomersRow

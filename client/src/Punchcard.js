@@ -6,29 +6,19 @@ import CustomerNameEdit from './CustomerNameEdit'
 
 const Punchcard = () => {
 
-  
-
   const [editFlag, setEditFlag ] = useState(false)
   const [editNameFlag, setEditNameFlag] = useState(false)
   
-  const { user, deletePunchcard, editPunchCount} = useContext(UserContext)
+  const { user, allCustomers, deletePunchcard, editPunchCount, userPunchcards, loggedIn} = useContext(UserContext)
 
   const { customer_id, id } = useParams()
 
-   const punchcard = user.punchcards && user.punchcards.length > 0
-  ? user.punchcards.find(p => p.id === parseInt(id))
-  : null
+  console.log(userPunchcards)
+ 
+  const punchcard = userPunchcards.find(p => p.id)
 
-  // const punchcard = user?.punchcards?.find(p => p.id === parseInt(id))
 
-  const customer = user.customers && user.customers.length > 0 ? user.customers.find(c => c.id === parseInt(customer_id)) : null
-
-  console.log('user', punchcard)
-  console.log('allcust', customer)
-
-  // if (!punchcard) {
-  //   return <div>Punchcard not found.</div>
-  // }
+  console.log('punch',punchcard)
 
   const handlePunch = (e) => {
     e.preventDefault()
@@ -39,21 +29,21 @@ const Punchcard = () => {
     })
   }
 
-if (punchcard) {
+if (loggedIn) {
   return (
     <>
       <main class="container">
         <article className="card">
 
-            <header >
-              <h1>{customer.username}</h1>
+            {/* <header >
+              <h1>{username}</h1>
             </header>
            
-            <h3>{punchcard.reward}</h3>
-            <h2>{punchcard.count} more!</h2> 
+            <h3>{reward}</h3>
+            <h2>{count} more!</h2>  */}
            
             <footer>
-            <button className="punch-button" onClick={handlePunch}>PUNCH IT!</button>
+     
             </footer>
 
         </article>
@@ -62,11 +52,11 @@ if (punchcard) {
         Settings
         <br/><br/>
 
-          {editNameFlag ? 
+          {/* {editNameFlag ? 
                 <CustomerNameEdit key={customer.id} id={customer.id} setNameFlag={setEditNameFlag} /> 
                 :
                 <button className="button1" onClick={() => setEditNameFlag(true)}>Edit Name</button>
-            } 
+            }  */}
             
             <br />
 

@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
 
-const CustomerForm = () => {
+const CustomerForm = ({setPunchcardFlag}) => {
 
   const [ username, setUsername ] = useState("")
   const [ email, setEmail ] = useState("")
@@ -15,6 +15,8 @@ const CustomerForm = () => {
     addCustomer({
         username: username
     })
+
+    setPunchcardFlag(false)
     
  }
  

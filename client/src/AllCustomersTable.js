@@ -14,7 +14,7 @@ const AllCustomersTable = () => {
     <AllCustomersRow 
       id={c.id}
       key={c.id}
-      customer={c.username}
+      name={c.username}
       />)
 
   const handleSearchChange = (e) => {
@@ -36,6 +36,7 @@ const AllCustomersTable = () => {
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Profile</th>
+              <th scope="col">id</th>
             </tr>
           </thead>
           <tbody>

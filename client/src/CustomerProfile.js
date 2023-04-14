@@ -16,28 +16,17 @@ const CustomerProfile = () => {
 
     const { id } = useParams()
 
-// const punchcards = user.punchcards.map(p => console.log(p.id))
 
 const customer = allCustomers?.find(c => c.id === parseInt(id)) || []
 
-const punchcards = customer?.punchcards || []
 
-const displayPunchcards = punchcards.map(p => 
+const displayPunchcards = customer.punchcards.map(p => 
     <PunchcardPreview
         key={p.id} 
         id={p.id}
         punchcard={p}
     />)
 
-  // if (!punchcard) {
-  //   return <div>Punchcard not found.</div>
-  // }
-
-
-
-const handleNewClick = () => {
-   
-}
 
 if (loggedIn) {
   return (

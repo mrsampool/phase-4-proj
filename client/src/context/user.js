@@ -14,7 +14,7 @@ const UserProvider = ( {children } ) => {
     const [formFlag, setFormFlag] = useState(true)
     const [errors, setErrors] = useState([])
 
-    const [requestCount, setRequestCount] = useState(true);
+    const [trigger, setTrigger] = useState(true);
 
     const navigate = useNavigate()
   
@@ -30,7 +30,7 @@ const UserProvider = ( {children } ) => {
               setLoggedIn(true)
             }
         })    
-    }, [requestCount])
+    }, [trigger])
 
    const getAllCustomers = () => {
       fetch('/customers')
@@ -48,13 +48,6 @@ const UserProvider = ( {children } ) => {
     .then(resp => resp.json())
     .then(data => {
         if (!data.errors) {
-         
-            // setUser({
-            //   ...user,
-            //   punchcards: [...user.punchcards, data]
-            // })
-
-        
             setFormFlag(false)
             navigate(`/customers/${data.customer_id}`)
             setErrors([])
@@ -62,7 +55,7 @@ const UserProvider = ( {children } ) => {
             const errorLis = data.errors.map( e => <li>{e}</li>)
             setErrors(errorLis)
         }
-        setRequestCount(!requestCount)
+        setTrigger(!trigger)
     }) 
 }
 
@@ -98,7 +91,7 @@ const UserProvider = ( {children } ) => {
             body: JSON.stringify(customer)
         })
         .then(resp => resp.json())
-        .then((data) => console.log(data))
+        .then((data) => handleEditedCustomer(data))
     }
 
     const handleEditedCustomer = (editedCustomer) => {
@@ -107,7 +100,7 @@ const UserProvider = ( {children } ) => {
       )
       console.log(updatedCustomers)
       setAllCustomers([...allCustomers, updatedCustomers])
-      // setRequestCount(!requestCount)
+      setTrigger(!trigger)
     }
 
 
@@ -146,7 +139,7 @@ const UserProvider = ( {children } ) => {
          return p
        })
        setUser({ ...user, punchcards: updatedPunchcards })
-       setRequestCount(!requestCount)
+       setTrigger(!trigger)
       }
 
  

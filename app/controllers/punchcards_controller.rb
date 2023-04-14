@@ -38,17 +38,17 @@ class PunchcardsController < ApplicationController
 
     # coding challenge:
 
-    def count 
-        punchcards = Punchcard.where('count > ?', params[:number])
+    # def count 
+    #     punchcards = Punchcard.where('count > ?', params[:number])
         
-        customers = punchcards.map { |punchcard| punchcard.customer }.uniq
+    #     customers = punchcards.map { |p| p.customer }.uniq
 
-        if customers.present? 
-          render json: customers
-        else 
-          render json: { error: "Punchcard not found"}, status: :not_found
-        end
-    end
+    #     if customers.present? 
+    #       render json: customers
+    #     else 
+    #       render json: { error: "Punchcard not found"}, status: :not_found
+    #     end
+    # end
 
     private 
 

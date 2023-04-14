@@ -1,11 +1,20 @@
 Create a custom route that finds all the punchcards that have a count more than a given number (that was sent as a parameter). Once you have identified all the punchers that meet that requirement, send back all the customers of the punchcards that were identified in your search. Don’t send back any duplicates. Render the customer objects as json. If no punchcards are found render a message that says so.
 
 
-
-
 Find a way to give users access to all customers when thinking about adding a punchcard, including the option to make a new customer.
 
 Eliminate punchcards as state. You should have everything you need through the user and the customers, just make sure you send the associated objects back through the serializer.
 
 Make sure somewhere you show either: all the customers that a user has (not in a punchcard index) or all the users a customer is connected to. 
+
+
+make a custom method in the model that would
+show the result as an array of 
+top 4 customers with the most punchcards
+highest to least 
+
+
+make a custom method in the model that would
+show the result as an array of 
+all customers in alphabetical order 
 

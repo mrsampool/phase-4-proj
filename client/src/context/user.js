@@ -67,9 +67,9 @@ const UserProvider = ( {children } ) => {
     .then(resp => resp.json())
     .then(data => {
         if (!data.errors) {  
-            setAllCustomers([
-              ...allCustomers, data
-            ])
+         
+            setUser({ ...user, customers: [...user.customers, data] })
+
             navigate(`/customers/${data.id}`)
             setErrors([])
             setFormFlag(false)
@@ -95,8 +95,7 @@ const UserProvider = ( {children } ) => {
       const updatedCustomers = allCustomers.map((p) =>
         p.id === editedCustomer.id ? editedCustomer : p
       )
-      setAllCustomers([...allCustomers, updatedCustomers])
-      setTrigger(!trigger)
+      setAllCustomers(updatedCustomers)
     }
 
     const deleteCustomer = (id) => {
@@ -118,23 +117,8 @@ const UserProvider = ( {children } ) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(punchcard)
         })
-        .then(resp => resp.json())
-        .then((data) => handleEditedPunchcard(data))
+        setTrigger(!trigger)
     }
-
-    const handleEditedPunchcard = (editedPunchcard) => {
-
-         const updatedPunchcards = user.punchcards.map((p) => {
-         if (p.id === editedPunchcard.id) {
-           return editedPunchcard;
-         }
-         return p
-       })
-       
-       setUser({ ...user, punchcards: updatedPunchcards })
-       setTrigger(!trigger)
-      }
-
  
     const login = (user) => {
         setUser(user)

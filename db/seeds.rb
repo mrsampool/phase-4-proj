@@ -8,8 +8,6 @@
 
 # CUSTOMERS
 
-
-# USE FAKER 
 puts "seedin"
 
 User.destroy_all

@@ -58,8 +58,6 @@ const UserProvider = ( {children } ) => {
     }) 
 }
 
-
-
     const addCustomer = (customer) => {
         fetch('/customers', {
         method: 'POST',

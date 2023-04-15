@@ -12,6 +12,7 @@
 # USE FAKER 
 puts "seedin"
 
+User.destroy_all
 Customer.destroy_all
 Punchcard.destroy_all
 
@@ -22,6 +23,13 @@ reward = ["25% off next purchase", "One Free Coffee", "15% off next purchase", "
 count = [10,15,20]
 
 id_counter = 1
+customer_id_counter = 1
+
+User.create(id: 1, username: "maikas_diner", password: "maikasdiner")
+User.create(id: 2, username: "maikas_cafe", password: "maikascafe")
+User.create(id: 3, username: "maikas_bar", password: "maikasbar")
+User.create(id: 4, username: "maikas_shop", password: "maikasshop")
+User.create(id: 5, username: "maikas_salon", password: "maikassalon")
 
 20.times do
     customer = Customer.create(
@@ -48,9 +56,29 @@ end
     punchcard = Punchcard.create(
         count: count.sample,
         reward: reward.sample,
-        user_id: 25,
+        user_id: 2,
         customer_id: customer.id,
     )
+end
+
+20.times do
+    punchcard = Punchcard.create(
+        count: count.sample,
+        reward: reward.sample,
+        user_id: 3,
+        customer_id: customer_id_counter,
+    )
+    customer_id_counter += 1
+end
+
+20.times do
+    punchcard = Punchcard.create(
+        count: count.sample,
+        reward: reward.sample,
+        user_id: 4,
+        customer_id: customer_id_counter,
+    )
+    customer_id_counter += 1
 end
 
 

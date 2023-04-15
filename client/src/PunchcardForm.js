@@ -8,7 +8,7 @@ const PunchcardForm = ({addPunchcardFlag}) => {
     const [count, setCount] = useState(10)
     const [reward, setReward] = useState("")
 
-    const { addPunchcard, errors } = useContext(UserContext)
+    const { addPunchcard, errors, loggedIn } = useContext(UserContext)
 
     const { id } = useParams()
 
@@ -23,7 +23,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
         })
     }
  
-  return (
+  if (loggedIn) {
+    return (
     <div>
         <br />
          <hr/>
@@ -63,6 +64,11 @@ const PunchcardForm = ({addPunchcardFlag}) => {
         <hr/>
     </div>
   )
+} else {
+    return (
+    <h1>Punchcard Form Error</h1>
+    )
+}
 }
 
 export default PunchcardForm

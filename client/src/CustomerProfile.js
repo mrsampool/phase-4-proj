@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { UserContext } from './context/user'
 import { useParams } from 'react-router-dom'
 import PunchcardEdit from './PunchcardEdit'
@@ -11,21 +11,26 @@ const CustomerProfile = () => {
     const [addPunchcardFlag, setAddPunchcardFlag] = useState(false)
     const [editFlag, setEditFlag ] = useState(false)
     const [editNameFlag, setEditNameFlag] = useState(false)
+    // const [customer, setCustomer ] = useState([])
   
-    const { deleteCustomer, allCustomers, addPunchcard, user, loggedIn} = useContext(UserContext)
+    const { deleteCustomer, allCustomers, loggedIn} = useContext(UserContext)
 
     const { id } = useParams()
 
+    // useEffect(() => {
+    //   fetch(`/customers/${id}`)
+    //   .then(resp => resp.json())
+    //   .then(data => setCustomer(data))
+    // }, [id])
 
-const customer = allCustomers?.find(c => c.id === parseInt(id)) || []
+    const customer = allCustomers?.find(c => c.id === parseInt(id)) || []
 
-
-const displayPunchcards = customer.punchcards.map(p => 
-    <PunchcardPreview
-        key={p.id} 
-        id={p.id}
-        punchcard={p}
-    />)
+    const displayPunchcards = customer?.punchcards?.map(p => 
+        <PunchcardPreview
+            key={p.id} 
+            id={p.id}
+            punchcard={p}
+        />)
 
 
 if (loggedIn) {

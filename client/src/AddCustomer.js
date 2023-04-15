@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react'
 import { UserContext } from './context/user'
-import PunchcardPreview from './PunchcardPreview'
 import CustomerForm from './CustomerForm'
 import AllCustomersTable from './AllCustomersTable'
 
 
 const AddCustomer = () => {
 
-    const { loggedIn, getAllCustomers} = useContext(UserContext)
     const [toggleNew, setToggleNew] = useState(false)
     const [toggleFind, setToggleFind] = useState(false)
+
+    const { loggedIn} = useContext(UserContext)
 
     const handleNewClick = () => {
       setToggleNew(true)
@@ -23,7 +23,7 @@ const AddCustomer = () => {
       
       return (
         <>
-        {/* <h1 className="title">CREATE</h1> */}
+    
         <main class="container">
         <br />
         <button className="button1" onClick={handleNewClick}>NEW CLIENT</button>

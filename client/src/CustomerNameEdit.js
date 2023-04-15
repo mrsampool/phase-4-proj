@@ -12,7 +12,7 @@ const CustomerNameEdit = ({id, setNameFlag}) => {
         if (storedCustomer) {
             setName(storedCustomer.username)
         }
-    }, [])
+    }, [allCustomers, id])
 
     const handleSubmit = (e) => {
         e.preventDefault()

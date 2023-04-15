@@ -4,7 +4,7 @@ import { UserContext } from './context/user'
 const CustomerForm = ({setPunchcardFlag}) => {
 
   const [ username, setUsername ] = useState("")
-  const [ email, setEmail ] = useState("")
+  // const [ email, setEmail ] = useState("")
 
   const { addCustomer, errors } = useContext(UserContext)
 
@@ -15,9 +15,7 @@ const CustomerForm = ({setPunchcardFlag}) => {
     addCustomer({
         username: username
     })
-
     setPunchcardFlag(false)
-    
  }
  
   return (

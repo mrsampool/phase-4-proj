@@ -18,8 +18,6 @@ const Navbar = () => {
     })
   }
 
-  // return must only happen if someone is logged in AND the user is not NULL (got a 'null' error before; this fixed it)
-
   if (loggedIn) {
    
       return (

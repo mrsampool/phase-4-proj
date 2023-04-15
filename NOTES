@@ -8,6 +8,8 @@ Eliminate punchcards as state. You should have everything you need through the u
 Make sure somewhere you show either: all the customers that a user has (not in a punchcard index) or all the users a customer is connected to. 
 
 
+sample challenges: 
+
 make a custom method in the model that would
 show the result as an array of 
 top 4 customers with the most punchcards
@@ -18,3 +20,98 @@ make a custom method in the model that would
 show the result as an array of 
 all customers in alphabetical order 
 
+
+
+CHALLENGES: 
+
+1. Query all users who have at least 3 punchcards with a count greater than 5.
+This challenge requires a query with joins and conditions. You can use Active Record to join the users and punchcards tables and filter by punchcards count and reward value. For example:
+
+ANSWER:
+User.joins(:punchcards)
+  .where("punchcards.count >= ? AND punchcards.reward = ?", 5, 'reward_value')
+  .group("users.id")
+  .having("COUNT(punchcards.id) >= ?", 3)
+
+2. Create a custom route that returns all users who have logged in within the last 7 days. This challenge requires creating a custom route and a controller action to handle the request. You can use Active Record to filter users by their last login date and return the results. For example:
+ruby
+
+ANSWER
+
+# routes.rb
+get '/users/recent_login', to: 'users#recent_login'
+
+# users_controller.rb
+def recent_login
+  @users = User.where("last_login_at >= ?", 7.days.ago)
+end
+
+3. 
+
+Create a model method that calculates the average punchcards count per user.
+This challenge requires creating a method on a model that performs a calculation on the database. You can use Active Record to calculate the average punchcards count per user and return the result. 
+
+ANSWER
+
+# user.rb
+class User < ApplicationRecord
+  has_many :punchcards
+
+  def self.average_punchcards_count
+    joins(:punchcards)
+      .group("users.id")
+      .average("punchcards.count")
+  end
+
+end
+
+OTHER SAMPLES 
+
+Find all customers who have at least one punchcard with a reward value of "free drink". Render the result as JSON.
+
+Customer.joins(:punchcards).where("punchcards.reward = ?", "free drink")
+
+Find all customers who have not created any punchcards. 
+
+Customer.left_outer_joins(:punchcards).where(punchcards: { id: nil })
+OR 
+Customer.where.not(
+  id: Punchcard.select(:customer_id).distinct (or uniq)
+)
+
+Find all users who have created punchcards for customers, along with the count of punchcards they have created. 
+
+
+User.joins(:punchcards).select('users.*, COUNT(punchcards.id) as punchcard_count').group('users.id')
+
+Find the customer with the most punchcards. 
+
+
+Customer.joins(:punchcards).group(:id).order('COUNT(punchcards.id) DESC').limit(1)
+
+Find all customers who have created punchcards, along with the total count of punchcards they have created. 
+
+Customer.joins(:punchcards).select('customers.*, COUNT(punchcards.id) as punchcard_count').group('customers.id')
+
+Find all punchcards that have a count greater than or equal to 5 and a reward value of "free pastry". Render the result as JSON.
+
+
+Punchcard.where("count >= ? AND reward = ?", 5, "free pastry")
+
+Find all customers who have created punchcards and have a username that starts with "A". Render the result as JSON.
+
+
+Customer.joins(:punchcards).where("customers.username LIKE ?","A%")
+
+Find all punchcards that have been created in the last 7 days. Render the result as JSON.
+
+
+Punchcard.where("created_at >= ?", Time.now - 7.days)
+
+Find all users who have created punchcards, along with the count of punchcards they have created for each customer. Render the result as JSON.
+
+User.joins(:punchcards).select('users.*, punchcards.customer_id, COUNT(punchcards.id) as punchcard_count').group('users.id, punchcards.customer_id')
+
+Find all customers who have created punchcards and have a total count of punchcards greater than 10. 
+
+Customer.joins(:punchcards).select('customers.*, COUNT(punchcards.id) as punchcard_count').group('customers.id').having('COUNT(punchcards.id) > ?', 10)

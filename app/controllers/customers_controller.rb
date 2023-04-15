@@ -1,13 +1,12 @@
 class CustomersController < ApplicationController
 
-   
-    before_action :set_customer, only: [:show, :update, :destroy]
-    skip_before_action :authorize, only: [:top, :alphabet]
 
+    before_action :set_customer, only: [:show, :update, :destroy]
+    skip_before_action :authorize, only: [:top]
+    
     def index
       customers = Customer.all
       render json: customers
-
     end
 
     def show

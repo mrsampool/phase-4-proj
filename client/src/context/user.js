@@ -14,7 +14,7 @@ const UserProvider = ( {children } ) => {
     const [formFlag, setFormFlag] = useState(true)
     const [errors, setErrors] = useState([])
 
-    const [trigger, setTrigger] = useState(true);
+    const [trigger, setTrigger] = useState(true)
 
     const navigate = useNavigate()
   
@@ -30,7 +30,7 @@ const UserProvider = ( {children } ) => {
               setLoggedIn(true)
             }
         })    
-    }, [trigger])
+    }, [loggedIn, trigger])
 
    const getAllCustomers = () => {
       fetch('/customers')
@@ -38,7 +38,6 @@ const UserProvider = ( {children } ) => {
       .then(data => setAllCustomers(data))
    }
 
-      // ADD PUNCHCARD
    const addPunchcard = (punchcard) => {
     fetch('/punchcards', {
         method: 'POST',
@@ -59,7 +58,7 @@ const UserProvider = ( {children } ) => {
     }) 
 }
 
-// ADD CUSTOMER
+
 
     const addCustomer = (customer) => {
         fetch('/customers', {
@@ -98,11 +97,9 @@ const UserProvider = ( {children } ) => {
       const updatedCustomers = allCustomers.map((p) =>
         p.id === editedCustomer.id ? editedCustomer : p
       )
-      console.log(updatedCustomers)
       setAllCustomers([...allCustomers, updatedCustomers])
       setTrigger(!trigger)
     }
-
 
     const deleteCustomer = (id) => {
       fetch(`/customers/${id}`, {
@@ -112,11 +109,8 @@ const UserProvider = ( {children } ) => {
           setUser({
             ...user,
             customers: user.customers.filter((c) => c.id !== parseInt(id)),
-          });
-          navigate("/customers");
-        })
-        .catch((error) => {
-          console.error(error);
+          })
+          navigate("/customers")
         })
     }
 
@@ -138,6 +132,7 @@ const UserProvider = ( {children } ) => {
          }
          return p
        })
+       
        setUser({ ...user, punchcards: updatedPunchcards })
        setTrigger(!trigger)
       }
@@ -152,8 +147,7 @@ const UserProvider = ( {children } ) => {
         setUser({
           customers: []
         })
-        setLoggedIn(false)
-        
+        setLoggedIn(false) 
     }
 
     const signup = (user) => {

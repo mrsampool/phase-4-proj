@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
 
   # get '/punchcards/count/:number', to: 'punchcards#count'
-  # get '/top', to: 'customers#top'
+  get '/top', to: 'customers#top'
   # get '/alphabet', to: 'customers#alphabet'
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }

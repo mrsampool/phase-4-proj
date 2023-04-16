@@ -9,13 +9,10 @@ const UserProvider = ( {children } ) => {
     const [user, setUser] = useState({
       customers: []
     }) 
-    console.log(user)
     const [loggedIn, setLoggedIn] = useState(false) 
     const [ allCustomers, setAllCustomers ] = useState([])
     const [formFlag, setFormFlag] = useState(true)
     const [errors, setErrors] = useState([])
-
-    const [trigger, setTrigger] = useState(true)
 
     const navigate = useNavigate()
   
@@ -31,7 +28,7 @@ const UserProvider = ( {children } ) => {
               setLoggedIn(true)
             }
         })    
-    }, [loggedIn, trigger])
+    }, [loggedIn])
 
    const getAllCustomers = () => {
       fetch('/customers')
@@ -147,7 +144,6 @@ const UserProvider = ( {children } ) => {
             return c
           }
         })
-
         setAllCustomers(updatedCustomers)
       }
        

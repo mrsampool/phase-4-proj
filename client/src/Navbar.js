@@ -26,7 +26,11 @@ const Navbar = () => {
           <nav class="container-fluid">
 
             <ul>
-                <li><h3><strong>{user.username}</strong></h3></li>
+
+            <NavLink to='/'>
+            <li><h3><strong>{user.username}</strong></h3></li>
+              </NavLink>
+                
             </ul>
             
             <ul>

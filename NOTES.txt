@@ -16,6 +16,7 @@ CODING CHALLENGES!
 
 Create a custom route that finds all the punchcards that have a count more than a given number (that was sent as a parameter). Once you have identified all the punchers that meet that requirement, send back all the customers of the punchcards that were identified in your search. Don’t send back any duplicates. Render the customer objects as json. If no punchcards are found render a message that says so.
 
+REFACTOR:
 
 Find a way to give users access to all customers when thinking about adding a punchcard, including the option to make a new customer.
 
@@ -110,7 +111,6 @@ Find all customers who have created punchcards, along with the total count of pu
 Customer.joins(:punchcards).select('customers.*, COUNT(punchcards.id) as punchcard_count').group('customers.id')
 
 Find all punchcards that have a count greater than or equal to 5 and a reward value of "free pastry". Render the result as JSON.
-
 
 Punchcard.where("count >= ? AND reward = ?", 5, "free pastry")
 

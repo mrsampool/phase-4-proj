@@ -9,6 +9,7 @@ const UserProvider = ( {children } ) => {
     const [user, setUser] = useState({
       customers: []
     }) 
+    console.log(user)
     const [loggedIn, setLoggedIn] = useState(false) 
     const [ allCustomers, setAllCustomers ] = useState([])
     const [formFlag, setFormFlag] = useState(true)
@@ -47,16 +48,28 @@ const UserProvider = ( {children } ) => {
     .then(resp => resp.json())
     .then(data => {
         if (!data.errors) {
+            handleAddedPunchcard(data)
             setFormFlag(false)
             navigate(`/customers/${data.customer_id}`)
             setErrors([])
+            setFormFlag(false)
         } else {
             const errorLis = data.errors.map( e => <li>{e}</li>)
             setErrors(errorLis)
+        }  
+      }) 
+    }
+
+    const handleAddedPunchcard = (addedPunchcard) => { 
+      const updatedCustomers = allCustomers.map(c => {
+        if (c.id === addedPunchcard.customer_id) {
+            return {...c, punchcards: [...c.punchcards, addedPunchcard]}
+        } else {
+            return c
         }
-        setTrigger(!trigger)
-    }) 
-}
+    })
+      setAllCustomers(updatedCustomers)    
+    }
 
     const addCustomer = (customer) => {
         fetch('/customers', {
@@ -67,9 +80,9 @@ const UserProvider = ( {children } ) => {
     .then(resp => resp.json())
     .then(data => {
         if (!data.errors) {  
-         
+          console.log('customer:', data)
             setUser({ ...user, customers: [...user.customers, data] })
-
+            setAllCustomers([...allCustomers, data])
             navigate(`/customers/${data.id}`)
             setErrors([])
             setFormFlag(false)
@@ -77,11 +90,10 @@ const UserProvider = ( {children } ) => {
             const errorLis = data.errors.map(e => <li>{e}</li>)
             setErrors(errorLis)
         }
-        })
+      })
     }
 
     const editCustomerName = (customer) => {
-      
         fetch(`/customers/${customer.id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
@@ -89,6 +101,7 @@ const UserProvider = ( {children } ) => {
         })
         .then(resp => resp.json())
         .then((data) => handleEditedCustomer(data))
+        setErrors([])
     }
 
     const handleEditedCustomer = (editedCustomer) => {
@@ -103,9 +116,9 @@ const UserProvider = ( {children } ) => {
         method: "DELETE",
       })
         .then(() => {
-          setUser({
-            ...user,
-            customers: user.customers.filter((c) => c.id !== parseInt(id)),
+          setUser({...user, 
+            customers: user.customers
+            .filter((c) => c.id !== parseInt(id)),
           })
           navigate("/customers")
         })
@@ -117,9 +130,27 @@ const UserProvider = ( {children } ) => {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(punchcard)
         })
-        setTrigger(!trigger)
-    }
- 
+        .then(resp => resp.json())
+        .then((data) => 
+        
+        handleEditedPunchcard(data))
+        setErrors([])
+      }
+      const handleEditedPunchcard = (editedPunchcard) => {
+
+        const updatedCustomers = allCustomers.map((c) => {
+          if (c.id === editedPunchcard.customer_id) {
+            return {...c, punchcards: c.punchcards.map((p) =>
+                p.id === editedPunchcard.id ? editedPunchcard : p
+              )}
+          } else {
+            return c
+          }
+        })
+
+        setAllCustomers(updatedCustomers)
+      }
+       
     const login = (user) => {
         setUser(user)
         setLoggedIn(true) 
@@ -136,8 +167,6 @@ const UserProvider = ( {children } ) => {
         setUser(user)
         setLoggedIn(true) 
     }
-
-  
 
   return (
 

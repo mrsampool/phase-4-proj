@@ -15,11 +15,10 @@ const Home = () => {
           <br/>
           <h1><strong>Welcome to <br /> {user.username}</strong></h1>
           <br />
+    
+          <p>▲             ▲</p>
           <hr />
-          <p>▲</p>
-          <p>Clientele to access your clientele</p>
-          <p>New to add or find someone</p>
-          <p>▲</p>
+
         </h3>
       </div>
     )

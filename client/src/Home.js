@@ -4,13 +4,22 @@ import shindyLogo from './imgs/shindyLogo.png'
 
 const Home = () => {
 
-  const { loggedIn } = useContext(UserContext)
+  const { user, loggedIn } = useContext(UserContext)
 
   if (loggedIn) {
     return ( 
       <div>
         <h3>
-        <img className="logo" src={shindyLogo} alt="shindyLogo" />
+        <img className="logo-small" src={shindyLogo} alt="shindyLogo" />
+        
+          <br/>
+          <h1><strong>Welcome to <br /> {user.username}</strong></h1>
+          <br />
+          <hr />
+          <p>▲</p>
+          <p>Clientele to access your clientele</p>
+          <p>New to add or find someone</p>
+          <p>▲</p>
         </h3>
       </div>
     )

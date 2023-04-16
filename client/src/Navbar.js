@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { UserContext } from './context/user'
 import { NavLink, useNavigate } from 'react-router-dom'
+import shindyLogo from './imgs/shindyLogo.png'
 
 const Navbar = () => {
 
@@ -79,8 +80,6 @@ const Navbar = () => {
               </ul> 
               </nav>     
             </main>
-            
-
       </>
     )
   }

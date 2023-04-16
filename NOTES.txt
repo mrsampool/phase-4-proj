@@ -1,3 +1,19 @@
+CODING CHALLENGES!
+
+    # coding challenge:
+
+    # def count 
+    #     punchcards = Punchcard.where('count > ?', params[:number])
+        
+    #     customers = punchcards.map { |p| p.customer }.uniq
+
+    #     if customers.present? 
+    #       render json: customers
+    #     else 
+    #       render json: { error: "Punchcard not found"}, status: :not_found
+    #     end
+    # end
+
 Create a custom route that finds all the punchcards that have a count more than a given number (that was sent as a parameter). Once you have identified all the punchers that meet that requirement, send back all the customers of the punchcards that were identified in your search. Don’t send back any duplicates. Render the customer objects as json. If no punchcards are found render a message that says so.
 
 
@@ -105,7 +121,6 @@ Customer.joins(:punchcards).where("customers.username LIKE ?","A%")
 
 Find all punchcards that have been created in the last 7 days. Render the result as JSON.
 
-
 Punchcard.where("created_at >= ?", Time.now - 7.days)
 
 Find all users who have created punchcards, along with the count of punchcards they have created for each customer. Render the result as JSON.
@@ -115,3 +130,16 @@ User.joins(:punchcards).select('users.*, punchcards.customer_id, COUNT(punchcard
 Find all customers who have created punchcards and have a total count of punchcards greater than 10. 
 
 Customer.joins(:punchcards).select('customers.*, COUNT(punchcards.id) as punchcard_count').group('customers.id').having('COUNT(punchcards.id) > ?', 10)
+
+SELF-CHALLENGE CUSTOM METHODS IN CUSTOMERS CONTROLLER
+    # def self.top_customers
+    #     joins(:punchcards).group(:id).order('COUNT(punchcards.id) DESC').limit(4)
+    # end
+
+    # def self.alphabet 
+    #   Customer.order(:username)
+    # end
+
+    # def self.top_customers
+    #     joins(:punchcards).group(:id).order('COUNT(punchcards.id) DESC').limit(4)
+    # end

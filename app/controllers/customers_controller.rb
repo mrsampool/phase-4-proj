@@ -1,6 +1,5 @@
 class CustomersController < ApplicationController
 
-
     before_action :set_customer, only: [:show, :update, :destroy]
     skip_before_action :authorize, only: [:top]
     

@@ -1,13 +1,6 @@
 class PunchcardsController < ApplicationController
     
     before_action :set_punchcard, only: [:index, :show, :update]
-    skip_before_action :authorize, only: :count
-
-
-    # def index 
-    #     punchcards = Punchcard.all
-    #     render json: punchcards
-    # end
 
     def index
         customer = Customer.find(params[:customer_id])
@@ -24,8 +17,6 @@ class PunchcardsController < ApplicationController
       render json: punchcard, status: :created 
     end
 
-    # climbs = @current_user.climbs.uniq { |climb| climb.id }
-
     def update
         punchcard = @current_user.punchcards.find_by(id: params[:id])
         if punchcard
@@ -36,23 +27,7 @@ class PunchcardsController < ApplicationController
         end
     end
 
-    # coding challenge:
-
-    # def count 
-    #     punchcards = Punchcard.where('count > ?', params[:number])
-        
-    #     customers = punchcards.map { |p| p.customer }.uniq
-
-    #     if customers.present? 
-    #       render json: customers
-    #     else 
-    #       render json: { error: "Punchcard not found"}, status: :not_found
-    #     end
-    # end
-
     private 
-
-    # STRONG PARAMS
 
     def punchcard_params
       params.permit(:count, :reward, :customer_id)

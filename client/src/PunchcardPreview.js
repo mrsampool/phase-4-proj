@@ -25,7 +25,7 @@ const PunchcardPreview = ({punchcard}) => {
       <header>
       <em>{punchcard.name}</em>
 
-      {userName?.username}
+      <h2>{userName?.username}</h2>
 
       </header>
   

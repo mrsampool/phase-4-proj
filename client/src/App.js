@@ -19,11 +19,11 @@ function App(props) {
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/signup" element={<Signup />} />
-          <Route exact path="/login" element={<Login />} />
-          <Route exact path="/punchcards" element={<AddCustomer />} />
-          <Route exact path="/customers" element={<UserCustomerTable />}/>
-          <Route exact path="/customers/:id" element={<CustomerProfile />}/>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/punchcards" element={<AddCustomer />} />
+          <Route path="/customers" element={<UserCustomerTable />}/>
+          <Route path="/customers/:id" element={<CustomerProfile />}/>
         </Routes>
       </UserProvider>
      

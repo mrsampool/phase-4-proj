@@ -14,16 +14,11 @@ class SessionsController < ApplicationController
         end 
     end
      
-
     # logout
 
     def destroy 
         session.delete :user_id
         head :no_content
     end
-
-       # def user_params
-    #     params.permit(:username)
-    # end
 
 end

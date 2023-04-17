@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
   resources :punchcards
-  
   resources :customers 
 
   post '/login', to: 'sessions#create'
@@ -10,7 +9,8 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
 
-  get '/greater_than/:num', to: 'customers#greater_than_num'
+
+  # self challenges below
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
 end

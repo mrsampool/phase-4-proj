@@ -18,11 +18,11 @@ Create a custom route that finds all the punchcards that have a count more than 
 
 REFACTOR:
 
-Find a way to give users access to all customers when thinking about adding a punchcard, including the option to make a new customer.
+1 Find a way to give users access to all customers when thinking about adding a punchcard, including the option to make a new customer.
 
-Eliminate punchcards as state. You should have everything you need through the user and the customers, just make sure you send the associated objects back through the serializer.
+2 Eliminate punchcards as state. You should have everything you need through the user and the customers, just make sure you send the associated objects back through the serializer.
 
-Make sure somewhere you show either: all the customers that a user has (not in a punchcard index) or all the users a customer is connected to. 
+3 Make sure somewhere you show either: all the customers that a user has (not in a punchcard index) or all the users a customer is connected to. 
 
 
 sample challenges: 
@@ -32,16 +32,14 @@ show the result as an array of
 top 4 customers with the most punchcards
 highest to least 
 
-
 make a custom method in the model that would
 show the result as an array of 
 all customers in alphabetical order 
 
-
-
 CHALLENGES: 
 
 1. Query all users who have at least 3 punchcards with a count greater than 5.
+
 This challenge requires a query with joins and conditions. You can use Active Record to join the users and punchcards tables and filter by punchcards count and reward value. For example:
 
 ANSWER:
@@ -103,7 +101,6 @@ User.joins(:punchcards).select('users.*, COUNT(punchcards.id) as punchcard_count
 
 Find the customer with the most punchcards. 
 
-
 Customer.joins(:punchcards).group(:id).order('COUNT(punchcards.id) DESC').limit(1)
 
 Find all customers who have created punchcards, along with the total count of punchcards they have created. 
@@ -143,3 +140,53 @@ SELF-CHALLENGE CUSTOM METHODS IN CUSTOMERS CONTROLLER
     # def self.top_customers
     #     joins(:punchcards).group(:id).order('COUNT(punchcards.id) DESC').limit(4)
     # end
+
+    # This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 2023_03_28_091121) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "customers", force: :cascade do |t|
+    t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "punchcards", force: :cascade do |t|
+    t.integer "count"
+    t.string "reward"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "customer_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+end
+
+
+    //q: write a difficult, advanced query challenge for me, based on the models and associations in the schema above.
+    //a: find all customers who have created punchcards and have a username that starts with "A". render the result as JSON.
+
+    //generate a more complex advanced query challege for me, that includes error handling and a custom route, based on the schema above.
+    //a: create a custom route that returns all users who have logged in within the last 7 days. this challenge requires creating a custom route and a controller action to handle the request. you can use active record to filter users by their last login date and return the results. for example:
+    //generate another one
+    //a: create a model method that calculates the average punchcards count per user. this challenge requires creating a method on a model that performs a calculation on the database. you can use active record to calculate the average punchcards count per user and return the result.

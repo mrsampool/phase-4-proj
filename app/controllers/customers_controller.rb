@@ -1,7 +1,6 @@
 class CustomersController < ApplicationController
 
     before_action :set_customer, only: [:show, :update, :destroy]
-    skip_before_action :authorize, only: [:top_customers, :customers_with_punchcards]
     
     def index
       customers = Customer.all
@@ -36,10 +35,7 @@ class CustomersController < ApplicationController
       end
     end
 
-    def greater_than_num
-      customers = Customer.greater_than_num
-      render json: customers
-    end
+     
 
     private 
 

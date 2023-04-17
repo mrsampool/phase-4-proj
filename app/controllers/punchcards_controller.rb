@@ -1,8 +1,6 @@
 class PunchcardsController < ApplicationController
     
     before_action :set_punchcard, only: [:index, :show, :update]
-    skip_before_action :authorize, only: [:count]
-
 
     def index
         customer = Customer.find(params[:customer_id])
@@ -28,7 +26,6 @@ class PunchcardsController < ApplicationController
             render json: { error: "Punchcard not found"}, status: :not_found
         end
     end
-
 
     private 
 

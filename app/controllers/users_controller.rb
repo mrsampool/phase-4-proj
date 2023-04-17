@@ -17,6 +17,15 @@ class UsersController < ApplicationController
         render json: u
     end
 
+
+
+  
+
+    def average_punchcards
+        punch = Punchcard.average_punchcards
+        render json: punch
+    end
+
     private
 
     def user_params

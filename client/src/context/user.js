@@ -64,7 +64,7 @@ const UserProvider = ( {children } ) => {
         } else {
             return c
         }
-    })
+      })
       setAllCustomers(updatedCustomers)    
     }
 
@@ -133,6 +133,7 @@ const UserProvider = ( {children } ) => {
         handleEditedPunchcard(data))
         setErrors([])
       }
+      
       const handleEditedPunchcard = (editedPunchcard) => {
 
         const updatedCustomers = allCustomers.map((c) => {

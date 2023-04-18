@@ -1,7 +1,8 @@
 class CustomersController < ApplicationController
 
     before_action :set_customer, only: [:show, :update, :destroy]
-    
+    skip_before_action :authorize, only: [:more_punchcards_than, :top_customer]
+
     def index
       customers = Customer.all
       render json: customers
@@ -34,8 +35,6 @@ class CustomersController < ApplicationController
         render json: { error: "Not authorized."}, status: :unauthorized
       end
     end
-
-     
 
     private 
 

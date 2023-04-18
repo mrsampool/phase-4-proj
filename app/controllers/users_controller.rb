@@ -12,20 +12,6 @@ class UsersController < ApplicationController
         render json: @current_user
     end
 
-    def active_users
-        u = User.active_users
-        render json: u
-    end
-
-
-
-  
-
-    def average_punchcards
-        punch = Punchcard.average_punchcards
-        render json: punch
-    end
-
     private
 
     def user_params

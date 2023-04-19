@@ -63,8 +63,6 @@ if (loggedIn) {
         Settings
         <br/><br/>
 
-
-
           {editNameFlag ? 
                 <CustomerNameEdit key={customer.id} id={customer.id} setNameFlag={setEditNameFlag} /> 
                 :

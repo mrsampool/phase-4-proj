@@ -5,10 +5,8 @@ const PunchcardPreview = ({punchcard}) => {
 
   const { allCustomers, user, editPunchCount } = useContext(UserContext)
 
+  // this can be accomplished much more efficiently in the backend:
   const userName = allCustomers.map(u => u.users).flat().find(u => u.id === punchcard.user_id)
-
-  const displayName = userName?.id === punchcard.user_id ? <h3>Punchard for <br/> <em> {userName.username} </em></h3> : <h3>This punchcard does not belong to you. </h3>
- 
 
   const handlePunch = (e) => {
     e.preventDefault()

@@ -13,7 +13,6 @@ const PunchcardForm = ({addPunchcardFlag}) => {
     const { id } = useParams()
 
     const handlePunchcardSubmit = (e) => {
-
         e.preventDefault()
 
         addPunchcard({
@@ -53,7 +52,8 @@ const PunchcardForm = ({addPunchcardFlag}) => {
                     {errors.map((error, index) => (
                     <li key={index}>{error}</li>
                     ))}
-                    <button className="button1" type="submit">Submit</button>
+
+                <button className="button1" type="submit">Submit</button>
 
                 </article>
                 

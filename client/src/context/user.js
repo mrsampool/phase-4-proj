@@ -24,10 +24,10 @@ const UserProvider = ( {children } ) => {
             if (data.errors) {
                 setLoggedIn(false)
             } else {
-              getAllCustomers()
               setLoggedIn(true)
             }
-        })    
+        }) 
+        getAllCustomers()   
     }, [loggedIn])
 
    const getAllCustomers = () => {
@@ -49,7 +49,6 @@ const UserProvider = ( {children } ) => {
             setFormFlag(false)
             navigate(`/customers/${data.customer_id}`)
             setErrors([])
-            setFormFlag(false)
         } else {
             const errorLis = data.errors.map( e => <li>{e}</li>)
             setErrors(errorLis)

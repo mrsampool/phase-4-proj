@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  get '/customers/punchcard_length/:n', to: 'customers#punchcard_length'
   
   resources :punchcards
   resources :customers 

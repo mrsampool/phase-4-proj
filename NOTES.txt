@@ -32,6 +32,8 @@ show the result as an array of
 top 4 customers with the most punchcards
 highest to least 
 
+
+
 make a custom method in the model that would
 show the result as an array of 
 all customers in alphabetical order 
@@ -78,7 +80,7 @@ class User < ApplicationRecord
       .average("punchcards.count")
   end
 
-end
+end`
 
 OTHER SAMPLES 
 

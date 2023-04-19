@@ -1,8 +1,6 @@
 class Punchcard < ApplicationRecord
     belongs_to :user
     belongs_to :customer
-    # create a method to get the username 
-    # can comment out has many users for CUSTOMER 
 
     validates_uniqueness_of :customer_id, :scope => :user_id
 

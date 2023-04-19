@@ -4,7 +4,6 @@ import { UserContext } from './context/user'
 const CustomerForm = ({setPunchcardFlag}) => {
 
   const [ username, setUsername ] = useState("")
-  // const [ email, setEmail ] = useState("")
 
   const { addCustomer, errors } = useContext(UserContext)
 
@@ -31,13 +30,6 @@ const CustomerForm = ({setPunchcardFlag}) => {
                     placeholder={"Enter name"}
                     onChange={e => setUsername(e.target.value)}
                 />
-                {/* <input 
-                    type="text" 
-                    id="email"
-                    value={email}
-                    placeholder={"Enter email"}
-                    onChange={e => setUsername(e.target.value)}
-                /> */}
 
                 {errors}
                 

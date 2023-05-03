@@ -2,14 +2,14 @@ grab all customers that have N or more punchcards
 
 punchcard_length action
 
-
-
 CODING CHALLENGES!
 
     # coding challenge:
 
+    get '/count/:n', to: 'customers#count'
+
     # def count 
-    #     punchcards = Punchcard.where('count > ?', params[:number])
+    #     punchcards = Punchcard.where('count > ?', params[:n])
         
     #     customers = punchcards.map { |p| p.customer }.uniq
 

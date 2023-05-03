@@ -15,7 +15,7 @@ const UserProvider = ( {children } ) => {
     const [errors, setErrors] = useState([])
 
     const navigate = useNavigate()
-  
+
     useEffect(() => {
         fetch('/me')
         .then(resp => resp.json())

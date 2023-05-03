@@ -3,7 +3,7 @@ import { UserContext } from './context/user'
 
 const PunchcardPreview = ({punchcard}) => {
 
-  const { allCustomers, user, editPunchCount } = useContext(UserContext)
+  const { allCustomers, editPunchCount } = useContext(UserContext)
 
   // this can be accomplished much more efficiently in the backend:
   const userName = allCustomers.map(u => u.users).flat().find(u => u.id === punchcard.user_id)

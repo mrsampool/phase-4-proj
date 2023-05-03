@@ -1,7 +1,6 @@
 class CustomersController < ApplicationController
 
     before_action :set_customer, only: [:show, :update, :destroy]
-    skip_before_action :authorize, only: [:punchcard_length]
 
     def index
       customers = Customer.all
@@ -36,12 +35,10 @@ class CustomersController < ApplicationController
       end
     end
 
-    # Phase 4 Assessment Challenge:
-
-    def punchcard_length
-      customers = Customer.joins(:punchcards).group(:id).having('COUNT(punchcards) >= ?', params[:n].to_i)
-      render json: customers
-    end
+    # def punchcard_length
+    #   customers = Customer.joins(:punchcards).group(:id).having('COUNT(punchcards) >= ?', params[:n].to_i)
+    #   render json: customers
+    # end
 
     private 
 

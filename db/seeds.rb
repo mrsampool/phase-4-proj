@@ -1,12 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
-# CUSTOMERS
 
 puts "seedin"
 
@@ -52,26 +43,5 @@ end
     )
     punchcard_id_counter += 1
 end
-
-# 20.times do
-#     punchcard = Punchcard.create(
-#         count: count.sample,
-#         reward: reward.sample,
-#         user_id: 3,
-#         customer_id: customer_id_counter,
-#     )
-#     customer_id_counter += 1
-# end
-
-# 20.times do
-#     punchcard = Punchcard.create(
-#         count: count.sample,
-#         reward: reward.sample,
-#         user_id: 4,
-#         customer_id: customer_id_counter,
-#     )
-#     customer_id_counter += 1
-# end
-
 
 puts "been dun seeded"

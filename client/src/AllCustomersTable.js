@@ -11,6 +11,7 @@ const AllCustomersTable = () => {
   const filterBySearch = allCustomers.filter(c => c.username.toLowerCase().includes(searchClient.toLowerCase()))
 
   const customerEntry = filterBySearch.map(c => 
+    console.log("sam's branch")
     <AllCustomersRow 
       id={c.id}
       key={c.id}
@@ -27,6 +28,7 @@ const AllCustomersTable = () => {
       <h1 className="title">ALL CLIENTELE</h1>
       
     <main class="container" >
+      <p>Sam paragraph</p>
   
       <input className="search" type="text" value={searchClient} onChange={handleSearchChange} placeholder={"SEARCH"} />
       <hr/>
